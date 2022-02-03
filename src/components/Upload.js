@@ -33,24 +33,29 @@ class Upload extends React.Component {
     render() {
         return (
             <div >
-                <input
-                    type="file"
-                    multiple
-                    accept="image/*"
-                    onChange={this.changeHandler}
-                />
+                <label htmlFor="upload-photo">
+                    <input
+                        style={{ display: 'none' }}
+                        id="upload-photo"
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        onChange={this.changeHandler}
+                    />
+                    <Button color="primary" variant="contained" component="span">
+                        Choose files
+                    </Button>
+                </label>
                 <br />
                 <br />
                 {this.state.isSelected ? (
-                    <div>
-                        Press Upload to continue with {this.state.selectedFiles.length} images
-                    </div>
+                    <p>Selected {this.state.selectedFiles.length} images</p>
                 ) : (
-                    <p>Select images to upload</p>
+                    <p>No files selected</p>
                 )}
                 <br />
                 <br />
-                <Button onClick={this.onFileUpload} variant="contained" color="primary" component="span">
+                <Button onClick={this.onFileUpload} variant="contained" color="secondary" component="span">
                     Upload
                 </Button>
             </div >

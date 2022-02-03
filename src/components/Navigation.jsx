@@ -1,40 +1,37 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import '..//App.css';
 
 function Navigation() {
     return (
-            <nav className="navbar navbar-expand navbar-dark bg-dark">
-                <div className="container">
-                    <NavLink className="navbar-brand" to="/">
-                        visionflow.ai
+        <div>
+            <br/>
+            <div className="ChildDiv">
+                <NavLink className="CompanyName" to="/">
+                    AIGUI
+                    {/* <a>
+                        <img src={logo}/>
+                    </a> */}
+                </NavLink>
+            </div>
+            <div className="ChildDiv">
+                <li>
+                    <NavLink to="/tool">
+                        <a>Tool</a>
                     </NavLink>
-                    <div>
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/">
-                                    Home
-                                    <span className="sr-only">(current)</span>
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/tool">
-                                    Tool
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/about">
-                                    About
-                                </NavLink>
-                            </li>
-                            <li className="nav-item">
-                                <NavLink className="nav-link" to="/contact">
-                                    Contact
-                                </NavLink>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                </li>
+                <li>
+                    <NavLink to="/about">
+                        <a>About</a>
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to="/contact">
+                        <a>Contact</a>
+                    </NavLink>
+                </li>
+            </div>
+        </div>
     );
 }
 

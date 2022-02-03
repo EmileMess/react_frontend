@@ -63,25 +63,34 @@ class Tool extends React.Component {
 
     render () {
         return (
-            <div>
+            <div className="box">
                 <br />
                 <br />
                 <br />
                 <br />
-                <Box sx={{ p: 30, border: '3px dashed black' }}>
-                    <p>{this.state.stateNames[this.state.currentState]}</p>
+                <div className="row">
+                    {/* <Box display="flex" justifyContent="center" alignItems="center" height={500} sx={{width: '80%', border: 2, borderRadius: 1}}>
+                    </Box> */}
+                    <h2>{this.state.stateNames[this.state.currentState]}</h2>
+                    <br />
+                    <br />
                     {this.state.allStates[0] && <StateUpload />}
                     {this.state.allStates[1] && <StateOrganize />}
                     {this.state.allStates[2] && <StateAnnotate />}
                     {this.state.allStates[3] && <StateTrain />}
                     {this.state.allStates[4] && <StateDeploy />}
-                </Box>
-                <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
-                    <ArrowBackIcon/>
-                </IconButton>
-                <IconButton disabled={!this.state.canForward} onClick={this.handleForward}>
-                    <ArrowForwardIcon/>
-                </IconButton>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div className="row">
+                    <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
+                        <ArrowBackIcon/>
+                    </IconButton>
+                    <IconButton disabled={!this.state.canForward} onClick={this.handleForward}>
+                        <ArrowForwardIcon/>
+                    </IconButton>
+                </div>
             </div>
         )
     };

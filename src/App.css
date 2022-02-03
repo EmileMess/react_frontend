@@ -2,37 +2,97 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Home {
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.Space{
+  margin-top: 150px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.box {
+  text-align: center;
+}
+.box .row {
+  border: 1px dotted grey;
 }
 
-.App-link {
-  color: #61dafb;
+.CompanyName {
+  color: blue;
+  text-decoration: none;
+  padding: 40px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.ChildDiv {
+  overflow: hidden;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  width: 30%;
+  height: auto;
+}
+
+li {
+  display: inline;
+  float: left;
+}
+
+li a {
+  color: black;
+  font-size: 15px;
+  padding: 5px;
+  text-decoration: none;
+}
+
+li a:hover {
+  color: green;
+  font-size: 15px;
+  padding: 5px;
+  text-decoration: none;
+}
+
+.Footer {
+  width:100%;
+  height:40px;
+  background: none;
+}
+
+.TryLink {
+  color: blue;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+.FindMore {
+  font-size: 18px;
+}
+
+.StoryCollection {
+  width: 100%;
+}
+
+.Story a{
+  font-size: 15px;
+}
+
+.Link {
+  text-decoration: none;
+}
+
+h1 {
+  color: black;
+  font-size: 50px;
+}
+
+h2 {
+  color: black;
+  font-size: 20px;
+}
+
+h3 {
+  color: black;
+  font-size: 30px;
 }
