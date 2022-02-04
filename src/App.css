@@ -48,7 +48,7 @@ li a {
 }
 
 li a:hover {
-  color: green;
+  color: grey;
   font-size: 15px;
   padding: 5px;
   text-decoration: none;

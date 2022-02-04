@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Button from '@material-ui/core/Button';
+import axios from 'axios';
 
 /* Upload */
 
@@ -8,26 +9,36 @@ class Upload extends React.Component {
         super(props);
         this.state = {
             selectedFiles: null,
+            selectedFileNames: null,
             isSelected: false
         }
     }
 
     changeHandler = event => {
-        this.setState({ selectedFiles: event.target.files })
-        this.setState({ isSelected: true })
+        this.setState({ selectedFiles: event.target.files });
+        this.fileNames = [];
+        for (var i = 0; i < event.target.files.length; i++) {
+            this.fileNames.push(event.target.files[i].name)
+        };
+        this.setState({ selectedFileNames: this.fileNames });
+        this.setState({ isSelected: true });
     };
 
-    onFileUpload = event => {
+    onFileUpload = (e) => {
         if (this.state.isSelected == true) {
-            var formData = new FormData();
-            for (const key of Object.keys(this.state.selectedFiles)) {
-                formData.append('imgCollection', this.state.selectedFiles[key])
-            }
-            // axios.post("http://localhost:4000/api/upload-images", formData, {
-            // }).then(res => {
-            //     console.log(res.data)
-            // })
-        }
+            e.preventDefault();
+            console.log(this.state);
+            let form_data = new FormData();
+            form_data.append('image', this.state.selectedFiles, this.state.selectedFileNames);
+            let url = 'http://localhost:8000/api/posts/';
+            axios.post(url, form_data, {
+                headers: {'content-type': 'multipart/form-data'} // TODO correct content type
+                })
+                .then(res => {
+                console.log(res.data);
+                })
+                .catch(err => console.log(err))
+                }
     };
 
     render() {
