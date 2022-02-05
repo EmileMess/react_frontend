@@ -13,9 +13,6 @@
 .box {
   text-align: center;
 }
-.box .row {
-  border: 1px dotted grey;
-}
 
 .CompanyName {
   color: blue;

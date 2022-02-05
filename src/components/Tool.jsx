@@ -68,7 +68,7 @@ class Tool extends React.Component {
                 <br />
                 <br />
                 <br />
-                <div className="row">
+                <div style={{width: "80%", margin: "auto", boxShadow: "5px 5px 20px #cccccccc", padding: "1em"}}>
                     {/* <Box display="flex" justifyContent="center" alignItems="center" height={500} sx={{width: '80%', border: 2, borderRadius: 1}}>
                     </Box> */}
                     <h2>{this.state.stateNames[this.state.currentState]}</h2>
@@ -83,7 +83,7 @@ class Tool extends React.Component {
                 <br />
                 <br />
                 <br />
-                <div className="row">
+                <div >
                     <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
                         <ArrowBackIcon/>
                     </IconButton>

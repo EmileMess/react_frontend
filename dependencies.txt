@@ -5,6 +5,8 @@ npm install @mui/material @emotion/react @emotion/styled
 npm install @mui/icons-material
 npm install --save styled-components
 npm install axios
+react-rocketjump
+use-eazy-auth
 
 python@3.9
 django

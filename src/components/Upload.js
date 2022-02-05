@@ -9,18 +9,13 @@ class Upload extends React.Component {
         super(props);
         this.state = {
             selectedFiles: null,
-            selectedFileNames: null,
-            isSelected: false
+            isSelected: false,
+            datasetName: 'dataset_01',
         }
     }
 
-    changeHandler = event => {
-        this.setState({ selectedFiles: event.target.files });
-        this.fileNames = [];
-        for (var i = 0; i < event.target.files.length; i++) {
-            this.fileNames.push(event.target.files[i].name)
-        };
-        this.setState({ selectedFileNames: this.fileNames });
+    changeHandler = e => {
+        this.setState({ selectedFiles: e.target.files });
         this.setState({ isSelected: true });
     };
 
@@ -29,10 +24,12 @@ class Upload extends React.Component {
             e.preventDefault();
             console.log(this.state);
             let form_data = new FormData();
-            form_data.append('image', this.state.selectedFiles, this.state.selectedFileNames);
+            for (var i = 0; i < this.state.selectedFiles.length; i++) {
+                form_data.append('images', this.state.selectedFiles[i]);
+            }
             let url = 'http://localhost:8000/api/posts/';
             axios.post(url, form_data, {
-                headers: {'content-type': 'multipart/form-data'} // TODO correct content type
+                headers: {'content-type': 'multipart/form-data'}
                 })
                 .then(res => {
                 console.log(res.data);
@@ -64,6 +61,13 @@ class Upload extends React.Component {
                 ) : (
                     <p>No files selected</p>
                 )}
+                <br />
+                <br />
+                <form>
+                    <label>
+                    Dataset name:&nbsp;<input onChange={ (e) => this.setState({ datasetName: e.target.value }) } type="text" defaultValue={"dataset_01"}/>
+                    </label>
+                </form>
                 <br />
                 <br />
                 <Button onClick={this.onFileUpload} variant="contained" color="secondary" component="span">
