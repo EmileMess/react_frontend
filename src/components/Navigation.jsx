@@ -14,17 +14,17 @@ function Navigation() {
             <div className="ChildDiv">
                 <li>
                     <NavLink to="/tool">
-                        <a>Tool</a>
+                        Tool
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="/about">
-                        <a>About</a>
+                        About
                     </NavLink>
                 </li>
                 <li>
                     <NavLink to="/contact">
-                        <a>Contact</a>
+                        Contact
                     </NavLink>
                 </li>
             </div>

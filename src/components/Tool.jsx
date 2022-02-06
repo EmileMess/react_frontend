@@ -39,7 +39,6 @@ class Tool extends React.Component {
             // switch to next state
             this.setState({currentState: this.state.currentState + 1});
         }
-        console.log("Current State:", this.state.currentState, "Max State:", this.state.allStates.length)
     }
 
     handleBackward = (e) => {
@@ -58,7 +57,6 @@ class Tool extends React.Component {
             // switch to previous state
             this.setState({currentState: this.state.currentState - 1});
         }
-        console.log("Current State:", this.state.currentState, "Max State:", this.state.allStates.length)
     }
 
     render () {
