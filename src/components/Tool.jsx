@@ -15,8 +15,8 @@ class Tool extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            allStates: [true, false, false, false, false],
-            currentState: 0,
+            allStates: [false, false, true, false, false],
+            currentState: 2,
             canForward: true, // TODO: set canForward on right trigger
             canBackward: true, // TODO: set canBackward on right trigger
             stateNames: ["Upload", "Organize", "Annotate", "Train", "Deploy"]

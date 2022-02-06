@@ -9,9 +9,6 @@ function Navigation() {
             <div className="ChildDiv">
                 <NavLink className="CompanyName" to="/">
                     AIGUI
-                    {/* <a>
-                        <img src={logo}/>
-                    </a> */}
                 </NavLink>
             </div>
             <div className="ChildDiv">

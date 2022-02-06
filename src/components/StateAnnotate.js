@@ -1,14 +1,210 @@
 import '..//App.css';
 import React, { Component } from "react";
-import Parameters from './Parameters.js';
+import IconButton from '@mui/material/IconButton';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Button from '@material-ui/core/Button';
 
+class StateAnnotate extends React.Component {
+  constructor(props) {
+      super(props);
+      this.refCanvas = React.createRef();
+      let loadedimgs = Object.values(this.importAll(require.context('../images', false, /\.(png|jpe?g|svg)$/)));
+      this.state = {
+          images: loadedimgs, // all actual images
+          current_img: 0, // current image index
+          canForward: true, // allowed to move to next image?
+          imgDimensions: [], // image dimensions tupel: [width, height]
+          isDown: false, // is the mouse button down?
+          startX: 0, // rectangle start x
+          startY: 0, // rectangle start y
+          endX: 0, // rectangle width
+          endY: 0, // rectangle height
+          listofRecs: [], // all rectangles with EACH: [current_img, startX, startY, width, height]
+          labelText: '', // label text for boundaries
+          hasMoved: false, // check if mouse has moved before buttonUp event, so simple clicks wont generate rectangle
+      }
+      console.log(this.state.images)
+  }
 
-function StateAnnotate() {
-  return (
-    <div className="App">
-        <Parameters />
-    </div>
-  );
+  // TODO: Bugged when double clicking on image
+
+  // *** Change when backend is ready
+  importAll(r) {
+    let images = {};
+    r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+    return images
+  };
+  // *** Change when backend is ready
+
+  handleImgLoad = e => {
+    this.setState({imgDimensions: [e.target.width, e.target.height]});
+    console.log(this.state.imgDimensions)
+  }
+
+  handleFinish  = e => {
+    let finalData = this.state.listofRecs
+    console.log("FINAL DATA: " + finalData)
+  }
+
+  handleForward = e => {
+    console.log(this.state.images.length, this.state.current_img)
+    if (this.state.images.length-1 > this.state.current_img){
+      this.setState({current_img: this.state.current_img + 1})
+      this.setState({canBackward: true})
+    }
+    if (this.state.images.length-2 == this.state.current_img){
+      this.setState({canForward: false})
+    }
+
+    // draw all previouly marked boxes NOT YET WORKING
+    console.log(this.refCanvas)
+    var ctx = this.refCanvas.current.getContext("2d");
+    ctx.strokeStyle = "blue";
+    ctx.lineWidth = 2;
+    let r = this.state.listofRecs;
+    for (var i = 0; i < this.state.listofRecs.length; i++) {
+      if (r[i][0] == this.state.current_img) {
+        console.log(ctx)
+        ctx.strokeRect(r[i][1], r[i][2], r[i][3], r[i][4]);
+      }
+    }
+    // ..............................................
+
+    this.setState({labelText: ''})
+  }
+
+  handleBackward = e => {
+    console.log(this.state.images.length, this.state.current_img)
+    if (0 < this.state.current_img){
+      this.setState({current_img: this.state.current_img - 1})
+      this.setState({canForward: true})
+    }
+    if (1 == this.state.current_img){
+      this.setState({canBackward: false})
+    }
+
+    this.setState({labelText: ''})
+  }
+
+  handleMouseOut = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (!this.state.isDown) {
+      return;
+    }
+
+    this.setState({hasMoved: false})
+
+    this.setState(prevState => ({
+        listofRecs: [...prevState.listofRecs, [this.state.current_img, this.state.startX, this.state.startY, this.state.endX, this.state.endY]]
+      }))
+    console.log(this.state.listofRecs)
+
+    this.setState({isDown: false})
+
+    let text = 'NEW: [ ' + this.state.current_img + ' ' + this.state.startX + ' ' + this.state.startY + ' ' + this.state.endX + ' ' + this.state.endY + '] ';
+    this.setState({labelText: this.state.labelText + text})
+  }
+
+  handleMouseUp = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    this.setState({isDown: false})
+
+    if (!this.state.hasMoved) {
+      return;
+    }
+
+    this.setState({hasMoved: false})
+
+    this.setState(prevState => ({
+        listofRecs: [...prevState.listofRecs, [this.state.current_img, this.state.startX, this.state.startY, this.state.endX, this.state.endY]]
+      }))
+    console.log(this.state.listofRecs)
+
+    let text = 'NEW: [ ' + this.state.current_img + ' ' + this.state.startX + ' ' + this.state.startY + ' ' + this.state.endX + ' ' + this.state.endY + '] ';
+    this.setState({labelText: this.state.labelText + text})
+  }
+
+  handleMouseMove = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!this.state.isDown) {
+      return;
+    }
+
+    this.setState({hasMoved: true})
+
+    var ctx = e.target.getContext("2d");
+    ctx.strokeStyle = "blue";
+    ctx.lineWidth = 2;
+    let vals = e.target.getBoundingClientRect();
+
+    let mouseX = parseInt(e.clientX - vals.left);
+    let mouseY = parseInt(e.clientY - vals.top);
+    this.setState({endX: mouseX - this.state.startX})
+    this.setState({endY: mouseY - this.state.startY})
+
+    ctx.clearRect(0, 0, vals.width, vals.height);
+
+    let r = this.state.listofRecs;
+    for (var i = 0; i < this.state.listofRecs.length; i++) {
+      if (r[i][0] == this.state.current_img) {
+        ctx.strokeRect(r[i][1], r[i][2], r[i][3], r[i][4]);
+      }
+    }
+    ctx.strokeRect(this.state.startX, this.state.startY, this.state.endX, this.state.endY);
+  }
+
+handleMouseDown = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    this.setState({startX: parseInt(e.clientX - e.target.getBoundingClientRect().left)}); // TODO: auch -1 und -0 wenn ganz am rand vom Fenster
+    this.setState({startY: parseInt(e.clientY - e.target.getBoundingClientRect().top)}); // s.o.
+
+    this.setState({isDown: true});
+    // console.log('handleMouseDown', this.state.isDown, this.state.startX, e.target.getBoundingClientRect().left,  this.state.startY, e.target.getBoundingClientRect().top)
+}
+
+  render() {
+    return (
+      <div className="App">
+        <div className="App">
+          <canvas ref={this.refCanvas} style={{backgroundSize: this.state.imgDimensions[0], backgroundImage: "url(" + this.state.images[this.state.current_img] + ")"}} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]} onMouseOut={this.handleMouseOut} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} />
+          <br/>
+          <br/>
+          <label>{this.state.labelText}</label>
+          <br/>
+          <br/>
+        </div>
+        <div style={{display: 'none'}}>
+          <img  onLoad={this.handleImgLoad} src={this.state.images[this.state.current_img]} style={{
+            borderRadius: 10,
+            overflow: "hidden",
+            alignItems: "center",
+            borderWidth: 1,
+          }}/>
+        </div>
+        <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
+            <ArrowBackIcon/>
+        </IconButton>
+        <IconButton disabled={!this.state.canForward} onClick={this.handleForward}>
+            <ArrowForwardIcon/>
+        </IconButton>
+        <br/>
+        <br/>
+        <br/>
+        <Button onClick={this.handleFinish} variant="contained" color="primary" component="span">
+          Done
+        </Button>
+      </div>
+    );
+  }
 }
 
 export default StateAnnotate;
