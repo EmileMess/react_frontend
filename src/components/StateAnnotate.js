@@ -1,10 +1,17 @@
 import '..//App.css';
 import React, { Component } from "react";
+import MyCanvas from './Canvas'
+
 import IconButton from '@mui/material/IconButton';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Button from '@material-ui/core/Button';
-import MyCanvas from './Canvas'
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+
 
 class StateAnnotate extends React.Component {
   constructor(props) {
@@ -23,6 +30,7 @@ class StateAnnotate extends React.Component {
           listofRecs: [], // all rectangles with EACH: [current_img, startX, startY, width, height]
           hasMoved: false, // check if mouse has moved before buttonUp event, so simple clicks wont generate rectangle
           clickedNext: false, // used to make sure the canvas post render method only renders once after next image is displayed
+          checkBoxValue: 'txt',
       }
   }
 
@@ -50,6 +58,10 @@ class StateAnnotate extends React.Component {
     atag.href = URL.createObjectURL(file);
     atag.download = name;
     atag.click();
+  }
+
+  checkChanged () {
+    console.log("check changed")
   }
 
   handleClearLast = e => {
@@ -188,13 +200,14 @@ class StateAnnotate extends React.Component {
       <div className="App">
         <div>
           <div>
-            <MyCanvas clickednext={this.state.clickedNext ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs} canvwidth={this.state.imgDimensions[0]} canvheight={this.state.imgDimensions[1]} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]}
+            <MyCanvas clickednext={this.state.clickedNext ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs}
+              canvwidth={this.state.imgDimensions[0]} canvheight={this.state.imgDimensions[1]} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]}
               style={{backgroundSize: this.state.imgDimensions[0], backgroundImage: "url(" + this.state.images[this.state.current_img] + ")"}}
               onMouseOut={this.handleMouseOut} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown}/>
-            <br/>
-            <br/>
-            <br/>
           </div>
+          <br/>
+          <br/>
+          <br/>
           <div style={{float: 'left'}}>
             <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
                 <ArrowBackIcon/>
@@ -208,6 +221,27 @@ class StateAnnotate extends React.Component {
         </div>
         <button onClick={this.handleClearLast} >Clear last box</button>
         <button onClick={this.handleClearAll} >Clear all boxes</button>
+        <br/>
+        <br/>
+        <br/>
+        <div>
+          <FormControl>
+            <FormLabel style={{fontSize: '18px', color: 'black'}} id="group-label">Output Annotation Format</FormLabel>
+            <br/>
+            <RadioGroup
+              row
+              aria-labelledby="group-label"
+              defaultValue={this.state.checkBoxValue}
+              onChange={this.checkChanged}
+              name="radio-buttons-group"
+            >
+              <FormControlLabel value="txt" control={<Radio color="success" size="small"/>} label="TXT" />
+              <FormControlLabel value="xml" control={<Radio color="success" size="small"/>} label="XML" />
+              <FormControlLabel value="json" control={<Radio color="success" size="small"/>} label="JSON" />
+              <FormControlLabel value="csv" control={<Radio color="success" size="small"/>} label="CSV" />
+            </RadioGroup>
+          </FormControl>
+        </div>
         <br/>
         <br/>
         <br/>
