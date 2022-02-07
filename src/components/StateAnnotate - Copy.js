@@ -4,11 +4,11 @@ import IconButton from '@mui/material/IconButton';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Button from '@material-ui/core/Button';
-import MyCanvas from './Canvas'
 
 class StateAnnotate extends React.Component {
   constructor(props) {
       super(props);
+      this.refCanvas = React.createRef();
       let loadedimgs = Object.values(this.importAll(require.context('../images', false, /\.(png|jpe?g|svg)$/)));
       this.state = {
           images: loadedimgs, // all actual images
@@ -23,11 +23,11 @@ class StateAnnotate extends React.Component {
           listofRecs: [], // all rectangles with EACH: [current_img, startX, startY, width, height]
           labelText: '', // label text for boundaries
           hasMoved: false, // check if mouse has moved before buttonUp event, so simple clicks wont generate rectangle
-          clickedNext: false, // used to make sure the canvas post render method only renders once after next image is displayed
       }
   }
 
   // TODO: Use arrow buttons + space for delete last (should do button for now)
+  // TODO: show previously marked
   // TODO: clear all
   // TODO: make boxes object related (multi object)
   // TODO: add image title to txt
@@ -70,8 +70,24 @@ class StateAnnotate extends React.Component {
       this.setState({canForward: false})
     }
 
+    //this.updateCanvas();
     this.setState({labelText: ''})
-    this.setState({clickedNext: true})
+  }
+
+  updateCanvas = e => {
+    console.log("update canvas")
+
+    var ctx = this.refCanvas.current.getContext("2d");
+    ctx.strokeStyle = "blue";
+    ctx.lineWidth = 2;
+
+    ctx.strokeRect(100, 100, 100 ,100);
+    let r = this.state.listofRecs;
+    for (var i = 0; i < this.state.listofRecs.length; i++) {
+      if (r[i][0] == this.state.current_img) {
+        ctx.strokeRect(r[i][1], r[i][2], r[i][3], r[i][4]);
+      }
+    }
   }
 
   handleBackward = e => {
@@ -84,7 +100,6 @@ class StateAnnotate extends React.Component {
     }
 
     this.setState({labelText: ''})
-    this.setState({clickedNext: true})
   }
 
   handleMouseOut = (e) => {
@@ -157,7 +172,7 @@ class StateAnnotate extends React.Component {
     ctx.strokeRect(this.state.startX, this.state.startY, this.state.endX, this.state.endY);
   }
 
-  handleMouseDown = (e) => {
+handleMouseDown = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -165,16 +180,15 @@ class StateAnnotate extends React.Component {
     this.setState({startY: parseInt(e.clientY - e.target.getBoundingClientRect().top)}); // s.o.
 
     this.setState({isDown: true});
-    this.setState({clickedNext: false});
-  }
+}
 
   render() {
     return (
       <div className="App">
         <div>
-          <MyCanvas clickednext={this.state.clickedNext ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]}
-            style={{backgroundSize: this.state.imgDimensions[0], backgroundImage: "url(" + this.state.images[this.state.current_img] + ")"}}
-            onMouseOut={this.handleMouseOut} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown}/>
+          <canvas ref={this.refCanvas} style={{backgroundSize: this.state.imgDimensions[0], backgroundImage: "url(" + this.state.images[this.state.current_img] + ")"}}
+            width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]} onMouseOut={this.handleMouseOut}
+            onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown} />
           <br/>
           <br/>
           <label>{this.state.labelText}</label>
