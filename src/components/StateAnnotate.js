@@ -21,21 +21,21 @@ class StateAnnotate extends React.Component {
           endX: 0, // rectangle width
           endY: 0, // rectangle height
           listofRecs: [], // all rectangles with EACH: [current_img, startX, startY, width, height]
-          labelText: '', // label text for boundaries
           hasMoved: false, // check if mouse has moved before buttonUp event, so simple clicks wont generate rectangle
           clickedNext: false, // used to make sure the canvas post render method only renders once after next image is displayed
       }
   }
 
-  // TODO: Use arrow buttons + space for delete last (should do button for now)
-  // TODO: clear all
   // TODO: make boxes object related (multi object)
+
+  // TODO: Use arrow buttons
   // TODO: add image title to txt
+  // TODO: checkboxes to chose format
 
   // *** TODO Change when backend is ready
   importAll(r) {
     let images = {};
-    r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+    r.keys().forEach((item, index) => {images[item.replace('./', '')] = r(item); });
     return images
   };
   // *** TODO Change when backend is ready
@@ -50,6 +50,25 @@ class StateAnnotate extends React.Component {
     atag.href = URL.createObjectURL(file);
     atag.download = name;
     atag.click();
+  }
+
+  handleClearLast = e => {
+    for (var i = this.state.listofRecs.length - 1; i >= 0; i--) {
+      if (this.state.listofRecs[i][0] == this.state.current_img) {
+        let filteredArray = this.state.listofRecs.filter(item => item !== this.state.listofRecs[i]);
+        this.setState({listofRecs: filteredArray});
+        console.log("Removed [" + this.state.listofRecs[i] + "]")
+        break;
+      }
+    }
+    this.setState({clickedNext: true})
+  }
+
+  handleClearAll = e => {
+    let filteredArray = this.state.listofRecs.filter(item => item[0] !== this.state.current_img);
+    this.setState({listofRecs: filteredArray});
+    this.setState({clickedNext: true})
+    console.log("Removed all boxes from image " + this.state.current_img)
   }
 
   handleFinish = e => {
@@ -70,7 +89,6 @@ class StateAnnotate extends React.Component {
       this.setState({canForward: false})
     }
 
-    this.setState({labelText: ''})
     this.setState({clickedNext: true})
   }
 
@@ -83,7 +101,6 @@ class StateAnnotate extends React.Component {
       this.setState({canBackward: false})
     }
 
-    this.setState({labelText: ''})
     this.setState({clickedNext: true})
   }
 
@@ -102,8 +119,7 @@ class StateAnnotate extends React.Component {
         listofRecs: [...prevState.listofRecs, [this.state.current_img, this.state.startX, this.state.startY, this.state.endX, this.state.endY]]
       }))
 
-    let text = 'Added: [' + this.state.current_img + ' ' + this.state.startX + ' ' + this.state.startY + ' ' + this.state.endX + ' ' + this.state.endY + '] ';
-    this.setState({labelText: this.state.labelText + text})
+    console.log('Added: [' + this.state.current_img + ' ' + this.state.startX + ' ' + this.state.startY + ' ' + this.state.endX + ' ' + this.state.endY + '] ')
   }
 
   handleMouseUp = (e) => {
@@ -122,8 +138,7 @@ class StateAnnotate extends React.Component {
         listofRecs: [...prevState.listofRecs, [this.state.current_img, this.state.startX, this.state.startY, this.state.endX, this.state.endY]]
       }))
 
-    let text = 'Added: [ ' + this.state.current_img + ' ' + this.state.startX + ' ' + this.state.startY + ' ' + this.state.endX + ' ' + this.state.endY + '] ';
-    this.setState({labelText: this.state.labelText + text})
+      console.log('Added: [' + this.state.current_img + ' ' + this.state.startX + ' ' + this.state.startY + ' ' + this.state.endX + ' ' + this.state.endY + '] ')
   }
 
   handleMouseMove = (e) => {
@@ -172,15 +187,34 @@ class StateAnnotate extends React.Component {
     return (
       <div className="App">
         <div>
-          <MyCanvas clickednext={this.state.clickedNext ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]}
-            style={{backgroundSize: this.state.imgDimensions[0], backgroundImage: "url(" + this.state.images[this.state.current_img] + ")"}}
-            onMouseOut={this.handleMouseOut} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown}/>
-          <br/>
-          <br/>
-          <label>{this.state.labelText}</label>
-          <br/>
-          <br/>
+          <div>
+            <MyCanvas clickednext={this.state.clickedNext ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs} canvwidth={this.state.imgDimensions[0]} canvheight={this.state.imgDimensions[1]} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]}
+              style={{backgroundSize: this.state.imgDimensions[0], backgroundImage: "url(" + this.state.images[this.state.current_img] + ")"}}
+              onMouseOut={this.handleMouseOut} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown}/>
+            <br/>
+            <br/>
+            <br/>
+          </div>
+          <div style={{float: 'left'}}>
+            <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
+                <ArrowBackIcon/>
+            </IconButton>
+          </div>
+          <div style={{float: 'right'}}>
+            <IconButton disabled={!this.state.canForward} onClick={this.handleForward}>
+                <ArrowForwardIcon/>
+            </IconButton>
+          </div>
         </div>
+        <button onClick={this.handleClearLast} >Clear last box</button>
+        <button onClick={this.handleClearAll} >Clear all boxes</button>
+        <br/>
+        <br/>
+        <br/>
+        <Button onClick={this.handleFinish} variant="contained" color="primary" component="span">
+          Done
+        </Button>
+        {/* Following invisible image is needed to load the image dimensions for the canvas */}
         <div style={{display: 'none'}}>
           <img  onLoad={this.handleImgLoad} src={this.state.images[this.state.current_img]} style={{
             borderRadius: 10,
@@ -189,18 +223,6 @@ class StateAnnotate extends React.Component {
             borderWidth: 1,
           }}/>
         </div>
-        <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
-            <ArrowBackIcon/>
-        </IconButton>
-        <IconButton disabled={!this.state.canForward} onClick={this.handleForward}>
-            <ArrowForwardIcon/>
-        </IconButton>
-        <br/>
-        <br/>
-        <br/>
-        <Button onClick={this.handleFinish} variant="contained" color="primary" component="span">
-          Done
-        </Button>
       </div>
     );
   }
