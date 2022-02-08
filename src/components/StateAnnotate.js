@@ -16,7 +16,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 class StateAnnotate extends React.Component {
   constructor(props) {
       super(props);
-      let loadedimgs = Object.values(this.importAll(require.context('../images', false, /\.(png|jpe?g|svg)$/)));
+      let loadedimgs = Object.values(this.importAll(require.context('../images/Data', false, /\.(png|jpe?g|svg)$/)));
       this.state = {
           images: loadedimgs, // all actual images
           current_img: 0, // current image index
@@ -35,7 +35,7 @@ class StateAnnotate extends React.Component {
   }
 
   // TODO: make boxes object related (multi object)
-
+  // TODO: coole sachen roboflow --> fadenkreuz bei mouseMove etc.
   // TODO: Use arrow buttons
   // TODO: add image title to txt
   // TODO: checkboxes to chose format

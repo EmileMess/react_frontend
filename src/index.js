@@ -4,7 +4,6 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 // import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Navigation from './components/Navigation.jsx';
 import Footer from './components/Footer.jsx';
 import Home from './components/Home.jsx';
 import About from './components/About.jsx';
@@ -13,7 +12,6 @@ import Tool from './components/Tool.jsx';
 
 ReactDOM.render(
     <Router>
-        <Navigation />
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/tool" element={<Tool />} />
