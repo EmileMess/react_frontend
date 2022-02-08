@@ -5,6 +5,28 @@
 /* @import url("https://fonts.googleapis.com/css?family=Tangerine");  */
 /* TODO: choose good font */
 
+/* ################### Career Banner */
+
+.career-banner {
+  font-size: 14px;
+  padding: 5px;
+  align-items: center;
+  /* background-image: linear-gradient(45deg,#3356f4,#111a49); */
+  background-color: #3336c0;
+}
+
+.career-banner a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.career-banner a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ################### Title Page */
+
 .BackgroundFlow {
   text-align: center;
   font-family: 'Trebuchet MS';
@@ -25,46 +47,46 @@
   padding-right: 32px;
   padding-left: 32px;
 
-  background-image: url("./images/static/BackgroundUpper.svg"), linear-gradient(0deg,hsl(229, 90%, 58%),#1f0655);
+  background-image: url("./images/static/BackgroundUpper.svg"), linear-gradient(0deg, #3356f4,#1f0655);
   background-position: 0 0,0 0;
   background-size: cover,auto;
   background-attachment: fixed,scroll;
   opacity: 1;
 }
 
-.TitleBlock {
-  display: inline-block;
-  text-align: left;
-}
-
 .BackgroundLower {
   background-color: white;
 }
 
-.career-banner {
-  font-size: 14px;
-  padding: 10px;
-  align-items: center;
-  background-image: linear-gradient(45deg,#7733f4,#38bdf9);
+.navBar {
+  margin-top: 30px;
 }
 
-.career-banner a {
-  color: inherit;
+.companyName {
+  display: inline;
+  color: #00ffce;
+}
+
+.TitleBlock {
+  display: inline-block;
+  text-align: left;
+  margin-bottom: 180px;
+  margin-top: 130px;
+}
+
+.TryLink {
+  color: #00ffce;
+  font-size: 25px;
   text-decoration: none;
 }
 
-.career-banner a:hover {
-  text-decoration: underline;
-  cursor: pointer;
+.FindMore {
+  font-size: 22px;
+  color: black;
+  margin-bottom: 50px;
 }
 
-.Space1{
-  margin-top: 160px;
-}
-
-.Space2{
-  margin-top: 50px;
-}
+/* ################### Story Buttons */
 
 .steps__grid {
   display: grid;
@@ -114,7 +136,61 @@
   max-width: 100%;
 }
 
-/* ############## */
+.logoimg1 {
+  width: 40px;
+}
+
+.logoimg2 {
+  width: 30px;
+}
+
+/* ################### Story Boxes */
+
+.sidebyside {
+  max-width: 1600px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 32px;
+  align-items: center;
+  grid-column-gap: 32px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  border-radius: 24px;
+  background-color: #f7f7f7;
+}
+
+.w-layout-grid {
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-row-gap: 16px;
+  grid-column-gap: 16px;
+  width: 50%;
+}
+
+.sidebyside__text {
+  padding-right: 32px;
+  padding-left: 32px;
+}
+
+.sidebyside__image {
+  border-radius: 16px;
+  max-width: 100%;
+}
+
+h4 {
+  font-size: 22px;
+  color: #3356f4;
+  text-align: left;
+}
+
+.subtext {
+  font-size: 16px;
+  line-height: 24px;
+  color: rgb(93, 89, 89);
+  text-align: left;
+}
+
+/* ################### Not Main Page */
 
 .box {
   text-align: center;
@@ -133,49 +209,11 @@
   background: none;
 }
 
-.TryLink {
-  color: #00ffce;
-  font-size: 25px;
-  text-decoration: none;
-}
-
-.FindMore {
-  font-size: 22px;
-  color: black;
-}
-
-.StoryCollection {
-  width: 100%;
-  color: black;
-}
-
-.Story a{
-  font-size: 15px;
-}
-
 .Link {
   text-decoration: none;
 }
 
-.testimg {
-  width: 30%;
-  height: auto;
-}
-
-.logoimg1 {
-  width: 40px;
-}
-
-.logoimg2 {
-  width: 30px;
-}
-
-/* ############################################################ */
-
-hr {
-  width:50%;
-  margin-left:0;
-}
+/* ################### General */
 
 h1 {
   font-size: 40px;
@@ -209,6 +247,5 @@ li a {
 }
 
 li a:hover {
-  color: grey;
-  text-decoration: none;
+  text-decoration: underline;
 }

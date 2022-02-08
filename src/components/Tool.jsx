@@ -4,6 +4,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import update from 'react-addons-update';
 import Box from '@mui/material/Box';
+import { NavLink } from "react-router-dom";
 
 import StateUpload from './StateUpload';
 import StateOrganize from './StateOrganize';
@@ -61,33 +62,61 @@ class Tool extends React.Component {
 
     render () {
         return (
-            <div className="box">
-                <br />
-                <br />
-                <br />
-                <br />
-                <div style={{width: "80%", margin: "auto", boxShadow: "5px 5px 20px #cccccccc", padding: "1em"}}>
-                    {/* <Box display="flex" justifyContent="center" alignItems="center" height={500} sx={{width: '80%', border: 2, borderRadius: 1}}>
-                    </Box> */}
-                    <h2>{this.state.stateNames[this.state.currentState]}</h2>
-                    <br />
-                    <br />
-                    {this.state.allStates[0] && <StateUpload />}
-                    {this.state.allStates[1] && <StateOrganize />}
-                    {this.state.allStates[2] && <StateAnnotate />}
-                    {this.state.allStates[3] && <StateTrain />}
-                    {this.state.allStates[4] && <StateDeploy />}
+            <div >
+                <br/>
+                <br/>
+                <div>
+                    <li>
+                        <NavLink to="/">
+                            AIGUI
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/tool">
+                            Tool
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/about">
+                            About
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/contact">
+                            Contact
+                        </NavLink>
+                    </li>
                 </div>
-                <br />
-                <br />
-                <br />
-                <div >
-                    <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
-                        <ArrowBackIcon/>
-                    </IconButton>
-                    <IconButton disabled={!this.state.canForward} onClick={this.handleForward}>
-                        <ArrowForwardIcon/>
-                    </IconButton>
+                <div>
+                    <div className="box">
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <div style={{width: "80%", margin: "auto", boxShadow: "5px 5px 20px #cccccccc", padding: "1em"}}>
+                            {/* <Box display="flex" justifyContent="center" alignItems="center" height={500} sx={{width: '80%', border: 2, borderRadius: 1}}>
+                            </Box> */}
+                            <h2>{this.state.stateNames[this.state.currentState]}</h2>
+                            <br />
+                            <br />
+                            {this.state.allStates[0] && <StateUpload />}
+                            {this.state.allStates[1] && <StateOrganize />}
+                            {this.state.allStates[2] && <StateAnnotate />}
+                            {this.state.allStates[3] && <StateTrain />}
+                            {this.state.allStates[4] && <StateDeploy />}
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <div >
+                            <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
+                                <ArrowBackIcon/>
+                            </IconButton>
+                            <IconButton disabled={!this.state.canForward} onClick={this.handleForward}>
+                                <ArrowForwardIcon/>
+                            </IconButton>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

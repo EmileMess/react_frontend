@@ -2,12 +2,19 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import '..//App.css';
-import imagetest from '..//images/static/cv.jpg'
+
 import imgUpload from '..//images/static/Upload.svg'
 import imgOrganize from '..//images/static/Organize.svg'
 import imgAnnotate from '..//images/static/Annotate.svg'
 import imgTrain from '..//images/static/Train.svg'
 import imgDeploy from '..//images/static/Deploy.svg'
+
+import imgDrone from '..//images/static/drone.jpg'
+import imgField1 from '..//images/static/field6.jpeg'
+import imgField2 from '..//images/static/field2.jpg'
+import imgField3 from '..//images/static/field3.jpg'
+import imgField4 from '..//images/static/field4.jpg'
+import imgField5 from '..//images/static/field5.jpg'
 
 function Home() {
     return (
@@ -15,12 +22,10 @@ function Home() {
             <div className="career-banner">
                 <a href={'/About'} >New Feature: Annotate just received a big upgrade. Read about it on our blog &#8594;</a>
             </div>
-            <br/>
-            <br/>
-            <div>
+            <div className="navBar">
                 <li>
                     <NavLink to="/">
-                        AIGUI
+                        <div className="companyName">AIGUI</div>
                     </NavLink>
                 </li>
                 <li>
@@ -39,12 +44,13 @@ function Home() {
                     </NavLink>
                 </li>
             </div>
-            <div className="BackgroundUpper">
-                <div className="Space1"></div>
 
+            {/* UPPER PART */}
+
+            <div className="BackgroundUpper">
                 <div className="TitleBlock">
-                    <h1>Give your software the sense of sight</h1>
-                    <h2>With a few images, you can train a working computer vision model in an afternoon.</h2>
+                    <h1>Release your data's full potential</h1>
+                    <h2>With a few images, you can train a working computer vision model in no time.</h2>
                     <a className="TryLink" href="/tool">Try It Now &#187;</a>
                     <br/>
                     <br/>
@@ -92,23 +98,10 @@ function Home() {
                         </a>
                     </div>
                 </div>
-                <div className="Space1"></div>
-                {/* <Button onClick={() => window.location.replace("/#section1")} variant="outlined">
-                {/* Upload
-                </Button> &nbsp; &nbsp;
-                <Button onClick={() => window.location.replace("/#section2")} variant="outlined">
-                Organize
-                </Button> &nbsp; &nbsp;
-                <Button onClick={() => window.location.replace("/#section3")} variant="outlined">
-                Annotate
-                </Button> &nbsp; &nbsp;
-                <Button onClick={() => window.location.replace("/#section4")} variant="outlined">
-                Train
-                </Button> &nbsp; &nbsp;
-                <Button onClick={() => window.location.replace("/#section5")} variant="outlined">
-                Deploy
-                </Button> */}
             </div>
+
+            {/* LOWER PART */}
+
             <div className="BackgroundLower">
                 <br/>
                 <br/>
@@ -118,49 +111,84 @@ function Home() {
                     <br/>
                     &darr;
                 </div>
-                <div className="Space2"></div>
-                <div className="StoryCollection">
-                    <div className="Story">
-                        <br/><br/>
-                        <h3>We help innovators like you apply computer vision.</h3>
-                        <a>Read more about customer stories in our documentation.</a>
-                        <br/><br/>
-                        <img className="testimg" src={imagetest} />
+
+                <div className="w-layout-grid sidebyside">
+                    <div className="sidebyside__text">
+                        <h4>We help innovators like you apply computer vision.</h4>
+                        <div className="subtext">
+                            Read more about customer stories in our documentation.
+                        </div>
                     </div>
-                    <div className="Story" id={'section1'}>
-                        <br/><br/>
-                        <h3>Upload training data directly from the source.</h3>
-                        <a>Upload files manually or via API including images, annotations, and videos. We support dozens of annotation formats and make it easy to continuously add new training data as you collect it.</a>
-                        <br/><br/>
-                        <img className="testimg" src={imagetest} />
+                    <img className="sidebyside__image" alt="image" src={imgDrone}/>
+                </div>
+
+                <br/>
+                <br/>
+                <br/>
+
+                <div className="w-layout-grid sidebyside" id={'section1'}>
+                    <img className="sidebyside__image" alt="image" src={imgField1}/>
+                    <div className="sidebyside__text">
+                        <h4>Upload training data directly from the source.</h4>
+                        <div className="subtext">
+                            Upload files manually or via API including images, annotations, and videos. We support dozens of annotation formats and make it easy to continuously add new training data as you collect it.
+                        </div>
                     </div>
-                    <div className="Story" id={'section2'}>
-                        <br/><br/>
-                        <h3>Organize and conduct experiments all in one centralized place.</h3>
-                        <a>Assess the quality of your datasets and prepare them for training. Experiment with transformation tools to generate new training data and see what configurations lead to improved model performance.</a>
-                        <br/><br/>
-                        <img className="testimg" src={imagetest} />
+                </div>
+
+                <br/>
+                <br/>
+                <br/>
+
+                <div className="w-layout-grid sidebyside" id={'section2'}>
+                    <div className="sidebyside__text">
+                        <h4>Organize and conduct experiments all in one centralized place.</h4>
+                        <div className="subtext">
+                            Assess the quality of your datasets and prepare them for training. Experiment with transformation tools to generate new training data and see what configurations lead to improved model performance.
+                        </div>
                     </div>
-                    <div className="Story" id={'section3'}>
-                        <br/><br/>
-                        <h3>Annotate images super fast, right within your browser.</h3>
-                        <a>Label using any operating system without downloading any software. Use the most popular annotation formats including JSON, XML, CSV, and TXT. You and your team can annotate hundreds of images in mere minutes.</a>
-                        <br/><br/>
-                        <img className="testimg" src={imagetest} />
+                    <img className="sidebyside__image" alt="image" src={imgField2}/>
+                </div>
+
+                <br/>
+                <br/>
+                <br/>
+
+                <div className="w-layout-grid sidebyside" id={'section3'}>
+                    <img className="sidebyside__image" alt="image" src={imgField3}/>
+                    <div className="sidebyside__text">
+                        <h4>Annotate images super fast, right within your browser.</h4>
+                        <div className="subtext">
+                            Label using any operating system without downloading any software. Use the most popular annotation formats including JSON, XML, CSV, and TXT. You and your team can annotate hundreds of images in mere minutes.
+                        </div>
                     </div>
-                    <div className="Story" id={'section4'}>
-                        <br/><br/>
-                        <h3>Host a trained model with a single click... Or build your own custom models.</h3>
-                        <a>Deploy your model to the cloud, the edge, or the browser. Get predictions where you need them and in half the time.</a>
-                        <br/><br/>
-                        <img className="testimg" src={imagetest} />
+                </div>
+
+                <br/>
+                <br/>
+                <br/>
+
+                <div className="w-layout-grid sidebyside" id={'section4'}>
+                    <div className="sidebyside__text">
+                        <h4>Host a trained model with a single click... Or build your own custom models.</h4>
+                        <div className="subtext">
+                            Deploy your model to the cloud, the edge, or the browser. Get predictions where you need them and in half the time.
+                        </div>
                     </div>
-                    <div className="Story" id={'section5'}>
-                        <br/><br/>
-                        <h3>It's time to invest in your long-term computer vision strategy.</h3>
-                        <a>Even the best trained models slowly start to degrade over time. Roboflow provides a streamlined workflow for identifying edge cases and deploying fixes. With each iteration, your models become smarter and more accurate.</a>
-                        <br/><br/>
-                        <img className="testimg" src={imagetest} />
+                    <img className="sidebyside__image" alt="image" src={imgField4}/>
+                </div>
+
+                <br/>
+                <br/>
+                <br/>
+
+                <div className="w-layout-grid sidebyside" id={'section5'}>
+                    <img className="sidebyside__image" alt="image" src={imgField5}/>
+                    <div className="sidebyside__text">
+                        <h4>It's time to invest in your long-term computer vision strategy.</h4>
+                        <div className="subtext">
+                            Even the best trained models slowly start to degrade over time. Roboflow provides a streamlined workflow for identifying edge cases and deploying fixes. With each iteration, your models become smarter and more accurate.
+                        </div>
                     </div>
                 </div>
             </div>
