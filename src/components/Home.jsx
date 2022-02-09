@@ -50,7 +50,7 @@ function Home() {
             <div className="BackgroundUpper">
                 <div className="TitleBlock">
                     <h1>Release your data's full potential</h1>
-                    <h2>With a few images, you can train a working computer vision model in no time.</h2>
+                    <h2>With a few images, you can train a working computer vision model in less than a day.</h2>
                     <a className="TryLink" href="/tool">Try It Now &#187;</a>
                     <br/>
                     <br/>

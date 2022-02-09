@@ -150,37 +150,64 @@ class StateAnnotate extends React.Component {
         listofRecs: [...prevState.listofRecs, [this.state.current_img, this.state.startX, this.state.startY, this.state.endX, this.state.endY]]
       }))
 
-      console.log('Added: [' + this.state.current_img + ' ' + this.state.startX + ' ' + this.state.startY + ' ' + this.state.endX + ' ' + this.state.endY + '] ')
+    this.setState({startX: 0})
+    this.setState({startY: 0})
+    this.setState({endX: 0})
+    this.setState({endY: 0})
+
+    console.log('Added: [' + this.state.current_img + ' ' + this.state.startX + ' ' + this.state.startY + ' ' + this.state.endX + ' ' + this.state.endY + '] ')
+  }
+
+  drawLine(ctx, sX, sY, eX, eY) {
+    ctx.strokeStyle = "black";
+    ctx.setLineDash([5, 3]);/*dashes are 5px and spaces are 3px*/
+    ctx.beginPath();
+    ctx.moveTo(sX, sY);
+    ctx.lineTo(eX, eY);
+    ctx.stroke();
+  }
+
+  redrawRecs(ctx) {
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+    ctx.setLineDash([]);
+
+    let r = this.state.listofRecs;
+    for (var i = 0; i < r.length; i++) {
+      if (r[i][0] == this.state.current_img) {
+        ctx.strokeRect(r[i][1], r[i][2], r[i][3], r[i][4]);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+        ctx.fillRect(r[i][1], r[i][2], r[i][3], r[i][4]);
+      }
+    }  
   }
 
   handleMouseMove = (e) => {
     e.preventDefault();
     e.stopPropagation();
 
+    // Get some params
+    let vals = e.target.getBoundingClientRect();
+    let mouseX = parseInt(e.clientX - vals.left);
+    let mouseY = parseInt(e.clientY - vals.top);
+    var ctx = e.target.getContext("2d");
+
+    // Draw old recs
+    ctx.clearRect(0, 0, vals.width, vals.height);
+    this.redrawRecs(ctx)
+
     if (!this.state.isDown) {
+      // Draw Dotted Lines
+      this.drawLine(ctx, 0, mouseY, this.state.imgDimensions[0], mouseY)
+      this.drawLine(ctx, mouseX, 0, mouseX, this.state.imgDimensions[1])
       return;
     }
 
     this.setState({hasMoved: true})
-
-    var ctx = e.target.getContext("2d");
-    ctx.strokeStyle = "blue";
-    ctx.lineWidth = 2;
-    let vals = e.target.getBoundingClientRect();
-
-    let mouseX = parseInt(e.clientX - vals.left);
-    let mouseY = parseInt(e.clientY - vals.top);
     this.setState({endX: mouseX - this.state.startX})
     this.setState({endY: mouseY - this.state.startY})
 
-    ctx.clearRect(0, 0, vals.width, vals.height);
-
-    let r = this.state.listofRecs;
-    for (var i = 0; i < this.state.listofRecs.length; i++) {
-      if (r[i][0] == this.state.current_img) {
-        ctx.strokeRect(r[i][1], r[i][2], r[i][3], r[i][4]);
-      }
-    }
+    // Draw current rec
     ctx.strokeRect(this.state.startX, this.state.startY, this.state.endX, this.state.endY);
   }
 
