@@ -12,6 +12,9 @@ import StateAnnotate from './StateAnnotate';
 import StateTrain from './StateTrain';
 import StateDeploy from './StateDeploy';
 
+// TODO: "tool" navbar select 5 options
+// Footer
+
 class Tool extends React.Component {
     constructor(props) {
         super(props);
@@ -62,13 +65,16 @@ class Tool extends React.Component {
 
     render () {
         return (
-            <div >
+            <div className="BackgroundFlow" >
                 <br/>
                 <br/>
+
+                {/* NAVBAR */}
+
                 <div>
                     <li>
                         <NavLink to="/">
-                            AIGUI
+                            <div className="companyName">AIGUI</div>
                         </NavLink>
                     </li>
                     <li>
@@ -87,37 +93,42 @@ class Tool extends React.Component {
                         </NavLink>
                     </li>
                 </div>
-                <div>
-                    <div className="box">
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <div style={{width: "80%", margin: "auto", boxShadow: "5px 5px 20px #cccccccc", padding: "1em"}}>
-                            {/* <Box display="flex" justifyContent="center" alignItems="center" height={500} sx={{width: '80%', border: 2, borderRadius: 1}}>
-                            </Box> */}
-                            <h2>{this.state.stateNames[this.state.currentState]}</h2>
-                            <br />
-                            <br />
-                            {this.state.allStates[0] && <StateUpload />}
-                            {this.state.allStates[1] && <StateOrganize />}
-                            {this.state.allStates[2] && <StateAnnotate />}
-                            {this.state.allStates[3] && <StateTrain />}
-                            {this.state.allStates[4] && <StateDeploy />}
-                        </div>
-                        <br />
-                        <br />
-                        <br />
-                        <div >
-                            <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
-                                <ArrowBackIcon/>
-                            </IconButton>
-                            <IconButton disabled={!this.state.canForward} onClick={this.handleForward}>
-                                <ArrowForwardIcon/>
-                            </IconButton>
-                        </div>
+
+                {/* CONTENT */}
+
+                <div className="box">
+                    {/* <a className="ToolTitle">{this.state.stateNames[this.state.currentState]}</a> */}
+                    <br />
+                    <br />
+                    <div style={{fontFamily: 'Trebuchet MS', borderRadius: '10px', background: 'white', width: "80%", margin: "auto", boxShadow: "5px 5px 20px #cccccccc", padding: "1em"}}>
+                        {this.state.allStates[0] && <StateUpload />}
+                        {this.state.allStates[1] && <StateOrganize />}
+                        {this.state.allStates[2] && <StateAnnotate />}
+                        {this.state.allStates[3] && <StateTrain />}
+                        {this.state.allStates[4] && <StateDeploy />}
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div >
+                        <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
+                            <ArrowBackIcon/>
+                        </IconButton>
+                        <IconButton disabled={!this.state.canForward} onClick={this.handleForward}>
+                            <ArrowForwardIcon/>
+                        </IconButton>
                     </div>
                 </div>
+
+                {/* FOOTER */}
+
+                {/* <div>
+                    <br/><br/>
+                    <p>
+                        Copyright &copy; AIGUI 2022
+                    </p>
+                    <br/>
+                </div> */}
             </div>
         )
     };

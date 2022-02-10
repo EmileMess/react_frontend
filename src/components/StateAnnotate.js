@@ -1,17 +1,9 @@
 import '..//App.css';
 import React, { Component } from "react";
 import MyCanvas from './Canvas'
-
-import IconButton from '@mui/material/IconButton';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Button from '@material-ui/core/Button';
-import FormControl from '@mui/material/FormControl';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormLabel from '@mui/material/FormLabel';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-
+import MyDialog from './Dialog'
+import { Dropdown } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 class StateAnnotate extends React.Component {
   constructor(props) {
@@ -29,16 +21,33 @@ class StateAnnotate extends React.Component {
           endY: 0, // rectangle height
           listofRecs: [], // all rectangles with EACH: [current_img, startX, startY, width, height]
           hasMoved: false, // check if mouse has moved before buttonUp event, so simple clicks wont generate rectangle
-          clickedNext: false, // used to make sure the canvas post render method only renders once after next image is displayed
-          checkBoxValue: 'txt',
+          renderCanvas: false, // used to make sure the canvas post render method only renders once after next image is displayed
+          checkBoxValue: 'txt', // start vale for output checkbox
+          isOpen: false, // defines if the dialog box for object class is open
+          currentClass: null, // Class number of the currently created rectangle object
       }
   }
 
   // TODO: make boxes object related (multi object)
-  // TODO: coole sachen roboflow --> fadenkreuz bei mouseMove etc.
+  // TODO: On MouseOut: set rec size to max border
+  // TODO: balken auf title page schön machen
+  // TODO: coole sachen roboflow
   // TODO: Use arrow buttons
   // TODO: add image title to txt
   // TODO: checkboxes to chose format
+  // TODO: Dialog box direct writing in text + only numbers allowed (check for object) + make input mandatory
+
+  openDialog = () => {
+    this.setState({isOpen: true})
+  };
+
+  closeDialog = () => {
+    this.setState({isOpen: false})
+  };
+
+  setClassNum (e) {
+    this.setState({currentClass: e.target.value});
+  };
 
   // *** TODO Change when backend is ready
   importAll(r) {
@@ -73,20 +82,20 @@ class StateAnnotate extends React.Component {
         break;
       }
     }
-    this.setState({clickedNext: true})
+    this.setState({renderCanvas: true})
   }
 
   handleClearAll = e => {
     let filteredArray = this.state.listofRecs.filter(item => item[0] !== this.state.current_img);
     this.setState({listofRecs: filteredArray});
-    this.setState({clickedNext: true})
+    this.setState({renderCanvas: true})
     console.log("Removed all boxes from image " + this.state.current_img)
   }
 
   handleFinish = e => {
     let finalData = '';
     for (var i = 0; i < this.state.listofRecs.length; i++) {
-      finalData = finalData + this.state.listofRecs[i][0] + ' ' + this.state.listofRecs[i][1] + ' ' + this.state.listofRecs[i][2] + ' ' + this.state.listofRecs[i][3] + ' ' + this.state.listofRecs[i][4] + '\n';
+      finalData = finalData + this.state.listofRecs[i][0] + ' ' + this.state.listofRecs[i][1] + ' ' + this.state.listofRecs[i][2] + ' ' + this.state.listofRecs[i][3] + ' ' + this.state.listofRecs[i][4] + ' ' + this.state.listofRecs[i][5] + '\n';
     } 
     console.log("FINAL DATA: " + finalData)
     this.downloadContent('ObjectBoundingBoxes', finalData);
@@ -101,7 +110,7 @@ class StateAnnotate extends React.Component {
       this.setState({canForward: false})
     }
 
-    this.setState({clickedNext: true})
+    this.setState({renderCanvas: true})
   }
 
   handleBackward = e => {
@@ -113,7 +122,7 @@ class StateAnnotate extends React.Component {
       this.setState({canBackward: false})
     }
 
-    this.setState({clickedNext: true})
+    this.setState({renderCanvas: true})
   }
 
   handleMouseOut = (e) => {
@@ -126,12 +135,24 @@ class StateAnnotate extends React.Component {
 
     this.setState({hasMoved: false})
     this.setState({isDown: false})
-    
-    this.setState(prevState => ({
-        listofRecs: [...prevState.listofRecs, [this.state.current_img, this.state.startX, this.state.startY, this.state.endX, this.state.endY]]
-      }))
+    this.openDialog()
+  }
 
-    console.log('Added: [' + this.state.current_img + ' ' + this.state.startX + ' ' + this.state.startY + ' ' + this.state.endX + ' ' + this.state.endY + '] ')
+  addNewObj = (e) =>  {
+    this.closeDialog()
+
+    this.setState(prevState => ({
+      listofRecs: [...prevState.listofRecs, [this.state.current_img, this.state.startX, this.state.startY, this.state.endX, this.state.endY, this.state.currentClass]]
+    }))
+
+    console.log('Added: [' + this.state.current_img + ' ' + this.state.startX + ' ' + this.state.startY + ' ' + this.state.endX + ' ' + this.state.endY + ' ' + this.state.currentClass + '] ')
+
+    this.setState({startX: 0})
+    this.setState({startY: 0})
+    this.setState({endX: 0})
+    this.setState({endY: 0})
+
+    this.setState({renderCanvas: true})
   }
 
   handleMouseUp = (e) => {
@@ -145,22 +166,12 @@ class StateAnnotate extends React.Component {
     }
 
     this.setState({hasMoved: false})
-
-    this.setState(prevState => ({
-        listofRecs: [...prevState.listofRecs, [this.state.current_img, this.state.startX, this.state.startY, this.state.endX, this.state.endY]]
-      }))
-
-    this.setState({startX: 0})
-    this.setState({startY: 0})
-    this.setState({endX: 0})
-    this.setState({endY: 0})
-
-    console.log('Added: [' + this.state.current_img + ' ' + this.state.startX + ' ' + this.state.startY + ' ' + this.state.endX + ' ' + this.state.endY + '] ')
+    this.openDialog()
   }
 
   drawLine(ctx, sX, sY, eX, eY) {
     ctx.strokeStyle = "black";
-    ctx.setLineDash([5, 3]);/*dashes are 5px and spaces are 3px*/
+    ctx.setLineDash([5, 3]);
     ctx.beginPath();
     ctx.moveTo(sX, sY);
     ctx.lineTo(eX, eY);
@@ -219,15 +230,17 @@ class StateAnnotate extends React.Component {
     this.setState({startY: parseInt(e.clientY - e.target.getBoundingClientRect().top)}); // s.o.
 
     this.setState({isDown: true});
-    this.setState({clickedNext: false});
+    this.setState({renderCanvas: false});
   }
 
   render() {
     return (
       <div className="App">
         <div>
+          <br/>
+          <br/>
           <div>
-            <MyCanvas clickednext={this.state.clickedNext ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs}
+            <MyCanvas clickednext={this.state.renderCanvas ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs}
               canvwidth={this.state.imgDimensions[0]} canvheight={this.state.imgDimensions[1]} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]}
               style={{backgroundSize: this.state.imgDimensions[0], backgroundImage: "url(" + this.state.images[this.state.current_img] + ")"}}
               onMouseOut={this.handleMouseOut} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown}/>
@@ -235,46 +248,32 @@ class StateAnnotate extends React.Component {
           <br/>
           <br/>
           <br/>
-          <div style={{float: 'left'}}>
-            <IconButton disabled={!this.state.canBackward} onClick={this.handleBackward}>
-                <ArrowBackIcon/>
-            </IconButton>
-          </div>
-          <div style={{float: 'right'}}>
-            <IconButton disabled={!this.state.canForward} onClick={this.handleForward}>
-                <ArrowForwardIcon/>
-            </IconButton>
-          </div>
-        </div>
-        <button onClick={this.handleClearLast} >Clear last box</button>
-        <button onClick={this.handleClearAll} >Clear all boxes</button>
-        <br/>
-        <br/>
-        <br/>
-        <div>
-          <FormControl>
-            <FormLabel style={{fontSize: '18px', color: 'black'}} id="group-label">Output Annotation Format</FormLabel>
+            <Button variant="outline-dark" disabled={!this.state.canBackward} onClick={this.handleBackward}>
+              &#8592;
+            </Button>
+            &nbsp;&nbsp;
+            <Button variant="outline-dark" onClick={this.handleClearLast} >Clear last box</Button>
+            &nbsp;&nbsp;
+            <Button variant="outline-dark" onClick={this.handleClearAll} >Clear all boxes</Button>
+            &nbsp;&nbsp;
+            <Button variant="outline-dark" disabled={!this.state.canForward} onClick={this.handleForward}>
+              &#8594;
+            </Button>
             <br/>
-            <RadioGroup
-              row
-              aria-labelledby="group-label"
-              defaultValue={this.state.checkBoxValue}
-              onChange={this.checkChanged}
-              name="radio-buttons-group"
-            >
-              <FormControlLabel value="txt" control={<Radio color="success" size="small"/>} label="TXT" />
-              <FormControlLabel value="xml" control={<Radio color="success" size="small"/>} label="XML" />
-              <FormControlLabel value="json" control={<Radio color="success" size="small"/>} label="JSON" />
-              <FormControlLabel value="csv" control={<Radio color="success" size="small"/>} label="CSV" />
-            </RadioGroup>
-          </FormControl>
+            <br/>
+            <Dropdown>
+              <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+                Download Annotations
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item onClick={this.handleFinish}>txt</Dropdown.Item>
+                <Dropdown.Item onClick={this.handleFinish}>xml</Dropdown.Item>
+                <Dropdown.Item onClick={this.handleFinish}>json</Dropdown.Item>
+                <Dropdown.Item onClick={this.handleFinish}>csv</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+            <br/>
         </div>
-        <br/>
-        <br/>
-        <br/>
-        <Button onClick={this.handleFinish} variant="contained" color="primary" component="span">
-          Done
-        </Button>
         {/* Following invisible image is needed to load the image dimensions for the canvas */}
         <div style={{display: 'none'}}>
           <img  onLoad={this.handleImgLoad} src={this.state.images[this.state.current_img]} style={{
@@ -283,6 +282,15 @@ class StateAnnotate extends React.Component {
             alignItems: "center",
             borderWidth: 1,
           }}/>
+        </div>
+        {/* Following code is for the object class dialog box */}
+        <div>
+          <MyDialog
+            show={this.state.isOpen}
+            onHide={() => this.closeDialog()}
+            toadd={() => this.addNewObj()}
+            saveclassnum={(e) => this.setClassNum(e)}
+          />
         </div>
       </div>
     );

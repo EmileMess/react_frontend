@@ -22,6 +22,9 @@ function Home() {
             <div className="career-banner">
                 <a href={'/About'} >New Feature: Annotate just received a big upgrade. Read about it on our blog &#8594;</a>
             </div>
+
+            {/* NAVBAR */}
+
             <div className="navBar">
                 <li>
                     <NavLink to="/">
@@ -45,6 +48,7 @@ function Home() {
                 </li>
             </div>
 
+            {/* CONTENT */}
             {/* UPPER PART */}
 
             <div className="BackgroundUpper">
@@ -191,6 +195,20 @@ function Home() {
                         </div>
                     </div>
                 </div>
+
+                <br/>
+                <br/>
+                <br/>
+            </div>
+
+            {/* FOOTER */}
+
+            <div>
+                <br/><br/>
+                <p>
+                    Copyright &copy; AIGUI 2022
+                </p>
+                <br/>
             </div>
         </div>
     );
