@@ -6,6 +6,7 @@ npm install @mui/icons-material
 npm install --save styled-components
 npm install axios
 react-rocketjump
+npm i --save react-select
 use-eazy-auth
 
 python@3.9

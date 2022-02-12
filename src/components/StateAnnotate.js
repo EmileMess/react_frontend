@@ -3,7 +3,9 @@ import React, { Component } from "react";
 import MyCanvas from './Canvas'
 import MyDialog from './Dialog'
 import { Dropdown } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
+import { Button, Form, Modal } from "react-bootstrap";
+import ModalInput from './Dialog'
+import CreatableInputOnly from './Creatable.tsx'
 
 class StateAnnotate extends React.Component {
   constructor(props) {
@@ -25,24 +27,39 @@ class StateAnnotate extends React.Component {
           checkBoxValue: 'txt', // start vale for output checkbox
           isOpen: false, // defines if the dialog box for object class is open
           currentClass: null, // Class number of the currently created rectangle object
+          outFromDialog: false, // true if mouse only left canvas because of dialog popup
+          classes: [], // contains all classes defined by user
       }
   }
 
-  // TODO: make boxes object related (multi object)
-  // TODO: On MouseOut: set rec size to max border
-  // TODO: balken auf title page schön machen
-  // TODO: coole sachen roboflow
-  // TODO: Use arrow buttons
-  // TODO: add image title to txt
-  // TODO: checkboxes to chose format
-  // TODO: Dialog box direct writing in text + only numbers allowed (check for object) + make input mandatory
+  // Keine gleichen namen erlauben
+  // beschriftung boxen falsch bei "-" boxen
+  // Anzeige falls klasse nicht existiert + wenn gar keine klasse definiert ist
+  // escape key for "close" dialog
+  // Background schön machen
+  // Use arrow buttons for image swap
+  // add image title to txt
+  // choose format
+
+  // Inspo Roboflow?
+
+  setClasses = (allclasses) => {
+    const cloneClasses = [...allclasses];
+    for (var i = 0; i < cloneClasses.length; i++) {
+      cloneClasses[i] = cloneClasses[i]["label"]
+    }
+    this.setState({classes: cloneClasses})
+  }
 
   openDialog = () => {
+    this.setState({outFromDialog: true})
     this.setState({isOpen: true})
   };
 
   closeDialog = () => {
     this.setState({isOpen: false})
+    this.setState({outFromDialog: false})
+    this.setState({renderCanvas: true})
   };
 
   setClassNum (e) {
@@ -67,10 +84,6 @@ class StateAnnotate extends React.Component {
     atag.href = URL.createObjectURL(file);
     atag.download = name;
     atag.click();
-  }
-
-  checkChanged () {
-    console.log("check changed")
   }
 
   handleClearLast = e => {
@@ -129,16 +142,29 @@ class StateAnnotate extends React.Component {
     e.preventDefault();
     e.stopPropagation();
     
-    if (!this.state.isDown) {
-      return;
-    }
+    if (!this.state.outFromDialog) { // prevent redundant call of dialog when "mouse out" is triggered due to dialog
+      if (!this.state.isDown) { // Mouse moves out without click -> just remove crossair
+        let vals = e.target.getBoundingClientRect();
+        var ctx = e.target.getContext("2d");
+        this.redrawRecs(ctx, vals.width, vals.height);
+        return
+      }
 
-    this.setState({hasMoved: false})
-    this.setState({isDown: false})
-    this.openDialog()
+      this.setState({hasMoved: false})
+      this.setState({isDown: false})
+      this.openDialog()
+    }
   }
 
   addNewObj = (e) =>  {
+    if (this.state.classes.length == 0) {
+      return
+    }
+
+    if (!(this.state.classes.includes(this.state.currentClass))) {
+      return
+    }
+
     this.closeDialog()
 
     this.setState(prevState => ({
@@ -153,6 +179,7 @@ class StateAnnotate extends React.Component {
     this.setState({endY: 0})
 
     this.setState({renderCanvas: true})
+    this.setState({outFromDialog: false})
   }
 
   handleMouseUp = (e) => {
@@ -178,7 +205,10 @@ class StateAnnotate extends React.Component {
     ctx.stroke();
   }
 
-  redrawRecs(ctx) {
+  // TODO/CARE: There is a copy of this code in Canvas.js
+  redrawRecs(ctx, width, height) {
+    ctx.clearRect(0, 0, width, height);
+
     ctx.strokeStyle = "black";
     ctx.lineWidth = 2;
     ctx.setLineDash([]);
@@ -189,6 +219,11 @@ class StateAnnotate extends React.Component {
         ctx.strokeRect(r[i][1], r[i][2], r[i][3], r[i][4]);
         ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
         ctx.fillRect(r[i][1], r[i][2], r[i][3], r[i][4]);
+        ctx.beginPath();
+        ctx.font = '24px Arial'
+        ctx.fillStyle = 'black';
+        ctx.fillText(r[i][5], r[i][1] + 3, r[i][2] + r[i][4] - 3);
+        ctx.stroke();
       }
     }  
   }
@@ -204,8 +239,7 @@ class StateAnnotate extends React.Component {
     var ctx = e.target.getContext("2d");
 
     // Draw old recs
-    ctx.clearRect(0, 0, vals.width, vals.height);
-    this.redrawRecs(ctx)
+    this.redrawRecs(ctx, vals.width, vals.height)
 
     if (!this.state.isDown) {
       // Draw Dotted Lines
@@ -238,14 +272,12 @@ class StateAnnotate extends React.Component {
       <div className="App">
         <div>
           <br/>
+          <CreatableInputOnly setClasses={this.setClasses}></CreatableInputOnly>
           <br/>
-          <div>
-            <MyCanvas clickednext={this.state.renderCanvas ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs}
-              canvwidth={this.state.imgDimensions[0]} canvheight={this.state.imgDimensions[1]} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]}
-              style={{backgroundSize: this.state.imgDimensions[0], backgroundImage: "url(" + this.state.images[this.state.current_img] + ")"}}
-              onMouseOut={this.handleMouseOut} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown}/>
-          </div>
-          <br/>
+          <MyCanvas rendercanvas={this.state.renderCanvas ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs}
+            canvwidth={this.state.imgDimensions[0]} canvheight={this.state.imgDimensions[1]} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]}
+            style={{backgroundSize: this.state.imgDimensions[0], backgroundImage: "url(" + this.state.images[this.state.current_img] + ")"}}
+            onMouseOut={this.handleMouseOut} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown}/>
           <br/>
           <br/>
             <Button variant="outline-dark" disabled={!this.state.canBackward} onClick={this.handleBackward}>
@@ -284,13 +316,20 @@ class StateAnnotate extends React.Component {
           }}/>
         </div>
         {/* Following code is for the object class dialog box */}
-        <div>
-          <MyDialog
-            show={this.state.isOpen}
-            onHide={() => this.closeDialog()}
-            toadd={() => this.addNewObj()}
-            saveclassnum={(e) => this.setClassNum(e)}
-          />
+        <div>      
+          <Modal onHide={this.closeDialog} show={this.state.isOpen} size="sm" centered>
+            <Modal.Body>
+              <ModalInput addnewobj={this.addNewObj} saveclassnum={(e) => this.setClassNum(e)}/>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="outline-dark" onClick={this.closeDialog}>
+                Close
+              </Button>
+              <Button variant="outline-dark" onClick={this.addNewObj}>
+                Done [&crarr;]
+              </Button>
+            </Modal.Footer>
+          </Modal>
         </div>
       </div>
     );

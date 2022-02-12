@@ -13,7 +13,9 @@ import StateTrain from './StateTrain';
 import StateDeploy from './StateDeploy';
 
 // TODO: "tool" navbar select 5 options
-// Footer
+// TODO: Footer
+// TODO: @media (min-width: 481px) and (max-width: 767px) {
+// TODO: balken auf title page schön machen
 
 class Tool extends React.Component {
     constructor(props) {
@@ -65,7 +67,8 @@ class Tool extends React.Component {
 
     render () {
         return (
-            <div className="BackgroundFlow" >
+            <div>
+            {/* <div className="BackgroundFlow" ></div> */}
                 <br/>
                 <br/>
 
