@@ -1,5 +1,6 @@
 import React, { useRef, useEffect } from 'react'
 
+
 const MyCanvas = props => {
   
   const canvasRef = useRef(null)
@@ -27,7 +28,11 @@ const MyCanvas = props => {
         ctx.beginPath();
         ctx.font = '24px Arial'
         ctx.fillStyle = 'black';
-        ctx.fillText(r[i][5], r[i][1] + 3, r[i][2] + r[i][4] - 3);
+        let x = r[i][1] + 3
+        let y = r[i][2] + r[i][4] - 3
+        if(r[i][3] < 0) {x = x + r[i][3]}
+        if(r[i][4] < 0) {y = y - r[i][4]}
+        ctx.fillText(r[i][5], x, y);
         ctx.stroke();
       }
     }  

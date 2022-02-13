@@ -1,10 +1,8 @@
-
+import '..//..//..//App.css';
 import React, { Component } from "react";
 
 import Form from 'react-bootstrap/Form';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import '..//App.css';
-// import '..//bootstrapCustom.min.css';
+
 
 class ModalInput extends React.Component {
   constructor(props) {
@@ -14,7 +12,7 @@ class ModalInput extends React.Component {
   }
 
   componentDidMount() {
-    // This should fix the autoFocus issue.
+    // Fixes an autoFocus bug
     setTimeout(() => {
       this.innerRef.current.focus();
     }, 1);
@@ -24,6 +22,10 @@ class ModalInput extends React.Component {
     // Check if "Enter" key was pressed
     if (e.nativeEvent.keyCode === 13) {
       this.props.addnewobj();
+    }
+    // Check if "Escape" key was pressed
+    if (e.nativeEvent.keyCode === 27) {
+      this.props.closedialog();
     }
   }
 

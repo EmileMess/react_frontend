@@ -1,27 +1,23 @@
+import '..//..//App.css';
 import React from "react";
-import { NavLink } from "react-router-dom";
-import '..//App.css';
 
-import imgUpload from '..//images/static/Upload.svg'
-import imgOrganize from '..//images/static/Organize.svg'
-import imgAnnotate from '..//images/static/Annotate.svg'
-import imgTrain from '..//images/static/Train.svg'
-import imgDeploy from '..//images/static/Deploy.svg'
+import imgUpload from '..//..//images/static/Upload.svg'
+import imgOrganize from '..//..//images/static/Organize.svg'
+import imgAnnotate from '..//..//images/static/Annotate.svg'
+import imgTrain from '..//..//images/static/Train.svg'
+import imgDeploy from '..//..//images/static/Deploy.svg'
 
-import imgDrone from '..//images/static/drone.jpg'
-import imgField1 from '..//images/static/field6.jpeg'
-import imgField2 from '..//images/static/field2.jpg'
-import imgField3 from '..//images/static/field3.jpg'
-import imgField4 from '..//images/static/field4.jpg'
-import imgField5 from '..//images/static/field5.jpg'
+import imgDrone from '..//..//images/static/drone.jpg'
+import imgField1 from '..//..//images/static/field6.jpeg'
+import imgField2 from '..//..//images/static/field2.jpg'
+import imgField3 from '..//..//images/static/field3.jpg'
+import imgField4 from '..//..//images/static/field4.jpg'
+import imgField5 from '..//..//images/static/field5.jpg'
+
 
 function Home() {
     return (
         <div className="BackgroundFlow">
-            {/* <div className="career-banner">
-                <a href={'/About'} >New Feature: Annotate just received a big upgrade. Read about it on our blog &#8594;</a>
-            </div> */}
-
             {/* CONTENT */}
             {/* UPPER PART */}
 

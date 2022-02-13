@@ -3,6 +3,7 @@ import React, { Component, KeyboardEventHandler } from 'react';
 import CreatableSelect from 'react-select/creatable';
 import { ActionMeta, MultiValue, OnChangeValue } from 'react-select';
 
+
 const components = {
   DropdownIndicator: null,
 };
@@ -75,6 +76,7 @@ class CreatableInputOnly extends Component<Props, State> {
         inputValue={inputValue}
         isClearable
         isMulti
+        autoFocus
         menuIsOpen={false}
         onChange={this.handleDelete}
         onInputChange={this.handleInputChange}

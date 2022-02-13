@@ -1,21 +1,24 @@
+import './index.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-// import * as serviceWorker from "./serviceWorker";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Footer from './components/Footer.jsx';
-import Navi from './components/Navigation'
 
-import Home from './components/Home.jsx';
-import Upload from './components/StateUpload';
-import Organize from './components/StateOrganize';
-import Annotate from './components/StateAnnotate';
-import Train from './components/StateTrain';
-import Deploy from './components/StateDeploy';
+import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import Navi from './components/Navigation/Navigation'
+import Footer from './components/Navigation/Footer.jsx';
+
+import Home from './components/Navigation/Home.jsx';
+import Upload from './components/Tools/Upload/StateUpload';
+import Organize from './components/Tools/Organize/StateOrganize';
+import Annotate from './components/Tools/Annotate/StateAnnotate';
+import Train from './components/Tools/Train/StateTrain';
+import Deploy from './components/Tools/Deploy/StateDeploy';
 import Instructions from './components/StateInstructions';
-import About from './components/About.jsx';
-import Contact from './components/Contact.jsx';
+import About from './components/Navigation/About.jsx';
+import Contact from './components/Navigation/Contact.jsx';
 
 ReactDOM.render(
     <Router>
@@ -37,4 +40,3 @@ ReactDOM.render(
 );
 
 reportWebVitals();
-// serviceWorker.unregister();

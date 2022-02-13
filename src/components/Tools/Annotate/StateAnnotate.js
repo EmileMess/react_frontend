@@ -1,5 +1,5 @@
+import '..//..//..//App.css';
 import React, { Component } from "react";
-import '..//App.css';
 
 import { Dropdown } from 'react-bootstrap';
 import { Button, Modal } from "react-bootstrap";
@@ -8,10 +8,12 @@ import MyCanvas from './Canvas'
 import ModalInput from './Dialog'
 import CreatableInputOnly from './Creatable.tsx'
 
+
 class StateAnnotate extends React.Component {
   constructor(props) {
       super(props);
-      let loadedimgs = Object.values(this.importAll(require.context('../images/Data', false, /\.(png|jpe?g|svg)$/)));
+      let loadedimgs = Object.values(this.importAll(require.context('../../../images/Data', false, /\.(png|jpe?g|svg)$/)));
+      window.addEventListener('keydown', e => this.onKeyDown(e));
       this.state = {
           images: loadedimgs, // all actual images
           current_img: 0, // current image index
@@ -33,21 +35,16 @@ class StateAnnotate extends React.Component {
       }
   }
 
-  // TODO: "tool" navbar select 5 options
-  // TODO: Footer
-  // TODO: @media (min-width: 481px) and (max-width: 767px) {
-  // TODO: balken auf title page schön machen
+  // TODO: Handy Optimierung: @media (min-width: 481px) and (max-width: 767px) {}
+  // TODO: Remove all unnecessary renders
+  // TODO: When images are imported from db: load dimensions from image file, not from image component (remove)
 
-  // Keine gleichen namen erlauben --> message box
-  // beschriftung boxen falsch bei "-" boxen
-  // Anzeige falls klasse nicht existiert + wenn gar keine klasse definiert ist
-  // escape key for "close" dialog
-  // Background schön machen
-  // Use arrow buttons for image swap
-  // add image title to txt
-  // choose format
-
-  // Inspo Roboflow?
+  // FINALLY: remove all MUI (Train + Upload)
+  // Keine gleichen namen erlauben --> MessageBox
+  // klasse nicht existiert + wenn gar keine klasse definiert ist --> MessageBox
+  // add output formats
+  // classes are also removed when using backward key
+  // Navbar moving on some div changes in StateAnnotate
 
   setClasses = (allclasses) => {
     const cloneClasses = [...allclasses];
@@ -78,7 +75,7 @@ class StateAnnotate extends React.Component {
     r.keys().forEach((item, index) => {images[item.replace('./', '')] = r(item); });
     return images
   };
-  // *** TODO Change when backend is ready
+  // ***
 
   handleImgLoad = e => {
     this.setState({imgDimensions: [e.target.width, e.target.height]});
@@ -112,10 +109,10 @@ class StateAnnotate extends React.Component {
   }
 
   handleFinish = e => {
-    let finalData = '';
+    let finalData = 'IMAGE_NAME CLASS_NAME X_START Y_START WIDTH HEIGHT\n\n';
     for (var i = 0; i < this.state.listofRecs.length; i++) {
-      finalData = finalData + this.state.listofRecs[i][0] + ' ' + this.state.listofRecs[i][1] + ' ' + this.state.listofRecs[i][2] + ' ' + this.state.listofRecs[i][3] + ' ' + this.state.listofRecs[i][4] + ' ' + this.state.listofRecs[i][5] + '\n';
-    } 
+      finalData = finalData + this.state.images[i] + ' ' + this.state.listofRecs[i][5] + ' ' + this.state.listofRecs[i][1] + ' ' + this.state.listofRecs[i][2] + ' ' + this.state.listofRecs[i][3] + ' ' + this.state.listofRecs[i][4] + '\n';
+    }
     console.log("FINAL DATA: " + finalData)
     this.downloadContent('ObjectBoundingBoxes', finalData);
   }
@@ -211,7 +208,7 @@ class StateAnnotate extends React.Component {
     ctx.stroke();
   }
 
-  // TODO/CARE: There is a copy of this code in Canvas.js
+  // TODO: There is a copy of this code in Canvas.js
   redrawRecs(ctx, width, height) {
     ctx.clearRect(0, 0, width, height);
 
@@ -228,7 +225,11 @@ class StateAnnotate extends React.Component {
         ctx.beginPath();
         ctx.font = '24px Arial'
         ctx.fillStyle = 'black';
-        ctx.fillText(r[i][5], r[i][1] + 3, r[i][2] + r[i][4] - 3);
+        let x = r[i][1] + 3
+        let y = r[i][2] + r[i][4] - 3
+        if(r[i][3] < 0) {x = x + r[i][3]}
+        if(r[i][4] < 0) {y = y - r[i][4]}
+        ctx.fillText(r[i][5], x, y);
         ctx.stroke();
       }
     }  
@@ -273,12 +274,32 @@ class StateAnnotate extends React.Component {
     this.setState({renderCanvas: false});
   }
 
+  onKeyDown = (e) => {
+    // Check if "Arrow" key was pressed
+    if (e.key === "ArrowRight") {
+      this.handleForward()
+    }
+    if (e.key === "ArrowLeft") {
+      this.handleBackward()
+    }
+
+    if (e.key === "Backspace") {
+      this.handleClearLast()
+    }
+    if (e.key === " ") {
+      this.handleClearAll()
+    }
+  }
+
   render() {
     return (
       <div className="App">
-        <div>
+        <div className="CreatableInput">
           <br/>
-          <CreatableInputOnly setClasses={this.setClasses}></CreatableInputOnly>
+          <br/>
+          <div>
+            <CreatableInputOnly setClasses={this.setClasses}></CreatableInputOnly>
+          </div>
           <br/>
           <MyCanvas rendercanvas={this.state.renderCanvas ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs}
             canvwidth={this.state.imgDimensions[0]} canvheight={this.state.imgDimensions[1]} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]}
@@ -287,15 +308,15 @@ class StateAnnotate extends React.Component {
           <br/>
           <br/>
             <Button variant="outline-dark" disabled={!this.state.canBackward} onClick={this.handleBackward}>
-              &#8592;
+              Previous [&#8592;]
             </Button>
             &nbsp;&nbsp;
-            <Button variant="outline-dark" onClick={this.handleClearLast} >Clear last box</Button>
+            <Button variant="outline-dark" onClick={this.handleClearLast} >Delete last [&#9224;]</Button>
             &nbsp;&nbsp;
-            <Button variant="outline-dark" onClick={this.handleClearAll} >Clear all boxes</Button>
+            <Button variant="outline-dark" onClick={this.handleClearAll} >Delete all [Space]</Button>
             &nbsp;&nbsp;
             <Button variant="outline-dark" disabled={!this.state.canForward} onClick={this.handleForward}>
-              &#8594;
+              Next [&#8594;]
             </Button>
             <br/>
             <br/>
@@ -325,11 +346,11 @@ class StateAnnotate extends React.Component {
         <div>      
           <Modal onHide={this.closeDialog} show={this.state.isOpen} size="sm" centered>
             <Modal.Body>
-              <ModalInput addnewobj={this.addNewObj} saveclassnum={(e) => this.setClassNum(e)}/>
+              <ModalInput closedialog={this.closeDialog} addnewobj={this.addNewObj} saveclassnum={(e) => this.setClassNum(e)}/>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="outline-dark" onClick={this.closeDialog}>
-                Close
+                Close [Esc]
               </Button>
               <Button variant="outline-dark" onClick={this.addNewObj}>
                 Done [&crarr;]
