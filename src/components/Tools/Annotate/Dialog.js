@@ -2,13 +2,16 @@ import '..//..//..//App.css';
 import React, { Component } from "react";
 
 import Form from 'react-bootstrap/Form';
-
+import { Alert } from 'react-bootstrap';
 
 class ModalInput extends React.Component {
   constructor(props) {
     super(props);
     this.innerRef = React.createRef();
     this.onKeyDown = this.onKeyDown.bind(this);
+    this.state = {
+      passedChecks: true,
+    }
   }
 
   componentDidMount() {
@@ -41,6 +44,15 @@ class ModalInput extends React.Component {
           onChange={(e) => {this.props.saveclassnum(e)}}
         />
         <Form.Text className="text-muted">Leave empty to use previous class.</Form.Text>
+        {this.state.passedChecks ? (null) : (
+          <div>
+            <br/>
+            <Alert variant="danger" onClose={() => this.setState({isDoubleName: false})}>
+              Class undefined
+            </Alert>
+          </div>
+        )}
+
       </Form.Group>
     );
   }

@@ -2,6 +2,7 @@ import React, { Component, KeyboardEventHandler } from 'react';
 
 import CreatableSelect from 'react-select/creatable';
 import { ActionMeta, MultiValue, OnChangeValue } from 'react-select';
+import { Alert } from 'react-bootstrap';
 
 
 const components = {
@@ -21,6 +22,7 @@ const createOption = (label: string) => ({
 interface State {
   readonly inputValue: string;
   readonly value: readonly Option[];
+  readonly isDoubleName: boolean;
 }
 
 interface Props {
@@ -31,13 +33,13 @@ class CreatableInputOnly extends Component<Props, State> {
   state: State = {
     inputValue: '',
     value: [],
+    isDoubleName: false,
   };
 
   handleDelete = (
     value: OnChangeValue<Option, true>,
     actionMeta: ActionMeta<Option>
   ) => {
-    // console.log('Value Changed');
     this.setState({ value }, () => this.props.setClasses(this.state.value));
   };
 
@@ -51,6 +53,7 @@ class CreatableInputOnly extends Component<Props, State> {
     for (var i = 0; i < value.length; i++) {
       if (value[i]["label"] == inputValue) {
         console.log("Already defined class:", inputValue)
+        this.setState({isDoubleName: true});
         return;
       }
     }
@@ -71,19 +74,29 @@ class CreatableInputOnly extends Component<Props, State> {
   render() {
     const { inputValue, value } = this.state;
     return (
-      <CreatableSelect
-        components={components}
-        inputValue={inputValue}
-        isClearable
-        isMulti
-        autoFocus
-        menuIsOpen={false}
-        onChange={this.handleDelete}
-        onInputChange={this.handleInputChange}
-        onKeyDown={this.handleKeyDown}
-        placeholder="Type class name and press enter..."
-        value={value}
-      />
+      <div>
+        {this.state.isDoubleName ? (
+          <Alert variant="danger" onClose={() => this.setState({isDoubleName: false})} dismissible>
+          <Alert.Heading>Class already exists</Alert.Heading>
+          <p>
+            Please choose a different class name
+          </p>
+          </Alert>
+        ) : (null)}
+        <CreatableSelect
+          components={components}
+          inputValue={inputValue}
+          isClearable
+          isMulti
+          autoFocus
+          menuIsOpen={false}
+          onChange={this.handleDelete}
+          onInputChange={this.handleInputChange}
+          onKeyDown={this.handleKeyDown}
+          placeholder="Type class name and press enter..."
+          value={value}
+        />
+      </div>
     );
   }
 }

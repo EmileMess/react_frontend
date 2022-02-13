@@ -14,6 +14,7 @@ class StateAnnotate extends React.Component {
       super(props);
       let loadedimgs = Object.values(this.importAll(require.context('../../../images/Data', false, /\.(png|jpe?g|svg)$/)));
       window.addEventListener('keydown', e => this.onKeyDown(e));
+      this.refDialog = React.createRef();
       this.state = {
           images: loadedimgs, // all actual images
           current_img: 0, // current image index
@@ -38,13 +39,10 @@ class StateAnnotate extends React.Component {
   // TODO: Handy Optimierung: @media (min-width: 481px) and (max-width: 767px) {}
   // TODO: Remove all unnecessary renders
   // TODO: When images are imported from db: load dimensions from image file, not from image component (remove)
+  // TODO: Navbar moving on some div changes in StateAnnotate
 
-  // FINALLY: remove all MUI (Train + Upload)
-  // Keine gleichen namen erlauben --> MessageBox
-  // klasse nicht existiert + wenn gar keine klasse definiert ist --> MessageBox
   // add output formats
-  // classes are also removed when using backward key
-  // Navbar moving on some div changes in StateAnnotate
+
 
   setClasses = (allclasses) => {
     const cloneClasses = [...allclasses];
@@ -160,15 +158,10 @@ class StateAnnotate extends React.Component {
   }
 
   addNewObj = (e) =>  {
-    if (this.state.classes.length == 0) {
-      return
-    }
-
     if (!(this.state.classes.includes(this.state.currentClass))) {
+      this.refDialog.current.setState({passedChecks: false});
       return
     }
-
-    this.closeDialog()
 
     this.setState(prevState => ({
       listofRecs: [...prevState.listofRecs, [this.state.current_img, this.state.startX, this.state.startY, this.state.endX, this.state.endY, this.state.currentClass]]
@@ -181,8 +174,7 @@ class StateAnnotate extends React.Component {
     this.setState({endX: 0})
     this.setState({endY: 0})
 
-    this.setState({renderCanvas: true})
-    this.setState({outFromDialog: false})
+    this.closeDialog()
   }
 
   handleMouseUp = (e) => {
@@ -283,10 +275,10 @@ class StateAnnotate extends React.Component {
       this.handleBackward()
     }
 
-    if (e.key === "Backspace") {
+    if (e.key === " ") {
       this.handleClearLast()
     }
-    if (e.key === " ") {
+    if (e.key === "r") {
       this.handleClearAll()
     }
   }
@@ -311,9 +303,9 @@ class StateAnnotate extends React.Component {
               Previous [&#8592;]
             </Button>
             &nbsp;&nbsp;
-            <Button variant="outline-dark" onClick={this.handleClearLast} >Delete last [&#9224;]</Button>
+            <Button variant="outline-dark" onClick={this.handleClearLast} >Delete last [Space]</Button>
             &nbsp;&nbsp;
-            <Button variant="outline-dark" onClick={this.handleClearAll} >Delete all [Space]</Button>
+            <Button variant="outline-dark" onClick={this.handleClearAll} >Delete all [r]</Button>
             &nbsp;&nbsp;
             <Button variant="outline-dark" disabled={!this.state.canForward} onClick={this.handleForward}>
               Next [&#8594;]
@@ -346,7 +338,7 @@ class StateAnnotate extends React.Component {
         <div>      
           <Modal onHide={this.closeDialog} show={this.state.isOpen} size="sm" centered>
             <Modal.Body>
-              <ModalInput closedialog={this.closeDialog} addnewobj={this.addNewObj} saveclassnum={(e) => this.setClassNum(e)}/>
+              <ModalInput ref={this.refDialog} closedialog={this.closeDialog} addnewobj={this.addNewObj} saveclassnum={(e) => this.setClassNum(e)}/>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="outline-dark" onClick={this.closeDialog}>
