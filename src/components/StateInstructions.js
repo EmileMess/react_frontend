@@ -1,14 +1,14 @@
 import '..//App.css';
 import React, { Component } from "react";
-import Upload from './HelperUpload.js';
+import Clock from './Clock.js';
 
 
-function StateUpload() {
+function StateInstructions() {
   return (
     <div className="App">
-        <Upload />
+        <Clock />
     </div>
   );
 }
 
-export default StateUpload;
+export default StateInstructions;

@@ -1,9 +1,10 @@
-import '..//App.css';
 import React, { Component } from "react";
-import MyCanvas from './Canvas'
-import MyDialog from './Dialog'
+import '..//App.css';
+
 import { Dropdown } from 'react-bootstrap';
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
+
+import MyCanvas from './Canvas'
 import ModalInput from './Dialog'
 import CreatableInputOnly from './Creatable.tsx'
 
@@ -32,7 +33,12 @@ class StateAnnotate extends React.Component {
       }
   }
 
-  // Keine gleichen namen erlauben
+  // TODO: "tool" navbar select 5 options
+  // TODO: Footer
+  // TODO: @media (min-width: 481px) and (max-width: 767px) {
+  // TODO: balken auf title page schön machen
+
+  // Keine gleichen namen erlauben --> message box
   // beschriftung boxen falsch bei "-" boxen
   // Anzeige falls klasse nicht existiert + wenn gar keine klasse definiert ist
   // escape key for "close" dialog

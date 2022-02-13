@@ -1,9 +1,10 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import '..//App.css';
+
 import React, { Component } from "react";
+
 import Form from 'react-bootstrap/Form';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '..//App.css';
+// import '..//bootstrapCustom.min.css';
 
 class ModalInput extends React.Component {
   constructor(props) {

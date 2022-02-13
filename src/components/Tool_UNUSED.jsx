@@ -3,19 +3,15 @@ import IconButton from '@mui/material/IconButton';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import update from 'react-addons-update';
-import Box from '@mui/material/Box';
 import { NavLink } from "react-router-dom";
+
+import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 
 import StateUpload from './StateUpload';
 import StateOrganize from './StateOrganize';
 import StateAnnotate from './StateAnnotate';
 import StateTrain from './StateTrain';
 import StateDeploy from './StateDeploy';
-
-// TODO: "tool" navbar select 5 options
-// TODO: Footer
-// TODO: @media (min-width: 481px) and (max-width: 767px) {
-// TODO: balken auf title page schön machen
 
 class Tool extends React.Component {
     constructor(props) {
@@ -72,31 +68,6 @@ class Tool extends React.Component {
                 <br/>
                 <br/>
 
-                {/* NAVBAR */}
-
-                <div>
-                    <li>
-                        <NavLink to="/">
-                            <div className="companyName">AIGUI</div>
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/tool">
-                            Tool
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/about">
-                            About
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/contact">
-                            Contact
-                        </NavLink>
-                    </li>
-                </div>
-
                 {/* CONTENT */}
 
                 <div className="box">
@@ -122,16 +93,6 @@ class Tool extends React.Component {
                         </IconButton>
                     </div>
                 </div>
-
-                {/* FOOTER */}
-
-                {/* <div>
-                    <br/><br/>
-                    <p>
-                        Copyright &copy; AIGUI 2022
-                    </p>
-                    <br/>
-                </div> */}
             </div>
         )
     };

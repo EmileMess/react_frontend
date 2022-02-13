@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Button from '@material-ui/core/Button';
 import '..//App.css';
 
 import imgUpload from '..//images/static/Upload.svg'
@@ -19,34 +18,9 @@ import imgField5 from '..//images/static/field5.jpg'
 function Home() {
     return (
         <div className="BackgroundFlow">
-            <div className="career-banner">
+            {/* <div className="career-banner">
                 <a href={'/About'} >New Feature: Annotate just received a big upgrade. Read about it on our blog &#8594;</a>
-            </div>
-
-            {/* NAVBAR */}
-
-            <div className="navBar">
-                <li>
-                    <NavLink to="/">
-                        <div className="companyName">AIGUI</div>
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/tool">
-                        Tool
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/about">
-                        About
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/contact">
-                        Contact
-                    </NavLink>
-                </li>
-            </div>
+            </div> */}
 
             {/* CONTENT */}
             {/* UPPER PART */}
@@ -198,16 +172,6 @@ function Home() {
 
                 <br/>
                 <br/>
-                <br/>
-            </div>
-
-            {/* FOOTER */}
-
-            <div>
-                <br/><br/>
-                <p>
-                    Copyright &copy; AIGUI 2022
-                </p>
                 <br/>
             </div>
         </div>

@@ -31,18 +31,29 @@ class CreatableInputOnly extends Component<Props, State> {
     inputValue: '',
     value: [],
   };
-  handleChange = (
+
+  handleDelete = (
     value: OnChangeValue<Option, true>,
     actionMeta: ActionMeta<Option>
   ) => {
     // console.log('Value Changed');
     this.setState({ value }, () => this.props.setClasses(this.state.value));
   };
+
   handleInputChange = (inputValue: string) => {
     this.setState({ inputValue });
   };
+
   handleKeyDown: KeyboardEventHandler<HTMLDivElement> = (event) => {
     const { inputValue, value } = this.state;
+
+    for (var i = 0; i < value.length; i++) {
+      if (value[i]["label"] == inputValue) {
+        console.log("Already defined class:", inputValue)
+        return;
+      }
+    }
+
     if (!inputValue) return;
     switch (event.key) {
       case 'Enter':
@@ -55,6 +66,7 @@ class CreatableInputOnly extends Component<Props, State> {
         event.preventDefault();
     }
   };
+
   render() {
     const { inputValue, value } = this.state;
     return (
@@ -64,7 +76,7 @@ class CreatableInputOnly extends Component<Props, State> {
         isClearable
         isMulti
         menuIsOpen={false}
-        onChange={this.handleChange}
+        onChange={this.handleDelete}
         onInputChange={this.handleInputChange}
         onKeyDown={this.handleKeyDown}
         placeholder="Type class name and press enter..."
