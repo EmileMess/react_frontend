@@ -1,4 +1,3 @@
-import '..//..//..//App.css';
 import React, { Component } from "react";
 
 import { Dropdown } from 'react-bootstrap';
@@ -40,6 +39,7 @@ class StateAnnotate extends React.Component {
   // TODO: Remove all unnecessary renders
   // TODO: When images are imported from db: load dimensions from image file, not from image component (remove)
   // TODO: Navbar moving on some div changes in StateAnnotate
+  // Favicon + Title
 
   // add output formats
 
@@ -285,8 +285,24 @@ class StateAnnotate extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="CreatableInput">
+      <div className="myCenter">
+        {/* <!-- ====== Banner Start ====== --> */}
+        <section class="ud-page-banner">
+            <div class="container">
+                <div class="row">
+                <div class="col-lg-12">
+                    <div class="ud-banner-content">
+                    <h1>Annotate</h1>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </section>
+        {/* <!-- ====== Banner End ====== --> */}
+        
+        <br/>
+
+        <div className="myCreatableInput">
           <br/>
           <br/>
           <div>
@@ -323,6 +339,8 @@ class StateAnnotate extends React.Component {
                 <Dropdown.Item onClick={this.handleFinish}>csv</Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
+            <br/>
+            <br/>
             <br/>
         </div>
         {/* Following invisible image is needed to load the image dimensions for the canvas */}
