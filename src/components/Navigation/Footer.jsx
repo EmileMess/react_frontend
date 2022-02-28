@@ -4,6 +4,14 @@ import Logo from "..//..//assets/images/logo/logo.svg";
 import shape1 from "..//..//assets/images/footer/shape-1.svg";
 import shape2 from "..//..//assets/images/footer/shape-2.svg"
 import shape3 from "..//..//assets/images/footer/shape-3.svg"
+
+import ayroui from "..//..//assets/images/footer/brands/ayroui.svg"
+import ecommercehtml from "..//..//assets/images/footer/brands/ecommerce-html.svg"
+import greygrids from "..//..//assets/images/footer/brands/graygrids.svg"
+import lineicons from "..//..//assets/images/footer/brands/lineicons.svg"
+import uideck from "..//..//assets/images/footer/brands/uideck.svg"
+import tailwindtemplates from "..//..//assets/images/footer/brands/tailwindtemplates.svg"
+
 function Footer() {
     return (
         <div>
@@ -142,7 +150,7 @@ function Footer() {
                                 target="_blank"
                                 >
                                 <img
-                                    src="assets/images/footer/brands/ayroui.svg"
+                                    src={ayroui}
                                     alt="ayroui"
                                 />
                                 </a>
@@ -154,7 +162,7 @@ function Footer() {
                                 target="_blank"
                                 >
                                 <img
-                                    src="assets/images/footer/brands/ecommerce-html.svg"
+                                    src={ecommercehtml}
                                     alt="ecommerce-html"
                                 />
                                 </a>
@@ -166,7 +174,7 @@ function Footer() {
                                 target="_blank"
                                 >
                                 <img
-                                    src="assets/images/footer/brands/graygrids.svg"
+                                    src={greygrids}
                                     alt="graygrids"
                                 />
                                 </a>
@@ -178,7 +186,7 @@ function Footer() {
                                 target="_blank"
                                 >
                                 <img
-                                    src="assets/images/footer/brands/lineicons.svg"
+                                    src={lineicons}
                                     alt="lineicons"
                                 />
                                 </a>
@@ -190,7 +198,7 @@ function Footer() {
                                 target="_blank"
                                 >
                                 <img
-                                    src="assets/images/footer/brands/uideck.svg"
+                                    src={uideck}
                                     alt="uideck"
                                 />
                                 </a>
@@ -202,7 +210,7 @@ function Footer() {
                                 target="_blank"
                                 >
                                 <img
-                                    src="assets/images/footer/brands/tailwindtemplates.svg"
+                                    src={tailwindtemplates}
                                     alt="tailwindtemplates"
                                 />
                                 </a>

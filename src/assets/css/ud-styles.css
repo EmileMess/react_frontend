@@ -1642,7 +1642,7 @@ p {
 .ud-page-banner {
   padding-top: 130px;
   padding-bottom: 80px;
-  background: var(--primary-color);
+  background: #181346;
   background-image: url("../images/banner/banner-bg.svg");
   background-position: center;
   background-repeat: no-repeat;

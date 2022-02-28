@@ -1,5 +1,5 @@
 .mynavbackground {
-    background-color: #3056d3;
+    background-color: #181346;
     height: 70px;
 }
 
@@ -7,9 +7,15 @@
     display: inline-block;
   }
 
-  .myCenter {
-    text-align: center;
-  }
+.myCenter {
+  text-align: center;
+}
+
+.myParallelImages {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
 
   /* ################### Story Buttons */
 

@@ -13,6 +13,9 @@ import imgField3 from '..//..//images/static/field3.jpg'
 import imgField4 from '..//..//images/static/field4.jpg'
 import imgField5 from '..//..//images/static/field5.jpg'
 
+import home_annot from "..//..//images/static/home_annot.png"
+import home_annot2 from "..//..//images/static/home_annot2.png"
+import home_annot3 from "..//..//images/static/home_annot3.png"
 import brand from "..//..//assets/images/hero/brand.svg";
 import heroimage from "..//..//assets/images/hero/hero-image.svg";
 import dottedshape from "..//..//assets/images/hero/dotted-shape.svg";
@@ -45,8 +48,10 @@ function Home() {
                                 </li>
                             </ul>
                             </div>
+
                             <br/>
                             <br/>
+
                             <div className="steps__grid">
                                 <a href="#section1" className="steps__step">
                                     <div className="steps__icon">
@@ -89,19 +94,33 @@ function Home() {
                                     </div>
                                 </a>
                             </div>
+
                             <br/>
                             <br/>
                             <br/>
                             <br/>
-                            {/* <div
-                            class="ud-hero-brands-wrapper wow fadeInUp"
-                            data-wow-delay=".3s"
-                            >
-                            <img src={brand} alt="brand" />
-                            </div> */}
-                            <div class="ud-hero-image wow fadeInUp" data-wow-delay=".25s">
-                            <img src={heroimage} alt="hero-image" />
-                            <img
+
+                            <div class="ud-hero-brands-wrapper wow fadeInUp" data-wow-delay=".3s">
+                                <img src={brand} alt="brand" />
+                            </div>
+                            
+                            <br/>
+                            <br/>
+                            <br/>
+
+                            <div class="myParallelImages">
+                            <img src={home_annot} alt="hero-image" style={{borderRadius: '10px'}}/>
+                            <img src={home_annot2} alt="hero-image" style={{borderRadius: '10px'}}/>
+                            <img src={home_annot3} alt="hero-image" style={{borderRadius: '10px'}}/>
+                            </div>
+                            
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+
+                            {/* <img
                                 src={dottedshape}
                                 alt="shape"
                                 class="shape shape-1"
@@ -110,8 +129,7 @@ function Home() {
                                 src={dottedshape}
                                 alt="shape"
                                 class="shape shape-2"
-                            />
-                            </div>
+                            /> */}
                         </div>
                     </div>
                 </div>
