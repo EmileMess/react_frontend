@@ -28,9 +28,11 @@ class Upload extends React.Component {
             for (var i = 0; i < this.state.selectedFiles.length; i++) {
                 form_data.append('images', this.state.selectedFiles[i]);
             }
-            let url = 'http://aigui-backend.azurewebsites.net/api/posts/';
+            let url = 'https://aigui-backend.azurewebsites.net/api/posts/';
             axios.post(url, form_data, {
-                headers: {'content-type': 'multipart/form-data'}
+                withCredentials: true,
+                credentials: 'include',
+                headers: {"Access-Control-Allow-Origin": "*", 'content-type': 'multipart/form-data'}
                 })
                 .then(res => {
                 console.log(res.data);
