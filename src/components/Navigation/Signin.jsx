@@ -101,7 +101,7 @@ function Signin() {
                                         </div>
                                     </form>
 
-                                    {errors === true && <div> <br/> <a>Username or Password incorrect</a> <br/> </div>}
+                                    {errors === true && <div className='myWarning'> <a>Username or Password incorrect</a> <br/> <br/> <br/> </div>}
                                     
                                     {/* <div class="ud-socials-connect">
                                         <p>Connect With</p>

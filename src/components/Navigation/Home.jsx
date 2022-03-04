@@ -1,21 +1,21 @@
 import React from "react";
 
-import imgUpload from '..//..//images/static/Upload.svg'
-import imgOrganize from '..//..//images/static/Organize.svg'
-import imgAnnotate from '..//..//images/static/Annotate.svg'
-import imgTrain from '..//..//images/static/Train.svg'
-import imgDeploy from '..//..//images/static/Deploy.svg'
+import imgUpload from '..//..//assets//images/mystatic/Upload.svg'
+import imgOrganize from '..//..//assets//images/mystatic/Organize.svg'
+import imgAnnotate from '..//..//assets//images/mystatic/Annotate.svg'
+import imgTrain from '..//..//assets//images/mystatic/Train.svg'
+import imgDeploy from '..//..//assets//images/mystatic/Deploy.svg'
 
-import imgDrone from '..//..//images/static/drone.jpg'
-import imgField1 from '..//..//images/static/field6.jpeg'
-import imgField2 from '..//..//images/static/field2.jpg'
-import imgField3 from '..//..//images/static/field3.jpg'
-import imgField4 from '..//..//images/static/field4.jpg'
-import imgField5 from '..//..//images/static/field5.jpg'
+import imgDrone from '..//..//assets//images/mystatic/drone.jpg'
+import imgField1 from '..//..//assets//images/mystatic/field6.jpeg'
+import imgField2 from '..//..//assets//images/mystatic/field2.jpg'
+import imgField3 from '..//..//assets//images/mystatic/field3.jpg'
+import imgField4 from '..//..//assets//images/mystatic/field4.jpg'
+import imgField5 from '..//..//assets//images/mystatic/field5.jpg'
 
-import home_annot from "..//..//images/static/home_annot.png"
-import home_annot2 from "..//..//images/static/home_annot2.png"
-import home_annot3 from "..//..//images/static/home_annot3.png"
+import home_annot from "..//..//assets//images/mystatic/home_annot.png"
+import home_annot2 from "..//..//assets//images/mystatic/home_annot2.png"
+import home_annot3 from "..//..//assets//images/mystatic/home_annot3.png"
 import brand from "..//..//assets/images/hero/brand.svg";
 import heroimage from "..//..//assets/images/hero/hero-image.svg";
 import dottedshape from "..//..//assets/images/hero/dotted-shape.svg";

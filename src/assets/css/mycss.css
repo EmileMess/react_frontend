@@ -1,11 +1,15 @@
+.myWarning {
+  color: red;
+}
+
 .mynavbackground {
-    background-color: #181346;
-    height: 70px;
+  background-color: #181346;
+  height: 70px;
 }
 
 .myCreatableInput {
-    display: inline-block;
-  }
+  display: inline-block;
+}
 
 .myCenter {
   text-align: center;

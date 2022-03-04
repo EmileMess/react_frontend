@@ -110,7 +110,7 @@ const Signup = () => {
                                 </div>
                             </form>
 
-                            {errors === true && <div> <br/> <a>Cannot sign up with provided credentials</a> <br/> </div>}
+                            {errors === true && <div className='myWarning'> <a>Cannot sign up with provided credentials</a> <br/> <br/> <br/></div>}
 
                             {/* <div class="ud-socials-connect">
                                 <p>Connect With</p>

@@ -5,7 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // CSS
-import "./mycss.css"
+import "./assets/css/mycss.css"
 import "./assets/css/bootstrap.min.css";
 import "./assets/css/animate.css";
 import "./assets/css/lineicons.css";
@@ -20,7 +20,6 @@ import Organize from './components/Tools/Organize/StateOrganize';
 import Annotate from './components/Tools/Annotate/StateAnnotate';
 import Train from './components/Tools/Train/StateTrain';
 import Deploy from './components/Tools/Deploy/StateDeploy';
-import Instructions from './components/StateInstructions';
 import About from './components/Navigation/About.jsx';
 import Contact from './components/Navigation/Contact.jsx';
 import Signin from './components/Navigation/Signin.jsx';
@@ -38,7 +37,6 @@ ReactDOM.render(
             <Route path="/Annotate" element={<Annotate />} />
             <Route path="/Train" element={<Train />} />
             <Route path="/Deploy" element={<Deploy />} />
-            <Route path="/Instructions" element={<Instructions />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/Logout" element={<Logout />} />
