@@ -26,6 +26,7 @@ import Contact from './components/Navigation/Contact.jsx';
 import Signin from './components/Navigation/Signin.jsx';
 import Signup from './components/Navigation/Signup.jsx';
 import Pricing from './components/Navigation/Pricing.jsx';
+import Logout from './components/Navigation/Logout.jsx';
 
 ReactDOM.render(
     <Router>
@@ -40,6 +41,7 @@ ReactDOM.render(
             <Route path="/Instructions" element={<Instructions />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/Logout" element={<Logout />} />
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/pricing" element={<Pricing />} />

@@ -30,7 +30,7 @@ function Home() {
                         <div class="col-lg-12">
                             <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
                             <h1 class="ud-hero-title">
-                            Use our vision tools to finally release your data's full potential
+                            Use our vision tools to release your data's full potential
                             </h1>
                             <p class="ud-hero-desc">
                             With a few images, you can train a working <br/> computer vision model in less than a day.
