@@ -12,6 +12,7 @@ class Upload extends React.Component {
             selectedFiles: null,
             isSelected: false,
             datasetName: 'dataset_01',
+            imgurl: '',
         }
     }
 
@@ -31,10 +32,19 @@ class Upload extends React.Component {
             let url = 'https://aigui-backend.azurewebsites.net/api/posts/';
             axios.post(url, form_data, {
                 withCredentials: true,
-                credentials: 'include',
-                headers: {"Access-Control-Allow-Origin": "*", 'content-type': 'multipart/form-data'}
+                headers: {'content-type': 'multipart/form-data'}
                 })
                 .then(res => {
+                console.log(res.data);
+                })
+                .catch(err => console.log(err))
+            axios.get(url, {
+                withCredentials: true,
+                headers: {'content-type': 'multipart/form-data'}
+                })
+                .then(res => {
+                console.log(res.data, res.data[0], res.data[-1], res.data[res.data.length - 1])
+                this.setState({ imgurl: res.data[res.data.length - 1]['images'] });
                 console.log(res.data);
                 })
                 .catch(err => console.log(err))
@@ -76,6 +86,10 @@ class Upload extends React.Component {
                 <Button onClick={this.onFileUpload} variant="contained" color="secondary" component="span">
                     Upload
                 </Button>
+                <img
+                src={this.state.imgurl}
+                alt="new"
+                />
             </div >
         );
     }
