@@ -16,94 +16,94 @@ function Footer() {
     return (
         <div>
             {/* <!-- ====== Footer Start ====== --> */}
-            <footer class="ud-footer wow fadeInUp" data-wow-delay=".15s">
-                <div class="shape shape-1">
+            <footer className="ud-footer wow fadeInUp" data-wow-delay=".15s">
+                <div className="shape shape-1">
                     <img src={shape1} alt="shape" />
                 </div>
-                <div class="shape shape-2">
+                <div className="shape shape-2">
                     <img src={shape2} alt="shape" />
                 </div>
-                <div class="shape shape-3">
+                <div className="shape shape-3">
                     <img src={shape3} alt="shape" />
                 </div>
-                <div class="ud-footer-widgets">
-                    <div class="container">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="ud-widget">
-                            <a href="index.html" class="ud-footer-logo">
+                <div className="ud-footer-widgets">
+                    <div className="container">
+                    <div className="row">
+                        <div className="col-xl-3 col-lg-4 col-md-6">
+                        <div className="ud-widget">
+                            <a href="index.html" className="ud-footer-logo">
                             <img src={Logo} alt="logo" />
                             </a>
-                            <p class="ud-widget-desc">
+                            <p className="ud-widget-desc">
                             We find the value in your data by using the latest AI technologies.
                             </p>
-                            <ul class="ud-widget-socials">
+                            <ul className="ud-widget-socials">
                             <li>
                                 <a href="https://twitter.com/MusharofChy">
-                                <i class="lni lni-facebook-filled"></i>
+                                <i className="lni lni-facebook-filled"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="https://twitter.com/MusharofChy">
-                                <i class="lni lni-twitter-filled"></i>
+                                <i className="lni lni-twitter-filled"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="https://twitter.com/MusharofChy">
-                                <i class="lni lni-instagram-filled"></i>
+                                <i className="lni lni-instagram-filled"></i>
                                 </a>
                             </li>
                             <li>
                                 <a href="https://twitter.com/MusharofChy">
-                                <i class="lni lni-linkedin-original"></i>
+                                <i className="lni lni-linkedin-original"></i>
                                 </a>
                             </li>
                             </ul>
                         </div>
                         </div>
 
-                        <div class="col-xl-2 col-lg-2 col-md-6 col-sm-6">
-                        <div class="ud-widget">
-                            <h5 class="ud-widget-title">About Us</h5>
-                            <ul class="ud-widget-links">
+                        <div className="col-xl-2 col-lg-2 col-md-6 col-sm-6">
+                        <div className="ud-widget">
+                            <h5 className="ud-widget-title">About Us</h5>
+                            <ul className="ud-widget-links">
                             <li>
-                                <a href="javascript:void(0)">Home</a>
+                                <a href="">Home</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)">Features</a>
+                                <a href="">Features</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)">About</a>
+                                <a href="">About</a>
                             </li>
                             <li>
-                                <a href="javascript:void(0)">Testimonial</a>
-                            </li>
-                            </ul>
-                        </div>
-                        </div>
-                        <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
-                        <div class="ud-widget">
-                            <h5 class="ud-widget-title">Features</h5>
-                            <ul class="ud-widget-links">
-                            <li>
-                                <a href="javascript:void(0)">How it works</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">Privacy policy</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">Terms of service</a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0)">Refund policy</a>
+                                <a href="">Testimonial</a>
                             </li>
                             </ul>
                         </div>
                         </div>
-                        <div class="col-xl-2 col-lg-3 col-md-6 col-sm-6">
-                        <div class="ud-widget">
-                            <h5 class="ud-widget-title">Our Products</h5>
-                            <ul class="ud-widget-links">
+                        <div className="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+                        <div className="ud-widget">
+                            <h5 className="ud-widget-title">Features</h5>
+                            <ul className="ud-widget-links">
+                            <li>
+                                <a href="">How it works</a>
+                            </li>
+                            <li>
+                                <a href="">Privacy policy</a>
+                            </li>
+                            <li>
+                                <a href="">Terms of service</a>
+                            </li>
+                            <li>
+                                <a href="">Refund policy</a>
+                            </li>
+                            </ul>
+                        </div>
+                        </div>
+                        <div className="col-xl-2 col-lg-3 col-md-6 col-sm-6">
+                        <div className="ud-widget">
+                            <h5 className="ud-widget-title">Our Products</h5>
+                            <ul className="ud-widget-links">
                             <li>
                                 <a
                                 href="https://lineicons.com/"
@@ -139,10 +139,10 @@ function Footer() {
                             </ul>
                         </div>
                         </div>
-                        <div class="col-xl-3 col-lg-6 col-md-8 col-sm-10">
-                        <div class="ud-widget">
-                            <h5 class="ud-widget-title">Partners</h5>
-                            <ul class="ud-widget-brands">
+                        <div className="col-xl-3 col-lg-6 col-md-8 col-sm-10">
+                        <div className="ud-widget">
+                            <h5 className="ud-widget-title">Partners</h5>
+                            <ul className="ud-widget-brands">
                             <li>
                                 <a
                                 href="https://ayroui.com/"
@@ -221,11 +221,11 @@ function Footer() {
                     </div>
                     </div>
                 </div>
-                <div class="ud-footer-bottom">
-                    <div class="container">
-                    <div class="row">
-                        <div class="col-md-8">
-                        <ul class="ud-footer-bottom-left">
+                <div className="ud-footer-bottom">
+                    <div className="container">
+                    <div className="row">
+                        <div className="col-md-8">
+                        <ul className="ud-footer-bottom-left">
                             <li>
                             <a href="">Privacy policy</a>
                             </li>
@@ -237,8 +237,8 @@ function Footer() {
                             </li>
                         </ul>
                         </div>
-                        <div class="col-md-4">
-                        <p class="ud-footer-bottom-right">
+                        <div className="col-md-4">
+                        <p className="ud-footer-bottom-right">
                             &copy; AIGUI 2022
                         </p>
                         </div>
@@ -249,8 +249,8 @@ function Footer() {
             {/* <!-- ====== Footer End ====== --> */}
             
             {/* <!-- ====== Back To Top Start ====== --> */}
-            {/* <a href="javascript:void(0)" class="back-to-top">
-            <i class="lni lni-chevron-up"> </i>
+            {/* <a href="" className="back-to-top">
+            <i className="lni lni-chevron-up"> </i>
             </a> */}
             {/* <!-- ====== Back To Top End ====== --> */}
         </div>

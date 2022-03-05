@@ -4,11 +4,11 @@ function Pricing() {
     return (
         <div>
             {/* <!-- ====== Banner Start ====== --> */}
-            <section class="ud-page-banner">
-                <div class="container">
-                    <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ud-banner-content">
+            <section className="ud-page-banner">
+                <div className="container">
+                    <div className="row">
+                    <div className="col-lg-12">
+                        <div className="ud-banner-content">
                         <h1>Pricing</h1>
                         </div>
                     </div>
@@ -18,11 +18,11 @@ function Pricing() {
             {/* <!-- ====== Banner End ====== --> */}
 
             {/* <!-- ====== Pricing Start ====== --> */}
-            <section id="pricing" class="ud-pricing">
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-12">
-                    <div class="ud-section-title mx-auto text-center">
+            <section id="pricing" className="ud-pricing">
+            <div className="container">
+                <div className="row">
+                <div className="col-lg-12">
+                    <div className="ud-section-title mx-auto text-center">
                     <span>Pricing</span>
                     <h2>Our Pricing Plans</h2>
                     <p>
@@ -33,17 +33,17 @@ function Pricing() {
                 </div>
                 </div>
 
-                <div class="row g-0 align-items-center justify-content-center">
-                <div class="col-lg-4 col-md-6 col-sm-10">
+                <div className="row g-0 align-items-center justify-content-center">
+                <div className="col-lg-4 col-md-6 col-sm-10">
                     <div
-                    class="ud-single-pricing first-item wow fadeInUp"
+                    className="ud-single-pricing first-item wow fadeInUp"
                     data-wow-delay=".15s"
                     >
-                    <div class="ud-pricing-header">
+                    <div className="ud-pricing-header">
                         <h3>STARTING FROM</h3>
                         <h4>$ 19.99/mo</h4>
                     </div>
-                    <div class="ud-pricing-body">
+                    <div className="ud-pricing-body">
                         <ul>
                         <li>5 User</li>
                         <li>All UI components</li>
@@ -53,24 +53,24 @@ function Pricing() {
                         <li>4 Months support</li>
                         </ul>
                     </div>
-                    <div class="ud-pricing-footer">
-                        <a href="javascript:void(0)" class="ud-main-btn ud-border-btn">
+                    <div className="ud-pricing-footer">
+                        <a href="" className="ud-main-btn ud-border-btn">
                         Purchase Now
                         </a>
                     </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-10">
+                <div className="col-lg-4 col-md-6 col-sm-10">
                     <div
-                    class="ud-single-pricing active wow fadeInUp"
+                    className="ud-single-pricing active wow fadeInUp"
                     data-wow-delay=".1s"
                     >
-                    <span class="ud-popular-tag">POPULAR</span>
-                    <div class="ud-pricing-header">
+                    <span className="ud-popular-tag">POPULAR</span>
+                    <div className="ud-pricing-header">
                         <h3>STARTING FROM</h3>
                         <h4>$ 30.99/mo</h4>
                     </div>
-                    <div class="ud-pricing-body">
+                    <div className="ud-pricing-body">
                         <ul>
                         <li>5 User</li>
                         <li>All UI components</li>
@@ -80,23 +80,23 @@ function Pricing() {
                         <li>4 Months support</li>
                         </ul>
                     </div>
-                    <div class="ud-pricing-footer">
-                        <a href="javascript:void(0)" class="ud-main-btn ud-white-btn">
+                    <div className="ud-pricing-footer">
+                        <a href="" className="ud-main-btn ud-white-btn">
                         Purchase Now
                         </a>
                     </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-10">
+                <div className="col-lg-4 col-md-6 col-sm-10">
                     <div
-                    class="ud-single-pricing last-item wow fadeInUp"
+                    className="ud-single-pricing last-item wow fadeInUp"
                     data-wow-delay=".15s"
                     >
-                    <div class="ud-pricing-header">
+                    <div className="ud-pricing-header">
                         <h3>STARTING FROM</h3>
                         <h4>$ 70.99/mo</h4>
                     </div>
-                    <div class="ud-pricing-body">
+                    <div className="ud-pricing-body">
                         <ul>
                         <li>5 User</li>
                         <li>All UI components</li>
@@ -106,8 +106,8 @@ function Pricing() {
                         <li>4 Months support</li>
                         </ul>
                     </div>
-                    <div class="ud-pricing-footer">
-                        <a href="javascript:void(0)" class="ud-main-btn ud-border-btn">
+                    <div className="ud-pricing-footer">
+                        <a href="" className="ud-main-btn ud-border-btn">
                         Purchase Now
                         </a>
                     </div>
@@ -119,14 +119,14 @@ function Pricing() {
             {/* <!-- ====== Pricing End ====== --> */}
 
             {/* <!-- ====== FAQ Start ====== --> */}
-            <section id="faq" class="ud-faq">
-            <div class="shape">
+            <section id="faq" className="ud-faq">
+            <div className="shape">
                 <img src="assets/images/faq/shape.svg" alt="shape" />
             </div>
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-12">
-                    <div class="ud-section-title text-center mx-auto">
+            <div className="container">
+                <div className="row">
+                <div className="col-lg-12">
+                    <div className="ud-section-title text-center mx-auto">
                     <span>FAQ</span>
                     <h2>Any Questions?</h2>
                     <p>
@@ -137,22 +137,22 @@ function Pricing() {
                 </div>
                 </div>
 
-                <div class="row">
-                <div class="col-lg-6">
-                    <div class="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
-                    <div class="accordion">
+                <div className="row">
+                <div className="col-lg-6">
+                    <div className="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
+                    <div className="accordion">
                         <button
-                        class="ud-faq-btn collapsed"
+                        className="ud-faq-btn collapsed"
                         data-bs-toggle="collapse"
                         data-bs-target="#collapseOne"
                         >
-                        <span class="icon flex-shrink-0">
-                            <i class="lni lni-chevron-down"></i>
+                        <span className="icon flex-shrink-0">
+                            <i className="lni lni-chevron-down"></i>
                         </span>
                         <span>How to use UIdeck?</span>
                         </button>
-                        <div id="collapseOne" class="accordion-collapse collapse">
-                        <div class="ud-faq-body">
+                        <div id="collapseOne" className="accordion-collapse collapse">
+                        <div className="ud-faq-body">
                             Lorem Ipsum is simply dummy text of the printing and
                             typesetting industry. Lorem Ipsum has been the industry's
                             standard dummy text ever since the 1500s, when an unknown
@@ -162,20 +162,20 @@ function Pricing() {
                         </div>
                     </div>
                     </div>
-                    <div class="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
-                    <div class="accordion">
+                    <div className="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
+                    <div className="accordion">
                         <button
-                        class="ud-faq-btn collapsed"
+                        className="ud-faq-btn collapsed"
                         data-bs-toggle="collapse"
                         data-bs-target="#collapseTwo"
                         >
-                        <span class="icon flex-shrink-0">
-                            <i class="lni lni-chevron-down"></i>
+                        <span className="icon flex-shrink-0">
+                            <i className="lni lni-chevron-down"></i>
                         </span>
                         <span>How to download icons from Lineicons?</span>
                         </button>
-                        <div id="collapseTwo" class="accordion-collapse collapse">
-                        <div class="ud-faq-body">
+                        <div id="collapseTwo" className="accordion-collapse collapse">
+                        <div className="ud-faq-body">
                             Lorem Ipsum is simply dummy text of the printing and
                             typesetting industry. Lorem Ipsum has been the industry's
                             standard dummy text ever since the 1500s, when an unknown
@@ -185,20 +185,20 @@ function Pricing() {
                         </div>
                     </div>
                     </div>
-                    <div class="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
-                    <div class="accordion">
+                    <div className="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
+                    <div className="accordion">
                         <button
-                        class="ud-faq-btn collapsed"
+                        className="ud-faq-btn collapsed"
                         data-bs-toggle="collapse"
                         data-bs-target="#collapseThree"
                         >
-                        <span class="icon flex-shrink-0">
-                            <i class="lni lni-chevron-down"></i>
+                        <span className="icon flex-shrink-0">
+                            <i className="lni lni-chevron-down"></i>
                         </span>
                         <span>Is GrayGrids part of UIdeck?</span>
                         </button>
-                        <div id="collapseThree" class="accordion-collapse collapse">
-                        <div class="ud-faq-body">
+                        <div id="collapseThree" className="accordion-collapse collapse">
+                        <div className="ud-faq-body">
                             Lorem Ipsum is simply dummy text of the printing and
                             typesetting industry. Lorem Ipsum has been the industry's
                             standard dummy text ever since the 1500s, when an unknown
@@ -209,21 +209,21 @@ function Pricing() {
                     </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
-                    <div class="accordion">
+                <div className="col-lg-6">
+                    <div className="ud-single-faq wow fadeInUp" data-wow-delay=".1s">
+                    <div className="accordion">
                         <button
-                        class="ud-faq-btn collapsed"
+                        className="ud-faq-btn collapsed"
                         data-bs-toggle="collapse"
                         data-bs-target="#collapseFour"
                         >
-                        <span class="icon flex-shrink-0">
-                            <i class="lni lni-chevron-down"></i>
+                        <span className="icon flex-shrink-0">
+                            <i className="lni lni-chevron-down"></i>
                         </span>
                         <span>Can I use this template for commercial project?</span>
                         </button>
-                        <div id="collapseFour" class="accordion-collapse collapse">
-                        <div class="ud-faq-body">
+                        <div id="collapseFour" className="accordion-collapse collapse">
+                        <div className="ud-faq-body">
                             Lorem Ipsum is simply dummy text of the printing and
                             typesetting industry. Lorem Ipsum has been the industry's
                             standard dummy text ever since the 1500s, when an unknown
@@ -233,20 +233,20 @@ function Pricing() {
                         </div>
                     </div>
                     </div>
-                    <div class="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
-                    <div class="accordion">
+                    <div className="ud-single-faq wow fadeInUp" data-wow-delay=".15s">
+                    <div className="accordion">
                         <button
-                        class="ud-faq-btn collapsed"
+                        className="ud-faq-btn collapsed"
                         data-bs-toggle="collapse"
                         data-bs-target="#collapseFive"
                         >
-                        <span class="icon flex-shrink-0">
-                            <i class="lni lni-chevron-down"></i>
+                        <span className="icon flex-shrink-0">
+                            <i className="lni lni-chevron-down"></i>
                         </span>
                         <span>Do you have plan releasing Play Pro?</span>
                         </button>
-                        <div id="collapseFive" class="accordion-collapse collapse">
-                        <div class="ud-faq-body">
+                        <div id="collapseFive" className="accordion-collapse collapse">
+                        <div className="ud-faq-body">
                             Lorem Ipsum is simply dummy text of the printing and
                             typesetting industry. Lorem Ipsum has been the industry's
                             standard dummy text ever since the 1500s, when an unknown
@@ -256,20 +256,20 @@ function Pricing() {
                         </div>
                     </div>
                     </div>
-                    <div class="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
-                    <div class="accordion">
+                    <div className="ud-single-faq wow fadeInUp" data-wow-delay=".2s">
+                    <div className="accordion">
                         <button
-                        class="ud-faq-btn collapsed"
+                        className="ud-faq-btn collapsed"
                         data-bs-toggle="collapse"
                         data-bs-target="#collapseSix"
                         >
-                        <span class="icon flex-shrink-0">
-                            <i class="lni lni-chevron-down"></i>
+                        <span className="icon flex-shrink-0">
+                            <i className="lni lni-chevron-down"></i>
                         </span>
                         <span>Where and how to host this template?</span>
                         </button>
-                        <div id="collapseSix" class="accordion-collapse collapse">
-                        <div class="ud-faq-body">
+                        <div id="collapseSix" className="accordion-collapse collapse">
+                        <div className="ud-faq-body">
                             Lorem Ipsum is simply dummy text of the printing and
                             typesetting industry. Lorem Ipsum has been the industry's
                             standard dummy text ever since the 1500s, when an unknown

@@ -7,11 +7,11 @@ function About() {
     return (
         <div>
             {/* <!-- ====== Banner Start ====== --> */}
-            <section class="ud-page-banner">
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-12">
-                    <div class="ud-banner-content">
+            <section className="ud-page-banner">
+            <div className="container">
+                <div className="row">
+                <div className="col-lg-12">
+                    <div className="ud-banner-content">
                     <h1>About</h1>
                     </div>
                 </div>
@@ -21,12 +21,12 @@ function About() {
             {/* <!-- ====== Banner End ====== --> */}
 
             {/* <!-- ====== About Start ====== --> */}
-            <section id="about" class="ud-about">
-            <div class="container">
-                <div class="ud-about-wrapper wow fadeInUp" data-wow-delay=".2s">
-                    <div class="ud-about-content-wrapper">
-                        <div class="ud-about-content">
-                        <span class="tag">About Us</span>
+            <section id="about" className="ud-about">
+            <div className="container">
+                <div className="ud-about-wrapper wow fadeInUp" data-wow-delay=".2s">
+                    <div className="ud-about-content-wrapper">
+                        <div className="ud-about-content">
+                        <span className="tag">About Us</span>
                         <h2>Brilliant Toolkit to Build Nextgen Website Faster.</h2>
                         <p>
                             The main ‘thrust’ is to focus on educating attendees on how to
@@ -40,10 +40,10 @@ function About() {
                             best protect highly vulnerable business applications with
                             interactive panel.
                         </p>
-                        <a href="javascript:void(0)" class="ud-main-btn">Learn More</a>
+                        <a href="" className="ud-main-btn">Learn More</a>
                         </div>
                     </div>
-                    <div class="ud-about-image">
+                    <div className="ud-about-image">
                         <img src={aboutimage} alt="about-image" />
                     </div>
                 </div>
@@ -52,11 +52,11 @@ function About() {
             {/* <!-- ====== About End ====== --> */}
 
             {/* <!-- ====== Team Start ====== --> */}
-            <section id="team" class="ud-team">
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-12">
-                    <div class="ud-section-title mx-auto text-center">
+            <section id="team" className="ud-team">
+            <div className="container">
+                <div className="row">
+                <div className="col-lg-12">
+                    <div className="ud-section-title mx-auto text-center">
                     <span>Our Team</span>
                     <h2>Meet The Team</h2>
                     <p>
@@ -67,166 +67,166 @@ function About() {
                 </div>
                 </div>
 
-                <div class="row">
-                <div class="col-xl-3 col-lg-3 col-sm-6">
-                    <div class="ud-single-team wow fadeInUp" data-wow-delay=".1s">
-                    <div class="ud-team-image-wrapper">
-                        <div class="ud-team-image">
+                <div className="row">
+                <div className="col-xl-3 col-lg-3 col-sm-6">
+                    <div className="ud-single-team wow fadeInUp" data-wow-delay=".1s">
+                    <div className="ud-team-image-wrapper">
+                        <div className="ud-team-image">
                         <img src="assets/images/team/team-01.png" alt="team" />
                         </div>
 
                         <img
                         src="assets/images/team/dotted-shape.svg"
                         alt="shape"
-                        class="shape shape-1"
+                        className="shape shape-1"
                         />
                         <img
                         src="assets/images/team/shape-2.svg"
                         alt="shape"
-                        class="shape shape-2"
+                        className="shape shape-2"
                         />
                     </div>
-                    <div class="ud-team-info">
+                    <div className="ud-team-info">
                         <h5>Adveen Desuza</h5>
                         <h6>UI Designer</h6>
                     </div>
-                    <ul class="ud-team-socials">
+                    <ul className="ud-team-socials">
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-facebook-filled"></i>
+                            <i className="lni lni-facebook-filled"></i>
                         </a>
                         </li>
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-twitter-filled"></i>
+                            <i className="lni lni-twitter-filled"></i>
                         </a>
                         </li>
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-instagram-filled"></i>
+                            <i className="lni lni-instagram-filled"></i>
                         </a>
                         </li>
                     </ul>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-sm-6">
-                    <div class="ud-single-team wow fadeInUp" data-wow-delay=".15s">
-                    <div class="ud-team-image-wrapper">
-                        <div class="ud-team-image">
+                <div className="col-xl-3 col-lg-3 col-sm-6">
+                    <div className="ud-single-team wow fadeInUp" data-wow-delay=".15s">
+                    <div className="ud-team-image-wrapper">
+                        <div className="ud-team-image">
                         <img src="assets/images/team/team-02.png" alt="team" />
                         </div>
 
                         <img
                         src="assets/images/team/dotted-shape.svg"
                         alt="shape"
-                        class="shape shape-1"
+                        className="shape shape-1"
                         />
                         <img
                         src="assets/images/team/shape-2.svg"
                         alt="shape"
-                        class="shape shape-2"
+                        className="shape shape-2"
                         />
                     </div>
-                    <div class="ud-team-info">
+                    <div className="ud-team-info">
                         <h5>Jezmin uniya</h5>
                         <h6>Product Designer</h6>
                     </div>
-                    <ul class="ud-team-socials">
+                    <ul className="ud-team-socials">
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-facebook-filled"></i>
+                            <i className="lni lni-facebook-filled"></i>
                         </a>
                         </li>
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-twitter-filled"></i>
+                            <i className="lni lni-twitter-filled"></i>
                         </a>
                         </li>
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-instagram-filled"></i>
+                            <i className="lni lni-instagram-filled"></i>
                         </a>
                         </li>
                     </ul>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-sm-6">
-                    <div class="ud-single-team wow fadeInUp" data-wow-delay=".2s">
-                    <div class="ud-team-image-wrapper">
-                        <div class="ud-team-image">
+                <div className="col-xl-3 col-lg-3 col-sm-6">
+                    <div className="ud-single-team wow fadeInUp" data-wow-delay=".2s">
+                    <div className="ud-team-image-wrapper">
+                        <div className="ud-team-image">
                         <img src="assets/images/team/team-03.png" alt="team" />
                         </div>
 
                         <img
                         src="assets/images/team/dotted-shape.svg"
                         alt="shape"
-                        class="shape shape-1"
+                        className="shape shape-1"
                         />
                         <img
                         src="assets/images/team/shape-2.svg"
                         alt="shape"
-                        class="shape shape-2"
+                        className="shape shape-2"
                         />
                     </div>
-                    <div class="ud-team-info">
+                    <div className="ud-team-info">
                         <h5>Andrieo Gloree</h5>
                         <h6>App Developer</h6>
                     </div>
-                    <ul class="ud-team-socials">
+                    <ul className="ud-team-socials">
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-facebook-filled"></i>
+                            <i className="lni lni-facebook-filled"></i>
                         </a>
                         </li>
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-twitter-filled"></i>
+                            <i className="lni lni-twitter-filled"></i>
                         </a>
                         </li>
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-instagram-filled"></i>
+                            <i className="lni lni-instagram-filled"></i>
                         </a>
                         </li>
                     </ul>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-sm-6">
-                    <div class="ud-single-team wow fadeInUp" data-wow-delay=".25s">
-                    <div class="ud-team-image-wrapper">
-                        <div class="ud-team-image">
+                <div className="col-xl-3 col-lg-3 col-sm-6">
+                    <div className="ud-single-team wow fadeInUp" data-wow-delay=".25s">
+                    <div className="ud-team-image-wrapper">
+                        <div className="ud-team-image">
                         <img src="assets/images/team/team-04.png" alt="team" />
                         </div>
 
                         <img
                         src="assets/images/team/dotted-shape.svg"
                         alt="shape"
-                        class="shape shape-1"
+                        className="shape shape-1"
                         />
                         <img
                         src="assets/images/team/shape-2.svg"
                         alt="shape"
-                        class="shape shape-2"
+                        className="shape shape-2"
                         />
                     </div>
-                    <div class="ud-team-info">
+                    <div className="ud-team-info">
                         <h5>Jackie Sanders</h5>
                         <h6>Content Writer</h6>
                     </div>
-                    <ul class="ud-team-socials">
+                    <ul className="ud-team-socials">
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-facebook-filled"></i>
+                            <i className="lni lni-facebook-filled"></i>
                         </a>
                         </li>
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-twitter-filled"></i>
+                            <i className="lni lni-twitter-filled"></i>
                         </a>
                         </li>
                         <li>
                         <a href="https://twitter.com/MusharofChy">
-                            <i class="lni lni-instagram-filled"></i>
+                            <i className="lni lni-instagram-filled"></i>
                         </a>
                         </li>
                     </ul>

@@ -51,11 +51,11 @@ function Signin() {
     return (
         <div>
             {/* <!-- ====== Banner Start ====== --> */}
-            <section class="ud-page-banner">
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-12">
-                    <div class="ud-banner-content">
+            <section className="ud-page-banner">
+            <div className="container">
+                <div className="row">
+                <div className="col-lg-12">
+                    <div className="ud-banner-content">
                     <h1>Login Page</h1>
                     </div>
                 </div>
@@ -67,16 +67,16 @@ function Signin() {
             {loading === false && (
                 <div>
                     {/* <!-- ====== Login Start ====== --> */}
-                    <section class="ud-login">
-                        <div class="container">
-                            <div class="row">
-                            <div class="col-lg-12">
-                                <div class="ud-login-wrapper">
-                                    <div class="ud-login-logo">
+                    <section className="ud-login">
+                        <div className="container">
+                            <div className="row">
+                            <div className="col-lg-12">
+                                <div className="ud-login-wrapper">
+                                    <div className="ud-login-logo">
                                         <img src={logo} alt="logo" />
                                     </div>
-                                    <form onSubmit={onSubmit} class="ud-login-form">
-                                        <div class="ud-form-group">
+                                    <form onSubmit={onSubmit} className="ud-login-form">
+                                        <div className="ud-form-group">
                                         <input
                                             type="email"
                                             name="email"
@@ -86,7 +86,7 @@ function Signin() {
                                             onChange={e => setEmail(e.target.value)}
                                         />
                                         </div>
-                                        <div class="ud-form-group">
+                                        <div className="ud-form-group">
                                         <input
                                             type="password"
                                             name="password"
@@ -96,38 +96,38 @@ function Signin() {
                                             onChange={e => setPassword(e.target.value)}
                                         />
                                         </div>
-                                        <div class="ud-form-group">
-                                        <button type="submit" class="ud-main-btn w-100">Login</button>
+                                        <div className="ud-form-group">
+                                        <button type="submit" className="ud-main-btn w-100">Login</button>
                                         </div>
                                     </form>
 
                                     {errors === true && <div className='myWarning'> <a>Username or Password incorrect</a> <br/> <br/> <br/> </div>}
                                     
-                                    {/* <div class="ud-socials-connect">
+                                    {/* <div className="ud-socials-connect">
                                         <p>Connect With</p>
                                         <ul>
                                         <li>
-                                            <a href="javascript:void(0)" class="facebook">
-                                            <i class="lni lni-facebook-filled"></i>
+                                            <a href="" className="facebook">
+                                            <i className="lni lni-facebook-filled"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" class="twitter">
-                                            <i class="lni lni-twitter-filled"></i>
+                                            <a href="" className="twitter">
+                                            <i className="lni lni-twitter-filled"></i>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="javascript:void(0)" class="google">
-                                            <i class="lni lni-google"></i>
+                                            <a href="" className="google">
+                                            <i className="lni lni-google"></i>
                                             </a>
                                         </li>
                                         </ul>
                                     </div> */}
 
-                                    <a class="forget-pass" href="javascript:void(0)">
+                                    <a className="forget-pass" href="">
                                         Forgot Password?
                                     </a>
-                                    <p class="signup-option">
+                                    <p className="signup-option">
                                         Not a member yet? <a href="/Signup"> Sign Up </a>
                                     </p>
                                 </div>

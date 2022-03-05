@@ -17,33 +17,32 @@ import home_annot from "..//..//assets//images/mystatic/home_annot.png"
 import home_annot2 from "..//..//assets//images/mystatic/home_annot2.png"
 import home_annot3 from "..//..//assets//images/mystatic/home_annot3.png"
 import brand from "..//..//assets/images/hero/brand.svg";
-import heroimage from "..//..//assets/images/hero/hero-image.svg";
-import dottedshape from "..//..//assets/images/hero/dotted-shape.svg";
+
 
 function Home() {
     return (
         <div>
             {/* <!-- ====== Hero Start ====== --> */}
-            <section class="ud-hero" id="home">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
-                            <h1 class="ud-hero-title">
+            <section className="ud-hero" id="home">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
+                            <h1 className="ud-hero-title">
                             Use our vision tools to release your data's full potential
                             </h1>
-                            <p class="ud-hero-desc">
+                            <p className="ud-hero-desc">
                             With a few images, you can train a working <br/> computer vision model in less than a day.
                             </p>
-                            <ul class="ud-hero-buttons">
+                            <ul className="ud-hero-buttons">
                                 <li>
-                                <a href="/Upload" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-white-btn">
+                                <a href="/Upload" rel="nofollow noopener" target="_blank" className="ud-main-btn ud-white-btn">
                                     Try It Now
                                 </a>
                                 </li>
                                 <li>
-                                <a href="/About" rel="nofollow noopener" target="_blank" class="ud-main-btn ud-link-btn">
-                                    Learn More <i class="lni lni-arrow-right"></i>
+                                <a href="/About" rel="nofollow noopener" target="_blank" className="ud-main-btn ud-link-btn">
+                                    Learn More <i className="lni lni-arrow-right"></i>
                                 </a>
                                 </li>
                             </ul>
@@ -100,7 +99,7 @@ function Home() {
                             <br/>
                             <br/>
 
-                            <div class="ud-hero-brands-wrapper wow fadeInUp" data-wow-delay=".3s">
+                            <div className="ud-hero-brands-wrapper wow fadeInUp" data-wow-delay=".3s">
                                 <img src={brand} alt="brand" />
                             </div>
                             
@@ -108,7 +107,7 @@ function Home() {
                             <br/>
                             <br/>
 
-                            <div class="myParallelImages">
+                            <div className="myParallelImages">
                             <img src={home_annot} alt="hero-image" style={{borderRadius: '10px'}}/>
                             <img src={home_annot2} alt="hero-image" style={{borderRadius: '10px'}}/>
                             <img src={home_annot3} alt="hero-image" style={{borderRadius: '10px'}}/>
@@ -123,12 +122,12 @@ function Home() {
                             {/* <img
                                 src={dottedshape}
                                 alt="shape"
-                                class="shape shape-1"
+                                className="shape shape-1"
                             />
                             <img
                                 src={dottedshape}
                                 alt="shape"
-                                class="shape shape-2"
+                                className="shape shape-2"
                             /> */}
                         </div>
                     </div>
@@ -137,11 +136,11 @@ function Home() {
             {/* <!-- ====== Hero End ====== --> */}
 
             {/* <!-- ====== Features Start ====== --> */}
-            <section id="features" class="ud-features">
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-12">
-                    <div class="ud-section-title">
+            <section id="features" className="ud-features">
+            <div className="container">
+                <div className="row">
+                <div className="col-lg-12">
+                    <div className="ud-section-title">
                     <span>Features</span>
                     <h2>Main Features of Play</h2>
                     <p>
@@ -151,66 +150,66 @@ function Home() {
                     </div>
                 </div>
                 </div>
-                <div class="row">
-                <div class="col-xl-3 col-lg-3 col-sm-6">
-                    <div class="ud-single-feature wow fadeInUp" data-wow-delay=".1s">
-                    <div class="ud-feature-icon">
-                        <i class="lni lni-gift"></i>
+                <div className="row">
+                <div className="col-xl-3 col-lg-3 col-sm-6">
+                    <div className="ud-single-feature wow fadeInUp" data-wow-delay=".1s">
+                    <div className="ud-feature-icon">
+                        <i className="lni lni-gift"></i>
                     </div>
-                    <div class="ud-feature-content">
-                        <h3 class="ud-feature-title">Upload</h3>
-                        <p class="ud-feature-desc">
+                    <div className="ud-feature-content">
+                        <h3 className="ud-feature-title">Upload</h3>
+                        <p className="ud-feature-desc">
                         Lorem Ipsum is simply dummy text of the printing and industry.
                         </p>
-                        <a href="javascript:void(0)" class="ud-feature-link">
+                        <a href="" className="ud-feature-link">
                         Learn More
                         </a>
                     </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-sm-6">
-                    <div class="ud-single-feature wow fadeInUp" data-wow-delay=".15s">
-                    <div class="ud-feature-icon">
-                        <i class="lni lni-move"></i>
+                <div className="col-xl-3 col-lg-3 col-sm-6">
+                    <div className="ud-single-feature wow fadeInUp" data-wow-delay=".15s">
+                    <div className="ud-feature-icon">
+                        <i className="lni lni-move"></i>
                     </div>
-                    <div class="ud-feature-content">
-                        <h3 class="ud-feature-title">Organize</h3>
-                        <p class="ud-feature-desc">
+                    <div className="ud-feature-content">
+                        <h3 className="ud-feature-title">Organize</h3>
+                        <p className="ud-feature-desc">
                         Lorem Ipsum is simply dummy text of the printing and industry.
                         </p>
-                        <a href="javascript:void(0)" class="ud-feature-link">
+                        <a href="" className="ud-feature-link">
                         Learn More
                         </a>
                     </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-sm-6">
-                    <div class="ud-single-feature wow fadeInUp" data-wow-delay=".2s">
-                    <div class="ud-feature-icon">
-                        <i class="lni lni-layout"></i>
+                <div className="col-xl-3 col-lg-3 col-sm-6">
+                    <div className="ud-single-feature wow fadeInUp" data-wow-delay=".2s">
+                    <div className="ud-feature-icon">
+                        <i className="lni lni-layout"></i>
                     </div>
-                    <div class="ud-feature-content">
-                        <h3 class="ud-feature-title">Annotate</h3>
-                        <p class="ud-feature-desc">
+                    <div className="ud-feature-content">
+                        <h3 className="ud-feature-title">Annotate</h3>
+                        <p className="ud-feature-desc">
                         Lorem Ipsum is simply dummy text of the printing and industry.
                         </p>
-                        <a href="javascript:void(0)" class="ud-feature-link">
+                        <a href="" className="ud-feature-link">
                         Learn More
                         </a>
                     </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 col-sm-6">
-                    <div class="ud-single-feature wow fadeInUp" data-wow-delay=".25s">
-                    <div class="ud-feature-icon">
-                        <i class="lni lni-layers"></i>
+                <div className="col-xl-3 col-lg-3 col-sm-6">
+                    <div className="ud-single-feature wow fadeInUp" data-wow-delay=".25s">
+                    <div className="ud-feature-icon">
+                        <i className="lni lni-layers"></i>
                     </div>
-                    <div class="ud-feature-content">
-                        <h3 class="ud-feature-title">Train</h3>
-                        <p class="ud-feature-desc">
+                    <div className="ud-feature-content">
+                        <h3 className="ud-feature-title">Train</h3>
+                        <p className="ud-feature-desc">
                         Lorem Ipsum is simply dummy text of the printing and industry.
                         </p>
-                        <a href="javascript:void(0)" class="ud-feature-link">
+                        <a href="" className="ud-feature-link">
                         Learn More
                         </a>
                     </div>

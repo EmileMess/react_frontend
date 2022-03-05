@@ -13,64 +13,64 @@ function Navigation() {
 
     return (
         <div>
-            <div class="mynavbackground">
+            <div className="mynavbackground">
             </div>
             {/* <!-- ====== Header Start ====== --> */}
-            <header class="ud-header">
-                <div class="container">
-                    <div class="row">
-                    <div class="col-lg-12">
-                        <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand" href="/">
+            <header className="ud-header">
+                <div className="container">
+                    <div className="row">
+                    <div className="col-lg-12">
+                        <nav className="navbar navbar-expand-lg">
+                            <a className="navbar-brand" href="/">
                                 <img src={Logo} alt="Logo" />
                             </a>
-                            <button class="navbar-toggler">
-                                <span class="toggler-icon"> </span>
-                                <span class="toggler-icon"> </span>
-                                <span class="toggler-icon"> </span>
+                            <button className="navbar-toggler">
+                                <span className="toggler-icon"> </span>
+                                <span className="toggler-icon"> </span>
+                                <span className="toggler-icon"> </span>
                             </button>
 
-                            <div class="navbar-collapse">
-                                <ul id="nav" class="navbar-nav mx-auto">
-                                    <li class="nav-item">
-                                        <a class="ud-menu-scroll" href="/">Home</a>
+                            <div className="navbar-collapse">
+                                <ul id="nav" className="navbar-nav mx-auto">
+                                    <li className="nav-item">
+                                        <a className="ud-menu-scroll" href="/">Home</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="ud-menu-scroll" href="/Pricing">Pricing</a>
+                                    <li className="nav-item">
+                                        <a className="ud-menu-scroll" href="/Pricing">Pricing</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="ud-menu-scroll" href="/About">About</a>
+                                    <li className="nav-item">
+                                        <a className="ud-menu-scroll" href="/About">About</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="ud-menu-scroll" href="/Contact">Contact</a>
+                                    <li className="nav-item">
+                                        <a className="ud-menu-scroll" href="/Contact">Contact</a>
                                     </li>
 
                                     {isAuth === true ? (
-                                        <li class="nav-item nav-item-has-children">
+                                        <li className="nav-item nav-item-has-children">
                                         <a href="/Upload"> Tool </a>
-                                            <ul class="ud-submenu">
-                                                <li class="ud-submenu-item">
-                                                    <a href="/Upload" class="ud-submenu-link">
+                                            <ul className="ud-submenu">
+                                                <li className="ud-submenu-item">
+                                                    <a href="/Upload" className="ud-submenu-link">
                                                     Upload
                                                     </a>
                                                 </li>
-                                                <li class="ud-submenu-item">
-                                                    <a href="/Organize" class="ud-submenu-link">
+                                                <li className="ud-submenu-item">
+                                                    <a href="/Organize" className="ud-submenu-link">
                                                     Organize
                                                     </a>
                                                 </li>
-                                                <li class="ud-submenu-item">
-                                                    <a href="/Annotate" class="ud-submenu-link">
+                                                <li className="ud-submenu-item">
+                                                    <a href="/Annotate" className="ud-submenu-link">
                                                     Annotate
                                                     </a>
                                                 </li>
-                                                <li class="ud-submenu-item">
-                                                    <a href="/Train" class="ud-submenu-link">
+                                                <li className="ud-submenu-item">
+                                                    <a href="/Train" className="ud-submenu-link">
                                                     Train
                                                     </a>
                                                 </li>
-                                                <li class="ud-submenu-item">
-                                                    <a href="/Deploy" class="ud-submenu-link">
+                                                <li className="ud-submenu-item">
+                                                    <a href="/Deploy" className="ud-submenu-link">
                                                     Deploy
                                                     </a>
                                                 </li>
@@ -82,20 +82,20 @@ function Navigation() {
                                 </ul>
                             </div>
 
-                            <div class="navbar-btn d-none d-sm-inline-block">
+                            <div className="navbar-btn d-none d-sm-inline-block">
                                 {isAuth === true ? (
                                     <div>
-                                        <a href="/Logout" class="ud-main-btn ud-login-btn">
+                                        <a href="/Logout" className="ud-main-btn ud-login-btn">
                                         Logout
                                         </a>
                                         <a>{localStorage.getItem('user')}</a>
                                     </div>
                                 ) : (
                                     <div>
-                                        <a href="/Signin" class="ud-main-btn ud-login-btn">
+                                        <a href="/Signin" className="ud-main-btn ud-login-btn">
                                         Login
                                         </a>
-                                        <a class="ud-main-btn ud-white-btn" href="/Signup">
+                                        <a className="ud-main-btn ud-white-btn" href="/Signup">
                                         Sign Up
                                         </a>
                                     </div>

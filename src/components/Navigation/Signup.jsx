@@ -53,11 +53,11 @@ const Signup = () => {
     <div>
         <div>
             {/* <!-- ====== Banner Start ====== --> */}
-            <section class="ud-page-banner">
-                <div class="container">
-                    <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ud-banner-content">
+            <section className="ud-page-banner">
+                <div className="container">
+                    <div className="row">
+                    <div className="col-lg-12">
+                        <div className="ud-banner-content">
                         <h1>Sign Up</h1>
                         </div>
                     </div>
@@ -66,16 +66,16 @@ const Signup = () => {
             </section>
             {/* <!-- ====== Banner End ====== --> */}
         </div>
-        <section class="ud-login">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="ud-login-wrapper">
-                            <div class="ud-login-logo">
+        <section className="ud-login">
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-12">
+                        <div className="ud-login-wrapper">
+                            <div className="ud-login-logo">
                                 <img src={logo} alt="logo" />
                             </div>
-                            <form onSubmit={onSubmit} class="ud-login-form">
-                                <div class="ud-form-group">
+                            <form onSubmit={onSubmit} className="ud-login-form">
+                                <div className="ud-form-group">
                                 <input
                                     type="email"
                                     name="email"
@@ -85,7 +85,7 @@ const Signup = () => {
                                     onChange={e => setEmail(e.target.value)}
                                 />
                                 </div>
-                                <div class="ud-form-group">
+                                <div className="ud-form-group">
                                 <input
                                     type="password"
                                     name="password1"
@@ -95,7 +95,7 @@ const Signup = () => {
                                     onChange={e => setPassword1(e.target.value)}
                                 />
                                 </div>
-                                <div class="ud-form-group">
+                                <div className="ud-form-group">
                                 <input
                                     type="password"
                                     name="password2"
@@ -105,35 +105,35 @@ const Signup = () => {
                                     onChange={e => setPassword2(e.target.value)}
                                 />
                                 </div>
-                                <div class="ud-form-group">
-                                <button type="submit" class="ud-main-btn w-100">Sign Up</button>
+                                <div className="ud-form-group">
+                                <button type="submit" className="ud-main-btn w-100">Sign Up</button>
                                 </div>
                             </form>
 
                             {errors === true && <div className='myWarning'> <a>Cannot sign up with provided credentials</a> <br/> <br/> <br/></div>}
 
-                            {/* <div class="ud-socials-connect">
+                            {/* <div className="ud-socials-connect">
                                 <p>Connect With</p>
                                 <ul>
                                 <li>
-                                    <a href="javascript:void(0)" class="facebook">
-                                    <i class="lni lni-facebook-filled"></i>
+                                    <a href="javascript:void(0)" className="facebook">
+                                    <i className="lni lni-facebook-filled"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" class="twitter">
-                                    <i class="lni lni-twitter-filled"></i>
+                                    <a href="javascript:void(0)" className="twitter">
+                                    <i className="lni lni-twitter-filled"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" class="google">
-                                    <i class="lni lni-google"></i>
+                                    <a href="javascript:void(0)" className="google">
+                                    <i className="lni lni-google"></i>
                                     </a>
                                 </li>
                                 </ul>
                             </div> */}
 
-                            <p class="signup-option">
+                            <p className="signup-option">
                                 Already have an account? <a href="/Signin"> Login </a>
                             </p>
 
