@@ -6,28 +6,28 @@ import Upload from './HelperUpload.js';
 function StateUpload() {
 
   const [userEmail, setUserEmail] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // Change here for local dev every time or TODO: make Login work on local (CORS error)
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('token') === null) {
-  //     window.location.replace('/Signin');
-  //   } else {
-  //     fetch('https://aigui-backend.azurewebsites.net/users/auth/user/', {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Token ${localStorage.getItem('token')}`
-  //       }
-  //     })
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         setUserEmail(data.email);
-  //         setLoading(false);
-  //       });
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (localStorage.getItem('token') === null) {
+      window.location.replace('/Signin');
+    } else {
+      fetch('https://aigui-backend.azurewebsites.net/users/auth/user/', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Token ${localStorage.getItem('token')}`
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          setUserEmail(data.email);
+          setLoading(false);
+        });
+    }
+  }, []);
 
   return (
     <div className="App">

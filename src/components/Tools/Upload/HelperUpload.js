@@ -21,7 +21,7 @@ class Upload extends React.Component {
     onFileUpload = (e) => {
         if (this.state.isSelected == true) {
             e.preventDefault();
-            console.log(this.state);
+            console.log("Uploading...");
             let form_data = new FormData();
             for (var i = 0; i < this.state.selectedFiles.length; i++) {
                 form_data.append('images', this.state.selectedFiles[i]);
@@ -32,7 +32,7 @@ class Upload extends React.Component {
                 headers: {'content-type': 'multipart/form-data'}
                 })
                 .then(res => {
-                console.log(res.data);
+                console.log("POST: ", res.data);
                 })
                 .catch(err => console.log(err))
             axios.get(url, {
@@ -41,7 +41,7 @@ class Upload extends React.Component {
                 })
                 .then(res => {
                 // this.setState({ imgurl: res.data[res.data.length - 1]['images'] });
-                console.log(res.data);
+                console.log("GET: ", res.data);
                 })
                 .catch(err => console.log(err))
                 }
