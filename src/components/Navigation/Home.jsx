@@ -29,19 +29,19 @@ function Home() {
                         <div className="col-lg-12">
                             <div className="ud-hero-content wow fadeInUp" data-wow-delay=".2s">
                             <h1 className="ud-hero-title">
-                            Use our vision tools to release your data's full potential
+                            Use our tools to release your data's full potential
                             </h1>
                             <p className="ud-hero-desc">
                             With a few images, you can train a working <br/> computer vision model in less than a day.
                             </p>
                             <ul className="ud-hero-buttons">
                                 <li>
-                                <a href="/Upload" rel="nofollow noopener" target="_blank" className="ud-main-btn ud-white-btn">
+                                <a href="/Upload" rel="nofollow noopener" className="ud-main-btn ud-white-btn">
                                     Try It Now
                                 </a>
                                 </li>
                                 <li>
-                                <a href="/About" rel="nofollow noopener" target="_blank" className="ud-main-btn ud-link-btn">
+                                <a href="/About" rel="nofollow noopener" className="ud-main-btn ud-link-btn">
                                     Learn More <i className="lni lni-arrow-right"></i>
                                 </a>
                                 </li>

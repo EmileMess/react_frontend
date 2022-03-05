@@ -1,7 +1,4 @@
 import React, { Component } from "react";
-
-import Button from '@material-ui/core/Button';
-// import { Button } from "react-bootstrap";
 import axios from 'axios';
 
 
@@ -12,7 +9,7 @@ class Upload extends React.Component {
             selectedFiles: null,
             isSelected: false,
             datasetName: 'dataset_01',
-            imgurl: '',
+            // imgurl: '',
         }
     }
 
@@ -43,8 +40,7 @@ class Upload extends React.Component {
                 headers: {'content-type': 'multipart/form-data'}
                 })
                 .then(res => {
-                console.log(res.data, res.data[0], res.data[-1], res.data[res.data.length - 1])
-                this.setState({ imgurl: res.data[res.data.length - 1]['images'] });
+                // this.setState({ imgurl: res.data[res.data.length - 1]['images'] });
                 console.log(res.data);
                 })
                 .catch(err => console.log(err))
@@ -53,20 +49,18 @@ class Upload extends React.Component {
 
     render() {
         return (
-            <div >
+            <div className="myCenter">
                 <label htmlFor="upload-photo">
                     <input
-                        style={{ display: 'none' }}
+                        // style={{ display: 'none' }}
                         id="upload-photo"
                         type="file"
                         multiple
                         accept="image/*"
                         onChange={this.changeHandler}
                     />
-                    <Button color="primary" variant="contained" component="span">
-                        Choose files
-                    </Button>
                 </label>
+
                 <br />
                 <br />
                 {this.state.isSelected ? (
@@ -83,13 +77,14 @@ class Upload extends React.Component {
                 </form>
                 <br />
                 <br />
-                <Button onClick={this.onFileUpload} variant="contained" color="secondary" component="span">
+                <button onClick={this.onFileUpload} variant="contained" color="secondary" component="span">
                     Upload
-                </Button>
-                <img
+                </button>
+
+                {/* <img
                 src={this.state.imgurl}
                 alt="new"
-                />
+                /> */}
             </div >
         );
     }

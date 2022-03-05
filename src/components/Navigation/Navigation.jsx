@@ -3,7 +3,7 @@ import Logo from "..//..//assets/images/logo/logo.svg";
 
 function Navigation() {
 
-    const [isAuth, setIsAuth] = useState(false);
+    const [isAuth, setIsAuth] = useState(false); 
 
     useEffect(() => {
         if (localStorage.getItem('token') !== null) {

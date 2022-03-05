@@ -6,37 +6,39 @@ import Upload from './HelperUpload.js';
 function StateUpload() {
 
   const [userEmail, setUserEmail] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (localStorage.getItem('token') === null) {
-      window.location.replace('/Signup');
-    } else {
-      fetch('https://aigui-backend.azurewebsites.net/users/auth/user/', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Token ${localStorage.getItem('token')}`
-        }
-      })
-        .then(res => res.json())
-        .then(data => {
-          setUserEmail(data.email);
-          setLoading(false);
-        });
-    }
-  }, []);
+  // Change here for local dev every time or TODO: make Login work on local (CORS error)
+
+  // useEffect(() => {
+  //   if (localStorage.getItem('token') === null) {
+  //     window.location.replace('/Signin');
+  //   } else {
+  //     fetch('https://aigui-backend.azurewebsites.net/users/auth/user/', {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Authorization: `Token ${localStorage.getItem('token')}`
+  //       }
+  //     })
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         setUserEmail(data.email);
+  //         setLoading(false);
+  //       });
+  //   }
+  // }, []);
 
   return (
     <div className="App">
       {loading === false && (
         <div>
           {/* <!-- ====== Banner Start ====== --> */}
-          <section class="ud-page-banner">
-              <div class="container">
-                  <div class="row">
-                  <div class="col-lg-12">
-                      <div class="ud-banner-content">
+          <section className="ud-page-banner">
+              <div className="container">
+                  <div className="row">
+                  <div className="col-lg-12">
+                      <div className="ud-banner-content">
                       <h1>Upload</h1>
                       </div>
                   </div>

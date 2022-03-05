@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Navigate, BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // CSS
 import "./assets/css/mycss.css"
@@ -26,6 +26,7 @@ import Signin from './components/Navigation/Signin.jsx';
 import Signup from './components/Navigation/Signup.jsx';
 import Pricing from './components/Navigation/Pricing.jsx';
 import Logout from './components/Navigation/Logout.jsx';
+import Handle404 from './components/Navigation/404.jsx';
 
 ReactDOM.render(
     <Router>
@@ -43,6 +44,7 @@ ReactDOM.render(
             <Route path="/signin" element={<Signin />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="*" element={<Handle404/>} />
         </Routes>
         <Footer/>
     </Router>,
