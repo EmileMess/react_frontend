@@ -49,7 +49,7 @@ class StateAnnotate extends React.Component {
 
   updateDatasetsDisplay () {
     axios.get(this.url, {
-        params: {datasetname: "yyy", user: localStorage.getItem('user')},
+        params: {datasetname: "coco", user: localStorage.getItem('user')},
         withCredentials: true,
         headers: {'content-type': 'multipart/form-data'}
         })
@@ -59,8 +59,6 @@ class StateAnnotate extends React.Component {
             for (const img of res.data) {
                 this.setState(previousState => ({images: [...previousState.images, img["image"]]})); // Save images
             }
-            console.log("allUserImages: ", this.state.allUserImages);
-            console.log("images: ", this.state.images);
         })
         .catch(err => console.log(err))
   }
