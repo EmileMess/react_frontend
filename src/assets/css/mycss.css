@@ -2,6 +2,10 @@
   color: red;
 }
 
+.myWarningGreen {
+  color: green;
+}
+
 .mynavbackground {
   background-color: #181346;
   height: 70px;

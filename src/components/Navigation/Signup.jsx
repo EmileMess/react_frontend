@@ -38,6 +38,7 @@ const Signup = () => {
         if (data.key) {
           localStorage.clear();
           localStorage.setItem('token', data.key);
+          localStorage.setItem('user', email);
           window.location.replace('/Upload');
         } else {
           setEmail('');
