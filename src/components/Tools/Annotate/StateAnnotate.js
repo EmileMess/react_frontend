@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import axios from 'axios';
 
 import { Dropdown } from 'react-bootstrap';
 import { Button, Modal } from "react-bootstrap";
@@ -11,11 +12,12 @@ import CreatableInputOnly from './Creatable.tsx'
 class StateAnnotate extends React.Component {
   constructor(props) {
       super(props);
-      let loadedimgs = Object.values(this.importAll(require.context('../../../images/Data', false, /\.(png|jpe?g|svg)$/)));
       window.addEventListener('keydown', e => this.onKeyDown(e));
       this.refDialog = React.createRef();
+      this.url = 'https://aigui-backend.azurewebsites.net/api/getImages/';
       this.state = {
-          images: loadedimgs, // all actual images
+          allUserImages: [], // all actual datasets
+          images: [], // all actual images
           current_img: 0, // current image index
           canForward: true, // allowed to move to next image?
           imgDimensions: [], // image dimensions tupel: [width, height]
@@ -33,16 +35,35 @@ class StateAnnotate extends React.Component {
           outFromDialog: false, // true if mouse only left canvas because of dialog popup
           classes: [], // contains all classes defined by user
       }
+
+      this.updateDatasetsDisplay(); // Fill images array
   }
 
   // TODO: Handy Optimierung: @media (min-width: 481px) and (max-width: 767px) {}
   // TODO: Remove all unnecessary renders
-  // TODO: When images are imported from db: load dimensions from image file, not from image component (remove)
+  // TODO: When images are imported from db: load dimensions from image file, not from image component (remove extra component at end of DOM)
   // TODO: Navbar moving on some div changes in StateAnnotate
-  // Favicon + Title
+  // TODO: Favicon + Title
+  // TODO: add output formats
 
-  // add output formats
 
+  updateDatasetsDisplay () {
+    axios.get(this.url, {
+        params: {datasetname: "yyy", user: localStorage.getItem('user')},
+        withCredentials: true,
+        headers: {'content-type': 'multipart/form-data'}
+        })
+        .then(res => {
+            console.log("GET: ", res.data);
+            this.setState({allUserImages: res.data}); // Save dataset
+            for (const img of res.data) {
+                this.setState(previousState => ({images: [...previousState.images, img["image"]]})); // Save images
+            }
+            console.log("allUserImages: ", this.state.allUserImages);
+            console.log("images: ", this.state.images);
+        })
+        .catch(err => console.log(err))
+  }
 
   setClasses = (allclasses) => {
     const cloneClasses = [...allclasses];
@@ -66,14 +87,6 @@ class StateAnnotate extends React.Component {
   setClassNum (e) {
     this.setState({currentClass: e.target.value});
   };
-
-  // *** TODO Change when backend is ready
-  importAll(r) {
-    let images = {};
-    r.keys().forEach((item, index) => {images[item.replace('./', '')] = r(item); });
-    return images
-  };
-  // ***
 
   handleImgLoad = e => {
     this.setState({imgDimensions: [e.target.width, e.target.height]});
@@ -109,7 +122,7 @@ class StateAnnotate extends React.Component {
   handleFinish = e => {
     let finalData = 'IMAGE_NAME CLASS_NAME X_START Y_START WIDTH HEIGHT\n\n';
     for (var i = 0; i < this.state.listofRecs.length; i++) {
-      finalData = finalData + this.state.images[i] + ' ' + this.state.listofRecs[i][5] + ' ' + this.state.listofRecs[i][1] + ' ' + this.state.listofRecs[i][2] + ' ' + this.state.listofRecs[i][3] + ' ' + this.state.listofRecs[i][4] + '\n';
+      finalData = finalData + this.state.images[i].split('/').pop() + ' ' + this.state.listofRecs[i][5] + ' ' + this.state.listofRecs[i][1] + ' ' + this.state.listofRecs[i][2] + ' ' + this.state.listofRecs[i][3] + ' ' + this.state.listofRecs[i][4] + '\n';
     }
     console.log("FINAL DATA: " + finalData)
     this.downloadContent('ObjectBoundingBoxes', finalData);

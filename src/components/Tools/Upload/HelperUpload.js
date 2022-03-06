@@ -5,7 +5,7 @@ import axios from 'axios';
 class Upload extends React.Component {
     constructor(props) {
         super(props);
-        this.url = 'https://aigui-backend.azurewebsites.net/api/posts/';
+        this.url = 'https://aigui-backend.azurewebsites.net/api/uploadDataset/';
 
         this.state = {
             selectedFiles: null,
@@ -26,11 +26,11 @@ class Upload extends React.Component {
             headers: {'content-type': 'multipart/form-data'}
             })
             .then(res => {
-            this.setState({loadedDatasets: []});
-            for (const dataset of res.data) {
-                this.setState(previousState => ({loadedDatasets: [...previousState.loadedDatasets, dataset["name"]]}));
-            }
-            console.log("GET: ", res.data);
+                console.log("GET: ", res.data);
+                this.setState({loadedDatasets: []});
+                for (const datapiece of res.data) {
+                    this.setState(previousState => ({loadedDatasets: [...previousState.loadedDatasets, datapiece["name"]]}));
+                }
             })
             .catch(err => console.log(err))
     }
@@ -47,7 +47,6 @@ class Upload extends React.Component {
 
     handleError (err) {
         console.log(err)
-        console.log(err.response.status)
         if (err.response.status == 403) {
             this.setState({correct_dataset_usage: false})
         }
