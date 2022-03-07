@@ -137,41 +137,6 @@ const Signup = () => {
                             <p className="signup-option">
                                 Already have an account? <a href="/Signin"> Login </a>
                             </p>
-
-                            {/* <div>
-                                {loading === false && <h1>Signup</h1>}
-                                {errors === true && <h2>Cannot signup with provided credentials</h2>}
-                                <form onSubmit={onSubmit}>
-                                    <label htmlFor='email'>Email address:</label> <br />
-                                    <input
-                                    name='email'
-                                    type='email'
-                                    value={email}
-                                    onChange={e => setEmail(e.target.value)}
-                                    required
-                                    />{' '}
-                                    <br />
-                                    <label htmlFor='password1'>Password:</label> <br />
-                                    <input
-                                    name='password1'
-                                    type='password'
-                                    value={password1}
-                                    onChange={e => setPassword1(e.target.value)}
-                                    required
-                                    />{' '}
-                                    <br />
-                                    <label htmlFor='password2'>Confirm password:</label> <br />
-                                    <input
-                                    name='password2'
-                                    type='password'
-                                    value={password2}
-                                    onChange={e => setPassword2(e.target.value)}
-                                    required
-                                    />{' '}
-                                    <br />
-                                    <input type='submit' value='Signup' />
-                                </form>
-                            </div> */}
                         </div>
                     </div>
                 </div>

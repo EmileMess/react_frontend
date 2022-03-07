@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
+import logo from "..//..//..//assets/images/logo/logo-2.svg";
 
 class Upload extends React.Component {
     constructor(props) {
@@ -15,7 +16,7 @@ class Upload extends React.Component {
             correct_dataset_structure: true, // database name not rule conform
             correct_dataset_usage: true, // database name already used
             reminderIsSelected: false, // warning for no images are selected
-            hasDatasetUploaded: true, // defines if user has an uploaded dataset in cloud
+            hasDatasetUploaded: false, // defines if user has an uploaded dataset in cloud
         }
 
         this.updateDatasetsDisplay();
@@ -29,18 +30,14 @@ class Upload extends React.Component {
             headers: {'content-type': 'multipart/form-data'}
             })
             .then(res => {
-                if(res.data.length == 0) {
-                    this.setState({hasDatasetUploaded: false})
-                    return
-                }
                 console.log("GET: ", res.data);
+                this.setState({loadedDatasets: res.data});
+                // for (const datapiece of res.data) {
+                //     this.setState(previousState => ({loadedDatasets: [...previousState.loadedDatasets, datapiece]}));
+                // }
                 this.setState({hasDatasetUploaded: true})
-                this.setState({loadedDatasets: []});
-                for (const datapiece of res.data) {
-                    this.setState(previousState => ({loadedDatasets: [...previousState.loadedDatasets, datapiece["name"]]}));
-                }
             })
-            .catch(err => console.log(err))
+            .catch(err => this.handleError(err))
     }
 
     finishUpload () {
@@ -57,6 +54,9 @@ class Upload extends React.Component {
         console.log(err)
         if (err.response.status == 403) {
             this.setState({correct_dataset_usage: false})
+        }
+        if (err.response.status == 409) {
+            this.setState({hasDatasetUploaded: false})
         }
     }
 
@@ -98,10 +98,43 @@ class Upload extends React.Component {
     };
 
     render() {
+        const items = [];
+
+        for (const [index, value] of this.state.loadedDatasets.entries()) {
+            items.push(
+                <div className="myDatasetOverview">
+                    <img className="myDatasetImage" src={value["img_first"]}></img>
+                    <label>Name: {value["name"]}</label>
+                    <label>Images: {value["img_num"]}</label>
+                </div>
+            )
+        }
+
+        const Result = () => {
+            return items.map((item, index) => {
+              return (
+                index % 6 === 0 && (
+                  <div key={item} className="myDatasetBox">
+                    <span>{items[index]}</span>
+                    <span>{items[index + 1]}</span>
+                    <span>{items[index + 2]}</span>
+                    <span>{items[index + 3]}</span>
+                    <span>{items[index + 4]}</span>
+                    <span>{items[index + 5]}</span>
+                  </div>
+                )
+              );
+            });
+         };
+
         return (
             <div className="myCenter">              
-                {this.state.hasDatasetUploaded === true && <div><label>{this.state.loadedDatasets}</label></div>}
+                {/* {this.state.hasDatasetUploaded === true && <div>{items}</div>} */}
                 {this.state.hasDatasetUploaded === false && <div className='myWarning'> <a>No datasets uploaded so far</a> <br/> <br/> <br/> </div>}
+
+                <div className="myDatasetOverview">
+                    <Result />
+                </div>
 
                 <br/>
                 <br/>

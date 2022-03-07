@@ -6,6 +6,27 @@
   color: green;
 }
 
+.myDatasetImage {
+  width: 100px;
+  height: 100px;
+}
+
+.myDatasetOverview {
+  display: grid;
+  border: 1px black solid;
+  /* grid-gap: 10px; */
+}
+
+.myDatasetBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .myDatasetBox span {
+  margin: 0 5px;
+} */
+
 .mynavbackground {
   background-color: #181346;
   height: 70px;

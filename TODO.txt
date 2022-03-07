@@ -1,10 +1,13 @@
-GENERAL
+GENERAL LT
 TODO: Handy Optimierung: @media (min-width: 481px) and (max-width: 767px) {}
 TODO: Remove all unnecessary renders
 TODO: When images are imported from db: load dimensions from image file, not from image component (remove extra component at end of DOM)
+
+GENERAL ST
 TODO: Favicon
-TODO: use images from static blob instead of media
 TODO: clean up repos
+TODO: use images from static blob instead of media
+TODO: center logo in navbar
 
 DJANGO
 TODO: Errors in console
@@ -19,3 +22,4 @@ TODO: crossair
 TODO: dont "r" and "space" in class creation mode
 TODO: can click next when only having one image (bug)
 TODO: add output formats
+TODO: dont use space to delete --> will move window

@@ -34,14 +34,22 @@ class StateAnnotate extends React.Component {
           currentClass: null, // Class number of the currently created rectangle object
           outFromDialog: false, // true if mouse only left canvas because of dialog popup
           classes: [], // contains all classes defined by user
+          hasDatasetUploaded: true, // Has the user uploaded at least one dataset
       }
 
       this.updateDatasetsDisplay(); // Fill images array
   }
 
+  handleError (err) {
+    console.log(err)
+    if (err.response.status == 409) {
+        this.setState({hasDatasetUploaded: false})
+    }
+  }
+
   updateDatasetsDisplay () {
     axios.get(this.url, {
-        params: {datasetname: "coco", user: localStorage.getItem('user')},
+        params: {datasetname: "lolo", user: localStorage.getItem('user')},
         withCredentials: true,
         headers: {'content-type': 'multipart/form-data'}
         })
@@ -52,7 +60,7 @@ class StateAnnotate extends React.Component {
                 this.setState(previousState => ({images: [...previousState.images, img["image"]]})); // Save images
             }
         })
-        .catch(err => console.log(err))
+        .catch(err => this.handleError(err))
   }
 
   setClasses = (allclasses) => {
@@ -304,6 +312,10 @@ class StateAnnotate extends React.Component {
         {/* <!-- ====== Banner End ====== --> */}
         
         <br/>
+        <br/>
+        <br/>
+
+        {this.state.hasDatasetUploaded === false && <div className='myWarning'> <a>No datasets uploaded so far</a> <br/> <br/> <br/> </div>}
 
         <div className="myCreatableInput">
           <br/>
