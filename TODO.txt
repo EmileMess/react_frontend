@@ -1,0 +1,21 @@
+GENERAL
+TODO: Handy Optimierung: @media (min-width: 481px) and (max-width: 767px) {}
+TODO: Remove all unnecessary renders
+TODO: When images are imported from db: load dimensions from image file, not from image component (remove extra component at end of DOM)
+TODO: Favicon
+TODO: use images from static blob instead of media
+TODO: clean up repos
+
+DJANGO
+TODO: Errors in console
+TODO: Tokens authentication
+
+UPLOAD
+TODO: Make datasets deletable
+TODO: Design
+
+ANNOTATE
+TODO: crossair
+TODO: dont "r" and "space" in class creation mode
+TODO: can click next when only having one image (bug)
+TODO: add output formats

@@ -39,14 +39,6 @@ class StateAnnotate extends React.Component {
       this.updateDatasetsDisplay(); // Fill images array
   }
 
-  // TODO: Handy Optimierung: @media (min-width: 481px) and (max-width: 767px) {}
-  // TODO: Remove all unnecessary renders
-  // TODO: When images are imported from db: load dimensions from image file, not from image component (remove extra component at end of DOM)
-  // TODO: Navbar moving on some div changes in StateAnnotate
-  // TODO: Favicon + Title
-  // TODO: add output formats
-
-
   updateDatasetsDisplay () {
     axios.get(this.url, {
         params: {datasetname: "coco", user: localStorage.getItem('user')},

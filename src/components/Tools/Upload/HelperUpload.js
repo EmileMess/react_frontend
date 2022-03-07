@@ -15,18 +15,26 @@ class Upload extends React.Component {
             correct_dataset_structure: true, // database name not rule conform
             correct_dataset_usage: true, // database name already used
             reminderIsSelected: false, // warning for no images are selected
+            hasDatasetUploaded: true, // defines if user has an uploaded dataset in cloud
         }
 
         this.updateDatasetsDisplay();
     }
 
+    // GET
     updateDatasetsDisplay () {
         axios.get(this.url, {
+            params: {user: localStorage.getItem('user')},
             withCredentials: true,
             headers: {'content-type': 'multipart/form-data'}
             })
             .then(res => {
+                if(res.data.length == 0) {
+                    this.setState({hasDatasetUploaded: false})
+                    return
+                }
                 console.log("GET: ", res.data);
+                this.setState({hasDatasetUploaded: true})
                 this.setState({loadedDatasets: []});
                 for (const datapiece of res.data) {
                     this.setState(previousState => ({loadedDatasets: [...previousState.loadedDatasets, datapiece["name"]]}));
@@ -69,7 +77,7 @@ class Upload extends React.Component {
             return
         }
 
-        // POST / GET
+        // POST
 
         if (this.state.isSelected == true) {
             e.preventDefault();
@@ -91,10 +99,9 @@ class Upload extends React.Component {
 
     render() {
         return (
-            <div className="myCenter">
-                <label>
-                    {this.state.loadedDatasets}
-                </label>
+            <div className="myCenter">              
+                {this.state.hasDatasetUploaded === true && <div><label>{this.state.loadedDatasets}</label></div>}
+                {this.state.hasDatasetUploaded === false && <div className='myWarning'> <a>No datasets uploaded so far</a> <br/> <br/> <br/> </div>}
 
                 <br/>
                 <br/>
