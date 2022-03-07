@@ -27,7 +27,7 @@ function Contact() {
                         <div className="ud-contact-title">
                             <span>CONTACT US</span>
                             <h2>
-                            Let’s talk about your data!
+                            Let’s talk about your data.
                             </h2>
                         </div>
                         <div className="ud-contact-info-wrapper">

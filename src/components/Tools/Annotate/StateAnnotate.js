@@ -40,6 +40,13 @@ class StateAnnotate extends React.Component {
       this.updateDatasetsDisplay(); // Fill images array
   }
 
+  // Redirect to Login if not signed in
+  componentDidMount () {
+    if (localStorage.getItem('token') === null) {
+      window.location.replace('/Signin');
+    }
+  }
+
   handleError (err) {
     console.log(err)
     if (err.response.status == 409) {

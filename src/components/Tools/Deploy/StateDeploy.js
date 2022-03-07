@@ -1,7 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 
 
 function StateDeploy() {
+
+  // Redirect to Login if not signed in
+  useEffect(() => {
+    if (localStorage.getItem('token') === null) {
+      window.location.replace('/Signin');
+    }
+  }, []);
+
   return (
     <div className="App">
         {/* <!-- ====== Banner Start ====== --> */}

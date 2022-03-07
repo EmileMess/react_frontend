@@ -32,10 +32,7 @@ class Upload extends React.Component {
             .then(res => {
                 console.log("GET: ", res.data);
                 this.setState({loadedDatasets: res.data});
-                // for (const datapiece of res.data) {
-                //     this.setState(previousState => ({loadedDatasets: [...previousState.loadedDatasets, datapiece]}));
-                // }
-                this.setState({hasDatasetUploaded: true})
+                this.setState({hasDatasetUploaded: true});
             })
             .catch(err => this.handleError(err))
     }

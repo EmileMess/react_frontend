@@ -1,9 +1,6 @@
 import React from "react";
 
 import Logo from "..//..//assets/images/logo/logo.svg";
-import shape1 from "..//..//assets/images/footer/shape-1.svg";
-import shape2 from "..//..//assets/images/footer/shape-2.svg"
-import shape3 from "..//..//assets/images/footer/shape-3.svg"
 
 import ayroui from "..//..//assets/images/footer/brands/ayroui.svg"
 import ecommercehtml from "..//..//assets/images/footer/brands/ecommerce-html.svg"
@@ -17,15 +14,6 @@ function Footer() {
         <div>
             {/* <!-- ====== Footer Start ====== --> */}
             <footer className="ud-footer wow fadeInUp" data-wow-delay=".15s">
-                <div className="shape shape-1">
-                    <img src={shape1} alt="shape" />
-                </div>
-                <div className="shape shape-2">
-                    <img src={shape2} alt="shape" />
-                </div>
-                <div className="shape shape-3">
-                    <img src={shape3} alt="shape" />
-                </div>
                 <div className="ud-footer-widgets">
                     <div className="container">
                     <div className="row">
@@ -39,22 +27,22 @@ function Footer() {
                             </p>
                             <ul className="ud-widget-socials">
                             <li>
-                                <a href="https://twitter.com/MusharofChy">
+                                <a href="https://facebook.com">
                                 <i className="lni lni-facebook-filled"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="https://twitter.com/MusharofChy">
+                                <a href="https://twitter.com">
                                 <i className="lni lni-twitter-filled"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="https://twitter.com/MusharofChy">
+                                <a href="https://instagram.com">
                                 <i className="lni lni-instagram-filled"></i>
                                 </a>
                             </li>
                             <li>
-                                <a href="https://twitter.com/MusharofChy">
+                                <a href="https://linkedin.com">
                                 <i className="lni lni-linkedin-original"></i>
                                 </a>
                             </li>

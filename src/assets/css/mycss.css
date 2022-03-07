@@ -14,6 +14,7 @@
 .myDatasetOverview {
   display: grid;
   border: 1px black solid;
+  /* text-align: center; */
   /* grid-gap: 10px; */
 }
 
@@ -26,6 +27,11 @@
 /* .myDatasetBox span {
   margin: 0 5px;
 } */
+
+.myLoginName {
+  vertical-align: middle;
+  color: grey;
+}
 
 .mynavbackground {
   background-color: #181346;

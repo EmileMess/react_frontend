@@ -88,7 +88,7 @@ function Navigation() {
                                         <a href="/Logout" className="ud-main-btn ud-login-btn">
                                         Logout
                                         </a>
-                                        <a>{localStorage.getItem('user')}</a>
+                                        <a className='myLoginName'>{localStorage.getItem('user')}</a>
                                     </div>
                                 ) : (
                                     <div>

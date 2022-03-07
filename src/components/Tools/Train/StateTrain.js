@@ -1,8 +1,16 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Parameters from './Parameters.js';
 
 
 function StateTrain() {
+
+  // Redirect to Login if not signed in
+  useEffect(() => {
+    if (localStorage.getItem('token') === null) {
+      window.location.replace('/Signin');
+    }
+  }, []);
+
   return (
     <div className="App">
         {/* <!-- ====== Banner Start ====== --> */}
