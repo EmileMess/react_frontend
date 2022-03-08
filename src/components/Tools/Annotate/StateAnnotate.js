@@ -4,9 +4,10 @@ import axios from 'axios';
 import { Dropdown } from 'react-bootstrap';
 import { Button, Modal } from "react-bootstrap";
 
-import MyCanvas from './Canvas'
-import ModalInput from './Dialog'
-import CreatableInputOnly from './Creatable.tsx'
+import MyCanvas from './Canvas';
+import ModalInput from './Dialog';
+import CreatableInputOnly from './Creatable.tsx';
+import ChooseDataset from "../ChooseDataset";
 
 
 class StateAnnotate extends React.Component {
@@ -36,8 +37,6 @@ class StateAnnotate extends React.Component {
           classes: [], // contains all classes defined by user
           hasDatasetUploaded: true, // Has the user uploaded at least one dataset
       }
-
-      this.updateDatasetsDisplay(); // Fill images array
   }
 
   // Redirect to Login if not signed in
@@ -54,15 +53,16 @@ class StateAnnotate extends React.Component {
     }
   }
 
-  updateDatasetsDisplay () {
+  updateDatasetsDisplay = (name) => {
     axios.get(this.url, {
-        params: {datasetname: "lolo", user: localStorage.getItem('user')},
+        params: {datasetname: name, user: localStorage.getItem('user')},
         withCredentials: true,
         headers: {'content-type': 'multipart/form-data'}
         })
         .then(res => {
             console.log("GET: ", res.data);
             this.setState({allUserImages: res.data}); // Save dataset
+            this.setState({images: []});
             for (const img of res.data) {
                 this.setState(previousState => ({images: [...previousState.images, img["image"]]})); // Save images
             }
@@ -324,72 +324,77 @@ class StateAnnotate extends React.Component {
 
         {this.state.hasDatasetUploaded === false && <div className='myWarning'> <a>No datasets uploaded so far</a> <br/> <br/> <br/> </div>}
 
-        <div className="myCreatableInput">
-          <br/>
-          <br/>
-          <div>
-            <CreatableInputOnly setClasses={this.setClasses}></CreatableInputOnly>
+        {this.state.hasDatasetUploaded === true &&
+        <div>
+          <ChooseDataset updateimages={this.updateDatasetsDisplay}/>
+
+          <div className="myCreatableInput">
+            <br/>
+            <br/>
+            <div>
+              <CreatableInputOnly setClasses={this.setClasses}></CreatableInputOnly>
+            </div>
+            <br/>
+            <MyCanvas rendercanvas={this.state.renderCanvas ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs}
+              canvwidth={this.state.imgDimensions[0]} canvheight={this.state.imgDimensions[1]} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]}
+              style={{backgroundSize: this.state.imgDimensions[0], backgroundImage: "url(" + this.state.images[this.state.current_img] + ")"}}
+              onMouseOut={this.handleMouseOut} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown}/>
+            <br/>
+            <br/>
+              <Button variant="outline-dark" disabled={!this.state.canBackward} onClick={this.handleBackward}>
+                Previous [&#8592;]
+              </Button>
+              &nbsp;&nbsp;
+              <Button variant="outline-dark" onClick={this.handleClearLast} >Delete last [Space]</Button>
+              &nbsp;&nbsp;
+              <Button variant="outline-dark" onClick={this.handleClearAll} >Delete all [r]</Button>
+              &nbsp;&nbsp;
+              <Button variant="outline-dark" disabled={!this.state.canForward} onClick={this.handleForward}>
+                Next [&#8594;]
+              </Button>
+              <br/>
+              <br/>
+              <Dropdown>
+                <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
+                  Download Annotations
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={this.handleFinish}>txt</Dropdown.Item>
+                  <Dropdown.Item onClick={this.handleFinish}>xml</Dropdown.Item>
+                  <Dropdown.Item onClick={this.handleFinish}>json</Dropdown.Item>
+                  <Dropdown.Item onClick={this.handleFinish}>csv</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              <br/>
+              <br/>
+              <br/>
           </div>
-          <br/>
-          <MyCanvas rendercanvas={this.state.renderCanvas ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs}
-            canvwidth={this.state.imgDimensions[0]} canvheight={this.state.imgDimensions[1]} width={this.state.imgDimensions[0]} height={this.state.imgDimensions[1]}
-            style={{backgroundSize: this.state.imgDimensions[0], backgroundImage: "url(" + this.state.images[this.state.current_img] + ")"}}
-            onMouseOut={this.handleMouseOut} onMouseUp={this.handleMouseUp} onMouseMove={this.handleMouseMove} onMouseDown={this.handleMouseDown}/>
-          <br/>
-          <br/>
-            <Button variant="outline-dark" disabled={!this.state.canBackward} onClick={this.handleBackward}>
-              Previous [&#8592;]
-            </Button>
-            &nbsp;&nbsp;
-            <Button variant="outline-dark" onClick={this.handleClearLast} >Delete last [Space]</Button>
-            &nbsp;&nbsp;
-            <Button variant="outline-dark" onClick={this.handleClearAll} >Delete all [r]</Button>
-            &nbsp;&nbsp;
-            <Button variant="outline-dark" disabled={!this.state.canForward} onClick={this.handleForward}>
-              Next [&#8594;]
-            </Button>
-            <br/>
-            <br/>
-            <Dropdown>
-              <Dropdown.Toggle variant="outline-dark" id="dropdown-basic">
-                Download Annotations
-              </Dropdown.Toggle>
-              <Dropdown.Menu>
-                <Dropdown.Item onClick={this.handleFinish}>txt</Dropdown.Item>
-                <Dropdown.Item onClick={this.handleFinish}>xml</Dropdown.Item>
-                <Dropdown.Item onClick={this.handleFinish}>json</Dropdown.Item>
-                <Dropdown.Item onClick={this.handleFinish}>csv</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-            <br/>
-            <br/>
-            <br/>
-        </div>
-        {/* Following invisible image is needed to load the image dimensions for the canvas */}
-        <div style={{display: 'none'}}>
-          <img  onLoad={this.handleImgLoad} src={this.state.images[this.state.current_img]} style={{
-            borderRadius: 10,
-            overflow: "hidden",
-            alignItems: "center",
-            borderWidth: 1,
-          }}/>
-        </div>
-        {/* Following code is for the object class dialog box */}
-        <div>      
-          <Modal onHide={this.closeDialog} show={this.state.isOpen} size="sm" centered>
-            <Modal.Body>
-              <ModalInput ref={this.refDialog} closedialog={this.closeDialog} addnewobj={this.addNewObj} saveclassnum={(e) => this.setClassNum(e)}/>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="outline-dark" onClick={this.closeDialog}>
-                Close [Esc]
-              </Button>
-              <Button variant="outline-dark" onClick={this.addNewObj}>
-                Done [&crarr;]
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        </div>
+          {/* Following invisible image is needed to load the image dimensions for the canvas */}
+          <div style={{display: 'none'}}>
+            <img  onLoad={this.handleImgLoad} src={this.state.images[this.state.current_img]} style={{
+              borderRadius: 10,
+              overflow: "hidden",
+              alignItems: "center",
+              borderWidth: 1,
+            }}/>
+          </div>
+          {/* Following code is for the object class dialog box */}
+          <div>      
+            <Modal onHide={this.closeDialog} show={this.state.isOpen} size="sm" centered>
+              <Modal.Body>
+                <ModalInput ref={this.refDialog} closedialog={this.closeDialog} addnewobj={this.addNewObj} saveclassnum={(e) => this.setClassNum(e)}/>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="outline-dark" onClick={this.closeDialog}>
+                  Close [Esc]
+                </Button>
+                <Button variant="outline-dark" onClick={this.addNewObj}>
+                  Done [&crarr;]
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
+        </div>}
       </div>
     );
   }

@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
-import logo from "..//..//..//assets/images/logo/logo-2.svg";
-
 class Upload extends React.Component {
     constructor(props) {
         super(props);
@@ -101,8 +99,8 @@ class Upload extends React.Component {
             items.push(
                 <div className="myDatasetOverview">
                     <img className="myDatasetImage" src={value["img_first"]}></img>
-                    <label>Name: {value["name"]}</label>
-                    <label>Images: {value["img_num"]}</label>
+                    <label style={{color: 'black'}}>{value["name"]}</label>
+                    <label>Count: {value["img_num"]}</label>
                 </div>
             )
         }
@@ -112,12 +110,12 @@ class Upload extends React.Component {
               return (
                 index % 6 === 0 && (
                   <div key={item} className="myDatasetBox">
-                    <span>{items[index]}</span>
-                    <span>{items[index + 1]}</span>
-                    <span>{items[index + 2]}</span>
-                    <span>{items[index + 3]}</span>
-                    <span>{items[index + 4]}</span>
-                    <span>{items[index + 5]}</span>
+                    <span >{items[index]}</span>
+                    <span >{items[index + 1]}</span>
+                    <span >{items[index + 2]}</span> 
+                    <span >{items[index + 3]}</span> 
+                    <span >{items[index + 4]}</span> 
+                    <span >{items[index + 5]}</span> 
                   </div>
                 )
               );

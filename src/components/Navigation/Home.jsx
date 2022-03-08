@@ -86,17 +86,7 @@ function Home() {
                             <div className="ud-hero-brands-wrapper wow fadeInUp" data-wow-delay=".3s">
                                 <img src={brand} alt="brand" />
                             </div>
-                            
-                            <br/>
-                            <br/>
-                            <br/>
-
-                            <div className="myParallelImages wow fadeInUp" data-wow-delay=".4s">
-                            <img src={'https://backenddjangostorage.blob.core.windows.net/static/home_annot.png'} alt="hero-image" style={{borderRadius: '10px'}}/>
-                            <img src={'https://backenddjangostorage.blob.core.windows.net/static/home_annot2.png'} alt="hero-image" style={{borderRadius: '10px'}}/>
-                            <img src={'https://backenddjangostorage.blob.core.windows.net/static/home_annot3.png'} alt="hero-image" style={{borderRadius: '10px'}}/>
-                            </div>
-                            
+                                                        
                             <br/>
                             <br/>
                             <br/>
