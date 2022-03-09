@@ -48,7 +48,7 @@ class ChooseDataset extends React.Component {
         const createSelectItems = () =>  {
             let items = [];
             for (let i = 0; i < this.state.datasets.length; i++) {        
-                 items.push(<Dropdown.Item onClick={(e) => {this.handleChooseDataset(e)}}>{this.state.datasets[i]['name']}</Dropdown.Item>);   
+                 items.push(<Dropdown.Item key={i} onClick={(e) => {this.handleChooseDataset(e)}}>{this.state.datasets[i]['name']}</Dropdown.Item>);   
             }
             return items;
         };
@@ -63,8 +63,6 @@ class ChooseDataset extends React.Component {
                         </Dropdown.Toggle>
                         <Dropdown.Menu>
                             {createSelectItems()}
-                            {/* <Dropdown.Item onClick={(e) => {this.handleChooseDataset(e)}}>{this.state.datasets[0]['name']}</Dropdown.Item>
-                            <Dropdown.Item onClick={(e) => {this.handleChooseDataset(e)}}>{this.state.datasets[1]['name']}</Dropdown.Item> */}
                         </Dropdown.Menu>
                     </Dropdown>
                 </div>}

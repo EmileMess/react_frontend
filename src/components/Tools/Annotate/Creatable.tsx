@@ -26,7 +26,9 @@ interface State {
 }
 
 interface Props {
-  setClasses(arg: MultiValue<Option>): void
+  setClasses(arg: MultiValue<Option>): void,
+  oncreatablefocus(): void,
+  oncreatableblur(): void
 }
 
 class CreatableInputOnly extends Component<Props, State> {
@@ -62,7 +64,6 @@ class CreatableInputOnly extends Component<Props, State> {
     switch (event.key) {
       case 'Enter':
       case 'Tab':
-        // console.log('Value Added');
         this.setState({
           inputValue: '',
           value: [...value, createOption(inputValue)],
@@ -89,6 +90,8 @@ class CreatableInputOnly extends Component<Props, State> {
           isClearable
           isMulti
           autoFocus
+          onFocus={this.props.oncreatablefocus}
+          onBlur={this.props.oncreatableblur}
           menuIsOpen={false}
           onChange={this.handleDelete}
           onInputChange={this.handleInputChange}

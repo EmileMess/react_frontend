@@ -36,6 +36,8 @@ class StateAnnotate extends React.Component {
           outFromDialog: false, // true if mouse only left canvas because of dialog popup
           classes: [], // contains all classes defined by user
           hasDatasetUploaded: true, // Has the user uploaded at least one dataset
+          currentDataset: '', // currently loaded dataset
+          creatableSelected: true, // is the creatable input field for the class names selected?
       }
   }
 
@@ -54,6 +56,7 @@ class StateAnnotate extends React.Component {
   }
 
   updateDatasetsDisplay = (name) => {
+    this.setState({currentDataset: name});
     axios.get(this.url, {
         params: {datasetname: name, user: localStorage.getItem('user')},
         withCredentials: true,
@@ -68,6 +71,10 @@ class StateAnnotate extends React.Component {
             }
         })
         .catch(err => this.handleError(err))
+
+    this.setState({listofRecs: []})
+    this.setState({renderCanvas: true})
+
   }
 
   setClasses = (allclasses) => {
@@ -125,7 +132,7 @@ class StateAnnotate extends React.Component {
   }
 
   handleFinish = e => {
-    let finalData = 'IMAGE_NAME CLASS_NAME X_START Y_START WIDTH HEIGHT\n\n';
+    let finalData = 'Dataset: ' + this.state.currentDataset + '\n\nIMAGE_NAME CLASS_NAME X_START Y_START WIDTH HEIGHT\n\n';
     for (var i = 0; i < this.state.listofRecs.length; i++) {
       finalData = finalData + this.state.images[i].split('/').pop() + ' ' + this.state.listofRecs[i][5] + ' ' + this.state.listofRecs[i][1] + ' ' + this.state.listofRecs[i][2] + ' ' + this.state.listofRecs[i][3] + ' ' + this.state.listofRecs[i][4] + '\n';
     }
@@ -285,31 +292,39 @@ class StateAnnotate extends React.Component {
   }
 
   onKeyDown = (e) => {
-    // Check if "Arrow" key was pressed
-    if (e.key === "ArrowRight") {
-      this.handleForward()
+    if (this.state.isOpen == false && this.state.creatableSelected == false) {
+      if (e.key === "ArrowRight") {
+        this.handleForward()
+      }
+      if (e.key === "ArrowLeft") {
+        this.handleBackward()
+      }
+      if (e.key === "r") {
+        this.handleClearLast()
+      }
+      if (e.key === "a") {
+        this.handleClearAll()
+      }
     }
-    if (e.key === "ArrowLeft") {
-      this.handleBackward()
-    }
+  }
 
-    if (e.key === " ") {
-      this.handleClearLast()
-    }
-    if (e.key === "r") {
-      this.handleClearAll()
-    }
+  onCreatableFocus = (e) => {
+    this.setState({creatableSelected: true})
+  }
+
+  onCreatableBlur = (e) => {
+    this.setState({creatableSelected: false})
   }
 
   render() {
     return (
       <div className="myCenter">
         {/* <!-- ====== Banner Start ====== --> */}
-        <section class="ud-page-banner">
-            <div class="container">
-                <div class="row">
-                <div class="col-lg-12">
-                    <div class="ud-banner-content">
+        <section className="ud-page-banner">
+            <div className="container">
+                <div className="row">
+                <div className="col-lg-12">
+                    <div className="ud-banner-content">
                     <h1>Annotate</h1>
                     </div>
                 </div>
@@ -331,8 +346,8 @@ class StateAnnotate extends React.Component {
           <div className="myCreatableInput">
             <br/>
             <br/>
-            <div>
-              <CreatableInputOnly setClasses={this.setClasses}></CreatableInputOnly>
+            <div> 
+              <CreatableInputOnly oncreatableblur={this.onCreatableBlur} oncreatablefocus={this.onCreatableFocus} setClasses={this.setClasses}></CreatableInputOnly>
             </div>
             <br/>
             <MyCanvas rendercanvas={this.state.renderCanvas ? 1 : undefined} currentimg={this.state.current_img} recs={this.state.listofRecs}
@@ -345,9 +360,9 @@ class StateAnnotate extends React.Component {
                 Previous [&#8592;]
               </Button>
               &nbsp;&nbsp;
-              <Button variant="outline-dark" onClick={this.handleClearLast} >Delete last [Space]</Button>
+              <Button variant="outline-dark" onClick={this.handleClearLast} >Delete last [r]</Button>
               &nbsp;&nbsp;
-              <Button variant="outline-dark" onClick={this.handleClearAll} >Delete all [r]</Button>
+              <Button variant="outline-dark" onClick={this.handleClearAll} >Delete all [a]</Button>
               &nbsp;&nbsp;
               <Button variant="outline-dark" disabled={!this.state.canForward} onClick={this.handleForward}>
                 Next [&#8594;]
