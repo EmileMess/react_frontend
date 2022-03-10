@@ -16,7 +16,7 @@
 
 .myDatasetOverview {
   display: grid;
-  border: 1px black solid;
+  /* border: 1px black solid; */
   text-align: center;
 }
 

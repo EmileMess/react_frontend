@@ -74,7 +74,6 @@ class StateAnnotate extends React.Component {
 
     this.setState({listofRecs: []})
     this.setState({renderCanvas: true})
-
   }
 
   setClasses = (allclasses) => {

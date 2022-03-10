@@ -109,7 +109,7 @@ class Upload extends React.Component {
             return items.map((item, index) => {
               return (
                 index % 6 === 0 && (
-                  <div key={item} className="myDatasetBox">
+                  <div key={index} className="myDatasetBox">
                     <span >{items[index]}</span>
                     <span >{items[index + 1]}</span>
                     <span >{items[index + 2]}</span> 
